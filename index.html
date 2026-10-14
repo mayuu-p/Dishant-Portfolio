@@ -414,6 +414,26 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 }
 
 </style>
+<style>
+
+/* Hero image micro-adjustments requested */
+@media(min-width:768px){
+ .hero-portrait{top:calc(-10% - 2cm)!important;right:4%!important;width:76%!important;height:112%!important}
+ .hero-portrait img{object-fit:contain!important;object-position:center top!important;transform:scale(1.055)!important;
+ -webkit-mask-image:radial-gradient(ellipse 84% 84% at 53% 48%,#000 60%,rgba(0,0,0,.96) 70%,rgba(0,0,0,.62) 82%,transparent 100%)!important;
+ mask-image:radial-gradient(ellipse 84% 84% at 53% 48%,#000 60%,rgba(0,0,0,.96) 70%,rgba(0,0,0,.62) 82%,transparent 100%)!important}
+ .hero-copy{width:88%!important;position:relative;z-index:3}
+ .hero-copy h1{position:relative;z-index:4;width:150%!important}
+ .hero-copy h1 .hero-line{position:relative}
+}
+@media(max-width:767px){
+ .hero-portrait{margin-top:-1rem!important}
+ .hero-portrait img{transform:scale(1.025)!important;
+ -webkit-mask-image:radial-gradient(ellipse 88% 88% at 50% 48%,#000 65%,rgba(0,0,0,.85) 82%,transparent 100%)!important;
+ mask-image:radial-gradient(ellipse 88% 88% at 50% 48%,#000 65%,rgba(0,0,0,.85) 82%,transparent 100%)!important}
+}
+
+</style>
 </head>
 <body>
 
