@@ -506,6 +506,16 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 }
 
 </style>
+<style>
+
+/* Final placement: lift/crop portrait from top; nudge nav links right without moving utility controls */
+@media(min-width:768px){
+ .hero-portrait{top:calc(-7rem - 2.2cm)!important;height:calc(100% + 7rem + 2.2cm)!important}
+ .hero-portrait img{object-position:center 14%!important}
+ header nav, nav[aria-label], .nav-links{transform:translateX(1.25rem)}
+}
+
+</style>
 </head>
 <body>
 
