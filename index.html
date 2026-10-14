@@ -524,6 +524,23 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 }
 
 </style>
+
+<style>
+/* Header stays anchored; keep desktop navigation close to the theme controls */
+header.glass{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:90!important}
+header.glass>div{display:flex!important;align-items:center!important}
+@media(min-width:768px){
+  header.glass nav[aria-label="Primary"]{
+    position:static!important;
+    margin-left:auto!important;
+    margin-right:1.25rem!important;
+    transform:none!important;
+  }
+}
+@media(max-width:767px){
+  header.glass{position:fixed!important;top:0!important}
+}
+</style>
 </head>
 <body>
 
@@ -590,7 +607,7 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
   <!-- Responsive hero: editorial desktop split, immersive mobile portrait -->
   <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-hidden px-5 pb-14 pt-32 md:px-10 md:pb-20">
     <div class="hero-eyebrow mono relative z-10 mb-8 flex justify-between text-[color:var(--color-soft)]">
-      <span>I'm Dishant Mote</span><span>India · Worldwide</span>
+      <span>I'm Dishant Mote</span>
     </div>
     <div class="hero-layout grid items-center gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-6">
       <div class="hero-copy relative z-10 min-w-0">
