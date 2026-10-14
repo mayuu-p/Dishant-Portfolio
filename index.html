@@ -328,6 +328,26 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 }
 
 </style>
+<style>
+
+/* Fine-tune hero: slight zoom-out, raise portrait, stronger right-aligned title */
+.hero-portrait{top:-7%!important;right:0!important;width:64%!important;height:99%!important}
+.hero-portrait img{transform:scale(.98)!important;object-fit:contain!important;object-position:center top!important}
+.hero-copy h1{font-size:clamp(4.6rem,10vw,10rem)!important;line-height:.81!important;width:130%!important;max-width:none!important}
+.hero-copy{width:min(78%,1000px)!important}
+@media(min-width:768px){
+ .hero-copy h1 .hero-line:nth-child(1){width:130%}
+ .hero-copy h1 .hero-line:nth-child(2){width:105%;margin-left:0}
+ .hero-copy h1 .hero-line:nth-child(3){width:100%;margin-left:0}
+}
+@media(max-width:767px){
+ .hero-portrait{top:auto!important;right:auto!important;width:100%!important;height:min(66svh,600px)!important;min-height:340px!important;margin:-1rem 0 0!important}
+ .hero-portrait img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center top!important;transform:scale(1)!important}
+ .hero-copy{width:100%!important}
+ .hero-copy h1{font-size:clamp(3.6rem,14.5vw,6.3rem)!important;line-height:.85!important;width:100%!important}
+}
+
+</style>
 </head>
 <body>
 
