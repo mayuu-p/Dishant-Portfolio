@@ -519,16 +519,24 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 <style>
 
 @media(min-width:768px){
- /* Preserve cover framing; remove the early bottom fade so the image reaches the hero border */
- .hero-portrait{top:calc(-12.5rem + 0.2cm)!important;height:calc(100% + 12.5rem - 0.2cm)!important;bottom:auto!important;overflow:hidden!important}
- .hero-portrait img{
-  object-fit:cover!important;object-position:center 15%!important;transform:scale(.98)!important;transform-origin:center top!important;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 7%,#000 23%,#000 100%),linear-gradient(to bottom,transparent 0%,#000 7%,#000 97%,transparent 100%)!important;
-  -webkit-mask-composite:source-in!important;
-  mask-image:linear-gradient(to right,transparent 0%,#000 23%,#000 100%),linear-gradient(to bottom,transparent 0%,#000 7%,#000 97%,transparent 100%)!important;
-  mask-composite:intersect!important;
+ /* Final alignment: keep the portrait top/cover framing, extend it to the hero bottom, and remove the premature bottom fade */
+ .hero-portrait{
+  top:calc(-12.5rem + 0.2cm)!important;
+  height:calc(100% + 12.5rem - 0.2cm)!important;
+  bottom:auto!important;overflow:hidden!important;
  }
- .hero-shell::after{background:linear-gradient(to right,var(--color-page,#f5f5f3) 0%,rgba(245,245,243,.65) 16%,transparent 42%)!important;opacity:.4!important;filter:blur(18px)!important}
+ .hero-portrait img{
+  object-fit:cover!important;object-position:center 15%!important;
+  transform:scale(.98)!important;transform-origin:center top!important;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 7%,#000 23%,#000 100%)!important;
+  -webkit-mask-composite:source-over!important;
+  mask-image:linear-gradient(to right,transparent 0%,#000 23%,#000 100%)!important;
+  mask-composite:add!important;
+ }
+ .hero-shell::after{
+  background:linear-gradient(to right,var(--color-page,#f5f5f3) 0%,rgba(245,245,243,.65) 16%,transparent 42%)!important;
+  opacity:.4!important;filter:blur(18px)!important;
+ }
 }
 
 </style>
