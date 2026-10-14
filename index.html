@@ -235,24 +235,32 @@
 </div>
 
 <main id="top">
-  <!-- Hero -->
-  <section class="relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-end px-5 pb-14 pt-32 md:px-10 md:pb-20">
+  <!-- Hero: text left, Dishant portrait right -->
+  <section class="relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center px-5 pb-14 pt-32 md:px-10 md:pb-20">
     <div class="mono mb-8 flex justify-between text-[color:var(--color-soft)]">
       <span>I'm Dishant Mote</span><span>India · Worldwide</span>
     </div>
-    <h1 class="serif m-0 text-[clamp(3rem,13vw,11rem)] leading-[0.88] tracking-[-0.02em]">
-      <span class="hero-line"><span class="hero-anim">Photographer</span></span>
-      <span class="hero-line"><span class="hero-anim">&amp; Visual</span></span>
-      <span class="hero-line"><span class="hero-anim italic text-[color:var(--color-soft)]">Artist.</span></span>
-    </h1>
-    <div class="mt-12 flex flex-col items-start gap-8 border-t border-[color:var(--color-line)] pt-8 md:flex-row md:items-center md:justify-between">
-      <p class="m-0 max-w-md text-[0.98rem] leading-relaxed text-[color:var(--color-soft)]">
-        Based in India, I specialise in professional portraits, high-end commercial editorial layouts and outdoor lifestyle photography campaigns.
-      </p>
-      <a href="#work" class="liquid-btn" aria-label="View portfolio">
-        <span class="blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-        <span class="relative">View Portfolio</span>
-      </a>
+    <div class="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+      <div class="min-w-0">
+        <h1 class="serif m-0 text-[clamp(3rem,8.7vw,8.2rem)] leading-[0.88] tracking-[-0.02em]">
+          <span class="hero-line"><span class="hero-anim">Photographer</span></span>
+          <span class="hero-line"><span class="hero-anim">&amp; Visual</span></span>
+          <span class="hero-line"><span class="hero-anim italic text-[color:var(--color-soft)]">Artist.</span></span>
+        </h1>
+        <div class="mt-10 flex flex-col items-start gap-7 border-t border-[color:var(--color-line)] pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <p class="m-0 max-w-md text-[0.98rem] leading-relaxed text-[color:var(--color-soft)]">
+            Based in India, I specialise in professional portraits, high-end commercial editorial layouts and outdoor lifestyle photography campaigns.
+          </p>
+          <a href="#work" class="liquid-btn shrink-0" aria-label="View portfolio">
+            <span class="blobs" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="relative">View Portfolio</span>
+          </a>
+        </div>
+      </div>
+      <figure class="reveal m-0 w-full justify-self-end lg:max-w-[520px]">
+        <img src="dishant.jpg" alt="Dishant Mote — photographer and visual artist" fetchpriority="high" decoding="async" class="block aspect-[4/5] w-full rounded-sm object-cover object-center" />
+        <figcaption class="mono mt-3 flex justify-between text-[color:var(--color-soft)]"><span>Dishant Mote</span><span>Photographer / Visual Artist</span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -358,63 +366,18 @@
   var q = "?auto=format&fit=crop&q=80&w=1200";
 
   var WORKS = [
-    { id:"nocturne", type:"stills", title:"Nocturne I", location:"Vík, Iceland", year:"2026",
-      img:U+"photo-1519741497674-611481863552"+q, alt:"Bride in flowing gown photographed at dusk",
-      camera:"Leica SL3", lens:"50mm Summilux", iso:"ISO 200", aperture:"ƒ/2.8", shutter:"1/800s" },
-    { id:"monument", type:"stills", title:"Monument", location:"Osaka, Japan", year:"2025",
-      img:U+"photo-1493246507139-91e8fad9978e"+q, alt:"Minimal architectural landscape at golden hour",
-      camera:"Hasselblad X2D", lens:"38mm XCD", iso:"ISO 100", aperture:"ƒ/8", shutter:"1/125s" },
-    { id:"undertow", type:"motion", title:"Undertow", location:"North Shore, Oʻahu", year:"2026",
-      img:U+"photo-1505118380757-91f5f5632de0"+q, alt:"Ocean wave curling at dusk",
-      video:"https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4",
-      camera:"RED V-Raptor", lens:"24mm Signature Prime", iso:"ISO 800", aperture:"T2.8", shutter:"1/1000s" },
-    { id:"vesper", type:"stills", title:"Vesper", location:"London, England", year:"2026",
-      img:U+"photo-1524504388940-b1c1722653e1"+q, alt:"Studio portrait of a model in soft light",
-      camera:"Phase One XF", lens:"80mm Schneider", iso:"ISO 50", aperture:"ƒ/5.6", shutter:"1/160s" },
-    { id:"after-rain", type:"motion", title:"After Rain", location:"Tokyo, Japan", year:"2025",
-      img:U+"photo-1542051841857-5f90071e7989"+q, alt:"Neon lit Tokyo street after rainfall",
-      video:"https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-heights-in-a-sunset-26070-large.mp4",
-      camera:"Sony A1 II", lens:"35mm GM", iso:"ISO 3200", aperture:"ƒ/1.4", shutter:"1/250s" },
-    { id:"trace", type:"stills", title:"Trace", location:"Makgadikgadi, Botswana", year:"2024",
-      img:U+"photo-1470071459604-3b5ec3a7fe05"+q, alt:"Mist rolling through a mountain valley",
-      camera:"DJI Mavic 3 Pro", lens:"24mm Hasselblad", iso:"ISO 100", aperture:"ƒ/5.6", shutter:"1/500s" },
-    { id:"ember", type:"motion", title:"Ember", location:"Jaipur, India", year:"2026",
-      img:U+"photo-1519741497674-611481863552"+q.replace("w=1200","w=1400"), alt:"Wedding couple in warm evening light",
-      video:"https://assets.mixkit.co/videos/preview/mixkit-going-down-a-curved-highway-through-a-mountain-range-41576-large.mp4",
-      camera:"ARRI Alexa 35", lens:"40mm Signature", iso:"ISO 1600", aperture:"T2.0", shutter:"1/50s" },
-    { id:"linen", type:"stills", title:"Linen", location:"Goa, India", year:"2025",
-      img:U+"photo-1529626455594-4ff0802cfb7e"+q, alt:"Editorial portrait in natural window light",
-      camera:"Canon R5 II", lens:"85mm RF", iso:"ISO 400", aperture:"ƒ/1.8", shutter:"1/500s" },
-    { id:"first-light", type:"motion", title:"First Light", location:"Ladakh, India", year:"2026",
-      img:U+"photo-1441974231531-c6227db76b6e"+q, alt:"Sunrise breaking over a forest ridge",
-      video:"https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4",
-      camera:"Blackmagic URSA 12K", lens:"28mm Zeiss", iso:"ISO 640", aperture:"T4", shutter:"1/48s" },
-    { id:"quiet-room", type:"stills", title:"Quiet Room", location:"Pune, India", year:"2025",
-      img:U+"photo-1517841905240-472988babdf9"+q, alt:"Candid portrait of a woman by a window",
-      camera:"Nikon Z9", lens:"105mm S", iso:"ISO 250", aperture:"ƒ/2.2", shutter:"1/320s" },
-    { id:"salt", type:"stills", title:"Salt", location:"Rann of Kutch, India", year:"2024",
-      img:U+"photo-1500534314209-a25ddb2bd429"+q, alt:"Wide desert landscape under open sky",
-      camera:"Fujifilm GFX100 II", lens:"32mm GF", iso:"ISO 80", aperture:"ƒ/11", shutter:"1/250s" },
-    { id:"veil", type:"motion", title:"Veil", location:"Udaipur, India", year:"2026",
-      img:U+"photo-1519225421980-715cb0215aed"+q, alt:"Wedding ceremony detail in soft focus",
-      video:"https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-and-palm-trees-1564-large.mp4",
-      camera:"Sony FX6", lens:"50mm GM", iso:"ISO 1250", aperture:"T1.8", shutter:"1/50s" },
-
-    /* Original Dishant-Portfolio photos preserved and included in this gallery */
-    { id:"dishant-original-1", type:"stills", title:"Dishant — Photo 1", location:"Dishant Portfolio", year:"Original",
-      img:"1.jpg", alt:"Original Dishant Portfolio photo 1", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-2", type:"stills", title:"Dishant — Photo 2", location:"Dishant Portfolio", year:"Original",
-      img:"2.jpg", alt:"Original Dishant Portfolio photo 2", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-3", type:"stills", title:"Dishant — Photo 3", location:"Dishant Portfolio", year:"Original",
-      img:"3.jpg", alt:"Original Dishant Portfolio photo 3", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-4", type:"stills", title:"Dishant — Photo 4", location:"Dishant Portfolio", year:"Original",
-      img:"4.jpg", alt:"Original Dishant Portfolio photo 4", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-5", type:"stills", title:"Dishant — Photo 5", location:"Dishant Portfolio", year:"Original",
-      img:"5.jpg", alt:"Original Dishant Portfolio photo 5", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-6", type:"stills", title:"Dishant — Photo 6", location:"Dishant Portfolio", year:"Original",
-      img:"6.jpg", alt:"Original Dishant Portfolio photo 6", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-profile", type:"stills", title:"Dishant — Portrait", location:"Dishant Portfolio", year:"Original",
-      img:"dishant.jpg", alt:"Original Dishant portrait photo", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" }
+    { id:"dishant-original-1", type:"stills", title:"Photo 01", location:"Dishant Mote Portfolio", year:"Original",
+      img:"1.jpg", alt:"Dishant Mote portfolio photograph 1", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-2", type:"stills", title:"Photo 02", location:"Dishant Mote Portfolio", year:"Original",
+      img:"2.jpg", alt:"Dishant Mote portfolio photograph 2", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-3", type:"stills", title:"Photo 03", location:"Dishant Mote Portfolio", year:"Original",
+      img:"3.jpg", alt:"Dishant Mote portfolio photograph 3", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-4", type:"stills", title:"Photo 04", location:"Dishant Mote Portfolio", year:"Original",
+      img:"4.jpg", alt:"Dishant Mote portfolio photograph 4", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-5", type:"stills", title:"Photo 05", location:"Dishant Mote Portfolio", year:"Original",
+      img:"5.jpg", alt:"Dishant Mote portfolio photograph 5", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-6", type:"stills", title:"Photo 06", location:"Dishant Mote Portfolio", year:"Original",
+      img:"6.jpg", alt:"Dishant Mote portfolio photograph 6", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" }
   ];
 
   var SERVICES = [
