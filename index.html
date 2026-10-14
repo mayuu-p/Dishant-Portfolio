@@ -31,7 +31,6 @@
     --font-display: "Instrument Serif", Georgia, serif;
     --font-body: "Manrope", system-ui, sans-serif;
     --font-mono: "DM Mono", ui-monospace, monospace;
-    --header-h: 72px; /* actual header height — used to offset hero */
   }
   :root.light {
     --color-page: #f5f5f3;
@@ -194,18 +193,25 @@
 <style id="hero-final">
 /* =========================================================
    HERO — FINAL
-   Photo touches header bottom (top:0) and extends to hero's
-   lower horizontal boundary (bottom:0). Cover fit preserved.
-   Mobile untouched.
+   - Photo top: header ke bottom edge se exactly start
+     (header fixed hai aur hero content uske peeche se chalta hai,
+      isliye portrait ka top negative header-height pe rakha)
+   - Photo bottom: hero section ke lower horizontal boundary par
+   - Cover fit, head + shirt visible, no early bottom fade
+   - Mobile unchanged
    ========================================================= */
 
-/* Hero shell = exact reference boundary for the photo */
+/* Approx header height (py-4 = 1rem top + 1rem bottom + content ~40px) */
+:root { --dm-header-h: 72px; }
+
+/* Hero shell = reference boundary for the portrait */
 .hero-shell {
   position: relative !important;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;              /* allow portrait to reach header */
   min-height: 100svh;
   padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .hero-layout { position: relative; }
@@ -213,36 +219,48 @@
 /* ---------- Desktop / tablet ---------- */
 @media (min-width: 768px) {
 
-  /* Photo is absolutely positioned so it spans the FULL hero-shell
-     height: top = 0 (touches header), bottom = 0 (touches hero's
-     lower horizontal boundary). No arbitrary pixel heights. */
+  /* Copy sits below the header (which is fixed on top) */
+  .hero-eyebrow {
+    padding-top: calc(var(--dm-header-h) + 2rem) !important;
+    margin-bottom: 2rem !important;
+  }
+  .hero-copy {
+    position: relative !important;
+    z-index: 4 !important;
+    width: min(74%, 1000px) !important;
+    padding-bottom: 3rem;
+  }
+
+  /* Portrait: TOP = -header-height so image's top edge sits exactly
+     at the header's bottom edge. BOTTOM = 0 so image extends to
+     the hero section's lower horizontal boundary. */
   .hero-portrait {
     position: absolute !important;
     z-index: 2 !important;
-    top: 0 !important;
+    top: calc(-1 * var(--dm-header-h)) !important;
     right: 0 !important;
     bottom: 0 !important;
     left: auto !important;
     width: 62% !important;
-    height: auto !important;      /* driven by top + bottom */
+    height: auto !important;
     margin: 0 !important;
-    overflow: hidden;
+    overflow: visible !important;
     animation: none !important;
     pointer-events: none;
     transform: none !important;
+    clip-path: inset(0 0 0 0);     /* clip any overflow from header area */
   }
 
-  /* Image: cover fit, top-biased crop so head + shirt both visible.
-     No bottom fade — the image stays crisp all the way to the
-     hero's lower horizontal line. Only the LEFT edge is softly
-     masked so the typography column blends into the photo. */
+  /* Image: cover fit, top-biased crop so head + shirt visible.
+     Only LEFT edge masked so typography blends. Bottom stays crisp
+     so the image reaches the hero's lower boundary cleanly. */
   .hero-portrait img {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center 12% !important;
+    object-position: center 15% !important;
     transform: none !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -266,8 +284,8 @@
     mask-composite: add !important;
   }
 
-  /* Left-side gradient overlay: heading merges into the photo.
-     No bottom gradient — hero bottom stays crisp. */
+  /* Left gradient overlay for text/photo blend.
+     No bottom gradient so hero's lower boundary is crisp. */
   .hero-shell::after {
     content: "" !important;
     position: absolute !important;
@@ -281,27 +299,14 @@
       transparent 52%
     ) !important;
   }
-
-  /* Copy column starts BELOW the header. Since we removed the
-     section's top padding, we add breathing room on the copy itself. */
-  .hero-eyebrow {
-    padding-top: calc(var(--header-h) + 2rem) !important;
-    margin-bottom: 2rem !important;
-  }
-  .hero-copy {
-    position: relative !important;
-    z-index: 4 !important;
-    width: min(74%, 1000px) !important;
-    padding-bottom: 3rem;
-  }
 }
 
-/* ---------- Mobile: unchanged framing ---------- */
+/* ---------- Mobile: untouched ---------- */
 @media (max-width: 767px) {
   .hero-shell {
     padding-top: 6rem !important;
     padding-bottom: 2.5rem !important;
-    overflow: hidden;
+    overflow: hidden !important;
   }
   .hero-eyebrow {
     padding-top: 0 !important;
@@ -323,10 +328,11 @@
     width: 100%;
     height: clamp(340px, 60svh, 560px);
     margin: 1rem 0 0;
-    overflow: hidden;
+    overflow: hidden !important;
     animation: none !important;
     pointer-events: none;
     transform: none !important;
+    clip-path: none !important;
   }
   .hero-portrait img {
     position: absolute !important;
@@ -450,8 +456,8 @@ header.glass > div {
 </div>
 
 <main id="top">
-  <!-- Hero: photo touches header at top, hero boundary at bottom -->
-  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-hidden px-5 md:px-10">
+  <!-- Hero: photo starts at header bottom, extends to hero boundary -->
+  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-visible px-5 md:px-10">
     <div class="hero-eyebrow mono relative z-10 mb-8 flex justify-between text-[color:var(--color-soft)]">
       <span>I'm Dishant Mote</span>
     </div>
