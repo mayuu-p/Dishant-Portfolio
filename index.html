@@ -434,6 +434,35 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 }
 
 </style>
+<style>
+
+/* Reference-matched hero composition: edge-to-edge image on the right, typography crossing into it */
+@media (min-width:768px){
+ .hero-shell{position:relative!important;min-height:100svh!important;max-width:none!important;padding-left:3.7vw!important;padding-right:3.7vw!important;overflow:hidden!important}
+ .hero-layout{position:static!important;display:block!important}
+ .hero-copy{position:relative!important;z-index:4!important;width:66%!important;max-width:none!important;padding-top:1vh!important}
+ .hero-copy h1{font-size:clamp(5.4rem,10.5vw,10.5rem)!important;line-height:.78!important;letter-spacing:-.055em!important;width:120%!important;max-width:none!important}
+ .hero-copy h1 .hero-line{overflow:visible!important}
+ .hero-copy h1 .hero-line:nth-child(1){width:125%}
+ .hero-copy h1 .hero-line:nth-child(2){width:95%}
+ .hero-copy h1 .hero-line:nth-child(3){width:80%}
+ .hero-copy>div{position:relative!important;z-index:5!important;max-width:520px!important}
+ .hero-portrait{position:absolute!important;z-index:2!important;top:0!important;right:0!important;left:auto!important;width:64%!important;height:100%!important;margin:0!important;overflow:hidden!important;animation:portrait-drift 8s ease-in-out infinite}
+ .hero-portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 18%!important;transform:scale(1.025)!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+ -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.15) 8%,#000 23%,#000 100%),linear-gradient(to bottom,transparent 0%,#000 9%,#000 91%,transparent 100%)!important;-webkit-mask-composite:source-in!important;
+ mask-image:linear-gradient(to right,transparent 0%,#000 23%,#000 100%),linear-gradient(to bottom,transparent 0%,#000 9%,#000 91%,transparent 100%)!important;mask-composite:intersect!important}
+ .hero-shell::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,var(--color-page,#f5f5f3) 0%,transparent 60%);opacity:.24}
+}
+@media(max-width:767px){
+ .hero-shell{overflow:hidden!important}
+ .hero-layout{display:flex!important;flex-direction:column!important}
+ .hero-copy{width:100%!important}
+ .hero-copy h1{width:100%!important;font-size:clamp(3.3rem,13vw,5.8rem)!important;line-height:.84!important}
+ .hero-portrait{position:relative!important;top:auto!important;right:auto!important;left:auto!important;width:calc(100% + 2.5rem)!important;height:min(72svh,650px)!important;min-height:380px!important;margin:-.8rem -1.25rem 0!important;overflow:hidden!important}
+ .hero-portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 18%!important;transform:scale(1.015)!important;-webkit-mask-image:linear-gradient(to right,transparent,#000 10%,#000 90%,transparent),linear-gradient(to bottom,transparent,#000 8%,#000 90%,transparent)!important;-webkit-mask-composite:source-in!important;mask-image:linear-gradient(to right,transparent,#000 10%,#000 90%,transparent),linear-gradient(to bottom,transparent,#000 8%,#000 90%,transparent)!important;mask-composite:intersect!important}
+}
+
+</style>
 </head>
 <body>
 
