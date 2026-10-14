@@ -519,9 +519,9 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 <style>
 
 @media(min-width:768px){
- /* Shift the hero photo down by 0.5cm and show the fullest available framing */
- .hero-portrait{top:calc(-12.5rem + 0.5cm)!important;height:calc(100% + 12rem)!important;bottom:0!important}
- .hero-portrait img{object-fit:contain!important;object-position:center bottom!important;transform:scale(1)!important;transform-origin:center bottom!important}
+ /* Restore the previous cover look; slightly ease the crop to show the full shirt */
+ .hero-portrait{top:-12.5rem!important;height:calc(100% + 12.5rem)!important;bottom:auto!important}
+ .hero-portrait img{object-fit:cover!important;object-position:center 15%!important;transform:scale(.98)!important;transform-origin:center top!important}
 }
 
 </style>
