@@ -519,7 +519,8 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 <style>
 
 @media(min-width:768px){
- .hero-portrait{top:calc(-7rem - 4cm)!important;height:calc(100% + 7rem + 4cm)!important}
+ /* Keep the photo just below the top edge, aligned to the fixed header */
+ .hero-portrait{top:5.25rem!important;height:calc(100% - 5.25rem)!important}
  .hero-portrait img{object-position:center 10%!important}
 }
 
