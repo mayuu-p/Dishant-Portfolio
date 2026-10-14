@@ -519,8 +519,8 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 <style>
 
 @media(min-width:768px){
- /* Restore the previous cover look; slightly ease the crop to show the full shirt */
- .hero-portrait{top:-12.5rem!important;height:calc(100% + 12.5rem)!important;bottom:auto!important}
+ /* Keep the same cover look; lower the photo 0.2cm while preserving its bottom edge */
+ .hero-portrait{top:calc(-12.5rem + 0.2cm)!important;height:calc(100% + 12.5rem - 0.2cm)!important;bottom:auto!important}
  .hero-portrait img{object-fit:cover!important;object-position:center 15%!important;transform:scale(.98)!important;transform-origin:center top!important}
 }
 
