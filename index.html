@@ -557,6 +557,40 @@ header.glass>div{display:flex!important;align-items:center!important}
   header.glass{position:fixed!important;top:0!important}
 }
 </style>
+
+<style id="final-layout-fixes">
+/* Desktop: stretch the portrait from its existing top position to the actual Home section bottom */
+@media (min-width:768px){
+  .hero-shell{position:relative!important;isolation:isolate!important;overflow:hidden!important}
+  .hero-portrait{
+    top:calc(-12.5rem + 0.2cm)!important;
+    bottom:0!important;
+    height:auto!important;
+    overflow:hidden!important;
+  }
+  .hero-portrait img{
+    height:100%!important;width:100%!important;object-fit:cover!important;
+    object-position:center 15%!important;transform:scale(.98)!important;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 7%,#000 23%,#000 100%)!important;
+    mask-image:linear-gradient(to right,transparent 0%,#000 23%,#000 100%)!important;
+    -webkit-mask-composite:source-over!important;mask-composite:add!important;
+  }
+}
+/* Keep mobile header/menu and hero content compact without changing the desktop composition */
+@media(max-width:767px){
+  .hero-shell{min-height:auto!important;padding-top:5.25rem!important;padding-bottom:1.25rem!important}
+  .hero-copy h1{font-size:clamp(2.8rem,11.5vw,4.8rem)!important;line-height:.88!important}
+  .hero-portrait{height:min(54svh,470px)!important;min-height:300px!important;margin-top:-.4rem!important}
+  .hero-copy>div{margin-top:1rem!important}
+}
+/* Image-only viewer: lock the page behind it and let the viewer own any scrolling */
+#lightbox{overflow:auto!important;overscroll-behavior:contain!important;touch-action:pan-y!important}
+#lightbox>div{width:100%!important;max-width:none!important;min-height:100dvh!important;padding:1rem!important}
+#lightbox>div>div:nth-child(3),#lightbox>div>div:nth-child(4){display:none!important}
+#lb-frame{flex:1 0 auto!important;min-height:calc(100dvh - 5rem)!important;padding:0!important;overflow:visible!important}
+#lb-frame img,#lb-frame video{width:auto!important;height:auto!important;max-width:100%!important;max-height:calc(100dvh - 5rem)!important;object-fit:contain!important;border-radius:0!important}
+body.locked{overflow:hidden!important;position:fixed!important;width:100%!important}
+</style>
 </head>
 <body>
 
