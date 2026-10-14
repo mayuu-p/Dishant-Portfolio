@@ -192,117 +192,149 @@
 
 <style id="hero-final">
 /* =========================================================
-   HERO — FINAL CLEAN LAYOUT
-   - Desktop: portrait fills from header bottom to hero bottom
-   - Cover fit, right side, overlaps with heading
-   - Mobile: portrait below copy, original framing
+   HERO FINAL
+   - Desktop: photo touches header (top) & hero bottom (bottom)
+   - Cover fit, right side, head visible
+   - Mobile: untouched framing
    ========================================================= */
 
 .hero-shell {
-  position: relative;
+  position: relative !important;
   isolation: isolate;
   overflow: hidden;
   min-height: 100svh;
+  padding-top: 0 !important;
 }
 
 .hero-layout { position: relative; }
 
 /* ---------- Desktop / tablet ---------- */
 @media (min-width: 768px) {
+
+  .hero-shell {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Copy: header ke neeche se start, hero bottom tak breathing room */
   .hero-copy {
     position: relative;
     z-index: 4;
     width: min(74%, 1000px);
+    padding-top: 7rem;      /* header height + gap */
+    padding-bottom: 3rem;
+  }
+  .hero-eyebrow {
+    padding-top: 7rem;
+    margin-bottom: 2rem;
   }
 
+  /* Portrait: TOP = 0 (header bottom touch), BOTTOM = 0 (hero bottom touch) */
   .hero-portrait {
-    position: absolute;
+    position: absolute !important;
     z-index: 2;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: auto;
-    width: 62%;
-    height: auto;
-    margin: 0;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    width: 62% !important;
+    height: auto !important;
+    margin: 0 !important;
     overflow: hidden;
-    animation: none;
+    animation: none !important;
     pointer-events: none;
   }
 
+  /* Image: cover, right-side crop, top-aligned so head visible */
   .hero-portrait img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 18%;
-    transform: none;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    transform: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 
-    /* Only left-edge blend into copy — bottom stays crisp to hero boundary */
+    /* Sirf LEFT edge par soft blend — bottom crisp */
     -webkit-mask-image: linear-gradient(
       to right,
       transparent 0%,
       rgba(0,0,0,.35) 8%,
       #000 22%,
       #000 100%
-    );
+    ) !important;
     mask-image: linear-gradient(
       to right,
       transparent 0%,
       rgba(0,0,0,.35) 8%,
       #000 22%,
       #000 100%
-    );
+    ) !important;
+    -webkit-mask-composite: source-over !important;
+    mask-composite: add !important;
   }
 
-  /* Left-side overlay so heading can cross into photo cleanly */
+  /* Left gradient overlay: heading photo mein blend ho */
   .hero-shell::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 3 !important;
+    pointer-events: none !important;
     background: linear-gradient(
       to right,
       var(--color-page) 0%,
       color-mix(in srgb, var(--color-page) 55%, transparent) 24%,
       transparent 52%
-    );
+    ) !important;
   }
 }
 
-/* ---------- Mobile: unchanged framing ---------- */
+/* ---------- Mobile: untouched ---------- */
 @media (max-width: 767px) {
-  .hero-shell { overflow: hidden; }
+  .hero-shell {
+    padding-top: 6rem !important;
+    padding-bottom: 2.5rem !important;
+    overflow: hidden;
+  }
   .hero-copy {
     position: relative;
     z-index: 4;
     width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .hero-eyebrow {
+    padding-top: 0;
+    margin-bottom: 1.4rem;
   }
   .hero-portrait {
-    position: relative;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
     z-index: 2;
     width: 100%;
     height: clamp(340px, 60svh, 560px);
     margin: 1rem 0 0;
     overflow: hidden;
-    animation: none;
+    animation: none !important;
     pointer-events: none;
   }
   .hero-portrait img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    transform: none;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 100%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 100%);
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
+    transform: none !important;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 100%) !important;
+    mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 100%) !important;
   }
 }
 </style>
@@ -331,7 +363,6 @@ header.glass > div {
 </style>
 
 <style id="lightbox-fixes">
-/* Image-only viewer; prevent background scroll */
 #lightbox {
   position: fixed !important;
   inset: 0 !important;
@@ -417,7 +448,7 @@ header.glass > div {
 
 <main id="top">
   <!-- Hero -->
-  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-hidden px-5 pb-14 pt-32 md:px-10 md:pb-20">
+  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-hidden px-5 md:px-10">
     <div class="hero-eyebrow mono relative z-10 mb-8 flex justify-between text-[color:var(--color-soft)]">
       <span>I'm Dishant Mote</span>
     </div>
