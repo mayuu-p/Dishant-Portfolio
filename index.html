@@ -31,10 +31,6 @@
     --font-display: "Instrument Serif", Georgia, serif;
     --font-body: "Manrope", system-ui, sans-serif;
     --font-mono: "DM Mono", ui-monospace, monospace;
-
-    /* Header height + 1cm crop for the top of the photo */
-    --dm-header-h: 72px;
-    --dm-crop-top: 1cm;
   }
   :root.light {
     --color-page: #f5f5f3;
@@ -177,7 +173,7 @@
 </style>
 
 <style>
-  /* ---------- Subtle cinematic depth ---------- */
+  /* ---------- Subtle cinematic depth (original) ---------- */
   :root { --depth-glow: rgba(175,169,154,.12); }
   body { background-image: radial-gradient(ellipse 55% 35% at 86% 13%, var(--depth-glow), transparent 75%); background-attachment: fixed; }
   #work, #services, #contact { position: relative; }
@@ -196,22 +192,24 @@
 
 <style id="hero-final">
 /* =========================================================
-   HERO — FINAL
-   - Photo top: header ke bottom edge se touch (1cm upar se crop)
-   - Photo bottom: hero section ki horizontal line par
-   - Poori photo dikhe: head + shirt + neeche tak
-   - Hero ki horizontal line ko thoda neeche khiska diya
-   - Mobile unchanged
+   HERO — Original layout, sirf photo alignment fix
+   - Photo ka top 1cm cut
+   - Photo header ko touch kare
+   - Photo poori neeche tak dikhe (hero ki horizontal line tak)
+   - Mobile original
    ========================================================= */
 
-/* Hero shell = exact reference boundary */
+:root {
+  --dm-header-h: 72px;    /* header ki height */
+  --dm-crop-top: 1cm;     /* photo ka top se 1cm cut */
+}
+
 .hero-shell {
   position: relative !important;
   isolation: isolate;
-  overflow: visible;
-  min-height: calc(100svh + 4cm);   /* hero ko thoda lamba kiya taaki poori photo fit ho */
+  overflow: hidden;
+  min-height: 100svh;
   padding-top: 0 !important;
-  padding-bottom: 0 !important;
 }
 
 .hero-layout { position: relative; }
@@ -219,7 +217,7 @@
 /* ---------- Desktop / tablet ---------- */
 @media (min-width: 768px) {
 
-  /* Copy content: header ke neeche se start */
+  /* Copy header ke neeche se start ho */
   .hero-eyebrow {
     padding-top: calc(var(--dm-header-h) + 2rem) !important;
     margin-bottom: 2rem !important;
@@ -232,9 +230,9 @@
   }
 
   /* Portrait:
-     - top: -(header height) - 1cm  → 1cm upar se crop, then touches header
-     - bottom: 0 → goes to hero's lower horizontal boundary
-     - height: auto → driven purely by top + bottom                     */
+     top = -(header height + 1cm)  → photo 1cm upar se crop, phir header touch
+     bottom = 0                    → hero ki horizontal line tak
+     height = auto                 → sirf top+bottom se drive          */
   .hero-portrait {
     position: absolute !important;
     z-index: 2 !important;
@@ -251,20 +249,20 @@
     transform: none !important;
   }
 
-  /* Image: cover fit, top-biased crop so head + shirt visible.
-     Only LEFT edge masked so typography blends. Bottom crisp. */
+  /* Image: cover fit, poori photo (head + shirt + neeche tak) */
   .hero-portrait img {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center top !important;   /* head + shirt visible */
+    object-position: center top !important;
     transform: none !important;
     border: 0 !important;
     border-radius: 0 !important;
     box-shadow: none !important;
 
+    /* Sirf LEFT edge par soft blend — baaki sab crisp */
     -webkit-mask-image: linear-gradient(
       to right,
       transparent 0%,
@@ -283,7 +281,7 @@
     mask-composite: add !important;
   }
 
-  /* Left gradient overlay for typography/photo blend */
+  /* Left gradient — typography photo mein blend ho */
   .hero-shell::after {
     content: "" !important;
     position: absolute !important;
@@ -299,10 +297,9 @@
   }
 }
 
-/* ---------- Mobile: untouched ---------- */
+/* ---------- Mobile: original untouched ---------- */
 @media (max-width: 767px) {
   .hero-shell {
-    min-height: auto !important;
     padding-top: 6rem !important;
     padding-bottom: 2.5rem !important;
     overflow: hidden !important;
@@ -347,7 +344,7 @@
 </style>
 
 <style>
-/* Header stays fixed on top */
+/* Header fixed on top */
 header.glass {
   position: fixed !important;
   top: 0 !important;
@@ -455,7 +452,7 @@ header.glass > div {
 
 <main id="top">
   <!-- Hero -->
-  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-visible px-5 md:px-10">
+  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-hidden px-5 md:px-10">
     <div class="hero-eyebrow mono relative z-10 mb-8 flex justify-between text-[color:var(--color-soft)]">
       <span>I'm Dishant Mote</span>
     </div>
