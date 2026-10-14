@@ -519,9 +519,9 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 <style>
 
 @media(min-width:768px){
- /* Slightly lower the portrait and let its bottom meet the hero section's lower edge */
- .hero-portrait{top:-12.5rem!important;height:calc(100% + 12.5rem)!important;bottom:0!important}
- .hero-portrait img{object-fit:cover!important;object-position:center 18%!important;transform:scale(1)!important;transform-origin:center top!important}
+ /* Shift the hero photo down by 0.5cm and show the fullest available framing */
+ .hero-portrait{top:calc(-12.5rem + 0.5cm)!important;height:calc(100% + 12rem)!important;bottom:0!important}
+ .hero-portrait img{object-fit:contain!important;object-position:center bottom!important;transform:scale(1)!important;transform-origin:center bottom!important}
 }
 
 </style>
