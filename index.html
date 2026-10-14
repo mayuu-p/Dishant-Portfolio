@@ -519,8 +519,8 @@ html,body{width:100%;max-width:100%;overflow-x:clip!important}
 <style>
 
 @media(min-width:768px){
- /* Keep the same cover look; lower the photo 0.2cm while preserving its bottom edge */
- .hero-portrait{top:calc(-12.5rem + 0.2cm)!important;height:calc(100% + 12.5rem - 0.2cm)!important;bottom:auto!important}
+ /* Preserve the top placement and cover style; extend only the photo's bottom to the hero border */
+ .hero-portrait{top:calc(-12.5rem + 0.2cm)!important;height:calc(100% + 12.5rem + 2.5rem)!important;bottom:auto!important}
  .hero-portrait img{object-fit:cover!important;object-position:center 15%!important;transform:scale(.98)!important;transform-origin:center top!important}
 }
 
