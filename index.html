@@ -559,7 +559,7 @@ header.glass>div{display:flex!important;align-items:center!important}
 </style>
 
 <style id="final-layout-fixes">
-/* Keep the editorial layout, show the entire original portrait, and blend away its bottom edge */
+/* Desktop: restore the original cover-style composition and extend its bottom to the Home section edge */
 @media (min-width:768px){
   .hero-shell{position:relative!important;isolation:isolate!important;overflow:hidden!important}
   .hero-layout{position:static!important}
@@ -570,20 +570,20 @@ header.glass>div{display:flex!important;align-items:center!important}
   }
   .hero-portrait img{
     position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
-    object-fit:contain!important;object-position:right bottom!important;transform:none!important;
-    -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.15) 8%,#000 24%,#000 100%),linear-gradient(to bottom,#000 0%,#000 88%,rgba(0,0,0,.82) 95%,transparent 100%)!important;
+    object-fit:cover!important;object-position:center 15%!important;transform:scale(.98)!important;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 7%,#000 23%,#000 100%),linear-gradient(to bottom,#000 0%,#000 88%,rgba(0,0,0,.82) 95%,transparent 100%)!important;
     -webkit-mask-composite:source-in!important;
-    mask-image:linear-gradient(to right,transparent 0%,#000 24%,#000 100%),linear-gradient(to bottom,#000 0%,#000 88%,rgba(0,0,0,.82) 95%,transparent 100%)!important;
+    mask-image:linear-gradient(to right,transparent 0%,#000 23%,#000 100%),linear-gradient(to bottom,#000 0%,#000 88%,rgba(0,0,0,.82) 95%,transparent 100%)!important;
     mask-composite:intersect!important;
   }
   .hero-shell::after{z-index:2!important;pointer-events:none!important}
 }
-/* Keep the current compact mobile layout, but show the full photo without cover-cropping */
+/* Mobile: preserve the existing mobile photo and layout exactly as before this desktop adjustment */
 @media(max-width:767px){
   .hero-shell{min-height:auto!important;padding-top:5.25rem!important;padding-bottom:1.25rem!important}
   .hero-copy h1{font-size:clamp(2.8rem,11.5vw,4.8rem)!important;line-height:.88!important}
-  .hero-portrait{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;width:calc(100% + 2.5rem)!important;height:auto!important;min-height:0!important;margin:-.4rem -1.25rem 0!important;overflow:hidden!important;animation:none!important}
-  .hero-portrait img{position:relative!important;inset:auto!important;display:block!important;width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;object-position:center!important;transform:none!important;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 94%,transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 0%,#000 94%,transparent 100%)!important}
+  .hero-portrait{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;width:calc(100% + 2.5rem)!important;height:min(54svh,470px)!important;min-height:300px!important;margin:-.4rem -1.25rem 0!important;overflow:hidden!important;animation:none!important}
+  .hero-portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 18%!important;transform:none!important}
   .hero-copy>div{margin-top:1rem!important}
 }
 /* Image-only viewer: prevent the page behind it from moving; keep scrolling inside the viewer */
