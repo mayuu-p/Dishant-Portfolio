@@ -31,6 +31,10 @@
     --font-display: "Instrument Serif", Georgia, serif;
     --font-body: "Manrope", system-ui, sans-serif;
     --font-mono: "DM Mono", ui-monospace, monospace;
+
+    /* Header height + 1cm crop for the top of the photo */
+    --dm-header-h: 72px;
+    --dm-crop-top: 1cm;
   }
   :root.light {
     --color-page: #f5f5f3;
@@ -193,23 +197,19 @@
 <style id="hero-final">
 /* =========================================================
    HERO — FINAL
-   - Photo top: header ke bottom edge se exactly start
-     (header fixed hai aur hero content uske peeche se chalta hai,
-      isliye portrait ka top negative header-height pe rakha)
-   - Photo bottom: hero section ke lower horizontal boundary par
-   - Cover fit, head + shirt visible, no early bottom fade
+   - Photo top: header ke bottom edge se touch (1cm upar se crop)
+   - Photo bottom: hero section ki horizontal line par
+   - Poori photo dikhe: head + shirt + neeche tak
+   - Hero ki horizontal line ko thoda neeche khiska diya
    - Mobile unchanged
    ========================================================= */
 
-/* Approx header height (py-4 = 1rem top + 1rem bottom + content ~40px) */
-:root { --dm-header-h: 72px; }
-
-/* Hero shell = reference boundary for the portrait */
+/* Hero shell = exact reference boundary */
 .hero-shell {
   position: relative !important;
   isolation: isolate;
-  overflow: visible;              /* allow portrait to reach header */
-  min-height: 100svh;
+  overflow: visible;
+  min-height: calc(100svh + 4cm);   /* hero ko thoda lamba kiya taaki poori photo fit ho */
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
@@ -219,7 +219,7 @@
 /* ---------- Desktop / tablet ---------- */
 @media (min-width: 768px) {
 
-  /* Copy sits below the header (which is fixed on top) */
+  /* Copy content: header ke neeche se start */
   .hero-eyebrow {
     padding-top: calc(var(--dm-header-h) + 2rem) !important;
     margin-bottom: 2rem !important;
@@ -231,36 +231,35 @@
     padding-bottom: 3rem;
   }
 
-  /* Portrait: TOP = -header-height so image's top edge sits exactly
-     at the header's bottom edge. BOTTOM = 0 so image extends to
-     the hero section's lower horizontal boundary. */
+  /* Portrait:
+     - top: -(header height) - 1cm  → 1cm upar se crop, then touches header
+     - bottom: 0 → goes to hero's lower horizontal boundary
+     - height: auto → driven purely by top + bottom                     */
   .hero-portrait {
     position: absolute !important;
     z-index: 2 !important;
-    top: calc(-1 * var(--dm-header-h)) !important;
+    top: calc(-1 * (var(--dm-header-h) + var(--dm-crop-top))) !important;
     right: 0 !important;
     bottom: 0 !important;
     left: auto !important;
     width: 62% !important;
     height: auto !important;
     margin: 0 !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     animation: none !important;
     pointer-events: none;
     transform: none !important;
-    clip-path: inset(0 0 0 0);     /* clip any overflow from header area */
   }
 
   /* Image: cover fit, top-biased crop so head + shirt visible.
-     Only LEFT edge masked so typography blends. Bottom stays crisp
-     so the image reaches the hero's lower boundary cleanly. */
+     Only LEFT edge masked so typography blends. Bottom crisp. */
   .hero-portrait img {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center 15% !important;
+    object-position: center top !important;   /* head + shirt visible */
     transform: none !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -284,8 +283,7 @@
     mask-composite: add !important;
   }
 
-  /* Left gradient overlay for text/photo blend.
-     No bottom gradient so hero's lower boundary is crisp. */
+  /* Left gradient overlay for typography/photo blend */
   .hero-shell::after {
     content: "" !important;
     position: absolute !important;
@@ -304,6 +302,7 @@
 /* ---------- Mobile: untouched ---------- */
 @media (max-width: 767px) {
   .hero-shell {
+    min-height: auto !important;
     padding-top: 6rem !important;
     padding-bottom: 2.5rem !important;
     overflow: hidden !important;
@@ -332,7 +331,6 @@
     animation: none !important;
     pointer-events: none;
     transform: none !important;
-    clip-path: none !important;
   }
   .hero-portrait img {
     position: absolute !important;
@@ -456,7 +454,7 @@ header.glass > div {
 </div>
 
 <main id="top">
-  <!-- Hero: photo starts at header bottom, extends to hero boundary -->
+  <!-- Hero -->
   <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-visible px-5 md:px-10">
     <div class="hero-eyebrow mono relative z-10 mb-8 flex justify-between text-[color:var(--color-soft)]">
       <span>I'm Dishant Mote</span>
