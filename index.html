@@ -192,22 +192,24 @@
 
 <style id="hero-final">
 /* =========================================================
-   HERO — Original layout, sirf photo alignment fix
-   - Photo ka top 1cm cut
-   - Photo header ko touch kare
-   - Photo poori neeche tak dikhe (hero ki horizontal line tak)
-   - Mobile original
+   HERO — Final alignment
+   - Photo top: 1cm crop, phir header touch
+   - Photo bottom: 0.5cm neeche extend
+   - Bottom edge par blur fade + horizontal line
+   - Left edge par original blur fade (jaisa tha)
+   - Mobile unchanged
    ========================================================= */
 
 :root {
-  --dm-header-h: 72px;    /* header ki height */
-  --dm-crop-top: 1cm;     /* photo ka top se 1cm cut */
+  --dm-header-h: 72px;         /* header height */
+  --dm-crop-top: 1cm;          /* top se 1cm crop */
+  --dm-photo-extend: 0.5cm;    /* bottom se 0.5cm extend */
 }
 
 .hero-shell {
   position: relative !important;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible !important;   /* extended photo bahar ja sake */
   min-height: 100svh;
   padding-top: 0 !important;
 }
@@ -217,7 +219,6 @@
 /* ---------- Desktop / tablet ---------- */
 @media (min-width: 768px) {
 
-  /* Copy header ke neeche se start ho */
   .hero-eyebrow {
     padding-top: calc(var(--dm-header-h) + 2rem) !important;
     margin-bottom: 2rem !important;
@@ -229,27 +230,24 @@
     padding-bottom: 3rem;
   }
 
-  /* Portrait:
-     top = -(header height + 1cm)  → photo 1cm upar se crop, phir header touch
-     bottom = 0                    → hero ki horizontal line tak
-     height = auto                 → sirf top+bottom se drive          */
+  /* Portrait: top = -(72px + 1cm), bottom = -0.5cm (extend) */
   .hero-portrait {
     position: absolute !important;
     z-index: 2 !important;
     top: calc(-1 * (var(--dm-header-h) + var(--dm-crop-top))) !important;
     right: 0 !important;
-    bottom: 0 !important;
+    bottom: calc(-1 * var(--dm-photo-extend)) !important;
     left: auto !important;
     width: 62% !important;
     height: auto !important;
     margin: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     animation: none !important;
     pointer-events: none;
     transform: none !important;
   }
 
-  /* Image: cover fit, poori photo (head + shirt + neeche tak) */
+  /* Image: cover fit + LEFT + BOTTOM dual mask for blur blend */
   .hero-portrait img {
     position: absolute !important;
     inset: 0 !important;
@@ -262,26 +260,33 @@
     border-radius: 0 !important;
     box-shadow: none !important;
 
-    /* Sirf LEFT edge par soft blend — baaki sab crisp */
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(0,0,0,.30) 8%,
-      #000 22%,
-      #000 100%
-    ) !important;
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(0,0,0,.30) 8%,
-      #000 22%,
-      #000 100%
-    ) !important;
-    -webkit-mask-composite: source-over !important;
-    mask-composite: add !important;
+    /* Left edge fade + Bottom edge fade (dono blend) */
+    -webkit-mask-image:
+      linear-gradient(to right,
+        transparent 0%,
+        rgba(0,0,0,.30) 8%,
+        #000 22%,
+        #000 100%),
+      linear-gradient(to bottom,
+        #000 0%,
+        #000 88%,
+        rgba(0,0,0,.55) 95%,
+        transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right,
+        transparent 0%,
+        #000 22%,
+        #000 100%),
+      linear-gradient(to bottom,
+        #000 0%,
+        #000 88%,
+        rgba(0,0,0,.55) 95%,
+        transparent 100%);
+    mask-composite: intersect;
   }
 
-  /* Left gradient — typography photo mein blend ho */
+  /* Left gradient overlay for typography blend */
   .hero-shell::after {
     content: "" !important;
     position: absolute !important;
@@ -294,6 +299,19 @@
       color-mix(in srgb, var(--color-page) 55%, transparent) 24%,
       transparent 52%
     ) !important;
+  }
+
+  /* Photo ke niche horizontal line — photo ke extended bottom par */
+  .hero-shell::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: calc(-1 * var(--dm-photo-extend)) !important;
+    height: 1px !important;
+    background: var(--color-line) !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
   }
 }
 
@@ -340,6 +358,8 @@
     -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 100%) !important;
     mask-image: linear-gradient(to right, transparent 0%, #000 14%, #000 100%) !important;
   }
+  /* Mobile par horizontal line hide */
+  .hero-shell::before { display: none !important; }
 }
 </style>
 
@@ -452,7 +472,7 @@ header.glass > div {
 
 <main id="top">
   <!-- Hero -->
-  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-hidden px-5 md:px-10">
+  <section class="hero-shell relative mx-auto flex min-h-[100svh] max-w-[1500px] flex-col justify-center overflow-visible px-5 md:px-10">
     <div class="hero-eyebrow mono relative z-10 mb-8 flex justify-between text-[color:var(--color-soft)]">
       <span>I'm Dishant Mote</span>
     </div>
