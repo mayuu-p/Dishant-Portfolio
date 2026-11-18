@@ -180,6 +180,14 @@ body.login-locked #winLogin .win-card{z-index:2!important}
 @media(max-width:600px){
   #winLogin::before{background-size:100% 100%!important;background-position:center center!important}
 }
+
+/* FINAL WALLPAPER FIX: direct background on login root; kill circular pseudo layers */
+html:has(body.login-locked),html:has(body.login-locked) body{width:100%!important;height:100%!important;min-height:100%!important;margin:0!important;overflow:hidden!important}
+body.login-locked{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#182338!important}
+body.login-locked #winLogin{position:fixed!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-width:100vw!important;min-height:100vh!important;margin:0!important;padding:0!important;overflow:hidden!important;border:0!important;border-radius:0!important;background-color:#182338!important;background-image:linear-gradient(rgba(5,10,20,.10),rgba(5,10,20,.10)),url("./Windows.jpg")!important;background-repeat:no-repeat!important;background-position:center center!important;background-size:cover!important;isolation:isolate!important}
+body.login-locked #winLogin::before,body.login-locked #winLogin::after{content:none!important;display:none!important;width:0!important;height:0!important;animation:none!important;filter:none!important}
+body.login-locked #winLogin .win-card{position:relative!important;z-index:2!important;flex:0 1 420px!important;width:min(420px,calc(100vw - 32px))!important;max-width:420px!important;margin:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;padding:0 18px 12px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:none!important}
+@media(max-width:600px){body.login-locked #winLogin{background-position:center center!important;background-size:cover!important}body.login-locked #winLogin .win-card{width:calc(100vw - 28px)!important;padding:0 14px 10px!important}}
 </style>
 </head>
 <body class="login-locked">
