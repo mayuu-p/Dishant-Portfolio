@@ -555,6 +555,101 @@ body{background:
  #dashboardWrap .recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
+
+/* H-care inspired dashboard skin */
+:root{color-scheme:light;--bg:#f4f5fa;--panel:#fff;--line:#e9eaf2;--muted:#8990a3;--text:#242b3d;--gold:#7135d5;--good:#16ae8b;--bad:#d64e67}
+html,body,#dashboardWrap{background:#f4f5fa;color:#252c3d;font-family:Inter,"Segoe UI",system-ui,sans-serif}
+#dashboardWrap .top{height:78px;position:sticky;top:0;background:#fff;border-bottom:1px solid #ececf2;box-shadow:0 2px 12px #26334a08;padding:0 28px;backdrop-filter:none}
+#dashboardWrap .brand-mark{background:#f1e9ff;color:#7135d5;box-shadow:none;border-radius:10px}
+#dashboardWrap .brand{color:#293044;font-size:17px}#dashboardWrap .brand small{color:#9298a8}
+#dashboardWrap .status{color:#9298a8}
+#dashboardWrap .top-btn,#dashboardWrap .profile-mark{background:#fff;border:1px solid #ececf2;color:#46506a}
+#dashboardWrap .dashboard-shell{display:grid!important;grid-template-columns:258px minmax(0,1fr);gap:0;padding:0;min-height:calc(100vh - 78px);max-width:none}
+#dashboardWrap .sidebar{position:sticky;top:78px;height:calc(100vh - 78px);min-height:540px;border:0;border-right:1px solid #ececf2;border-radius:0;background:#fff;box-shadow:none;padding:28px 22px;backdrop-filter:none}
+#dashboardWrap .side-label{font-size:10px;color:#a1a6b4;padding:7px 12px 18px}
+#dashboardWrap .tabs{gap:8px}
+#dashboardWrap .tab{width:100%;border-radius:11px;padding:13px 14px;gap:14px;color:#7c8497;font-size:13px;font-weight:600}
+#dashboardWrap .tab span{width:20px;font-size:16px;color:#a4a9b8}
+#dashboardWrap .tab:hover{background:#f7f4fc;color:#6230c1}
+#dashboardWrap .tab.active{background:#f2eaff;color:#7135d5;box-shadow:none}
+#dashboardWrap .tab.active span{color:#7135d5}
+#dashboardWrap .sidebar-note{margin-top:auto;border-top:1px solid #f0f0f4;padding:16px 9px 0;color:#9298a8;line-height:1.7}
+#dashboardWrap .sidebar-note b{color:#7135d5}
+#dashboardWrap .main-content{max-width:none;width:100%;padding:30px clamp(18px,3vw,48px) 50px;min-width:0}
+#dashboardWrap .dashboard-heading{margin:0 0 22px;align-items:center}
+#dashboardWrap .dashboard-heading h1{font-size:28px;color:#252c3d;font-weight:700;letter-spacing:-.04em}
+#dashboardWrap .dashboard-heading p{color:#9298a8;font-size:12px}
+#dashboardWrap .eyebrow{color:#8c91a1;font-size:9px;letter-spacing:.16em}
+#dashboardWrap .panel{background:#fff;border:1px solid #ececf2;border-radius:13px;padding:20px 22px;margin:0 0 18px;box-shadow:0 3px 14px #28334b06;backdrop-filter:none}
+#dashboardWrap .panel h2{font-size:15px;color:#2d3447;font-weight:700;margin:0}
+#dashboardWrap .muted{color:#9298a8;font-size:11px}
+#dashboardWrap .grid.stats-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:18px}
+#dashboardWrap .stat-card{min-height:124px;padding:18px 18px 17px 76px;position:relative}
+#dashboardWrap .stat-card:before{position:absolute;left:20px;top:30px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:700}
+#dashboardWrap .stat-card:nth-child(1):before{content:"▧";background:#f1eaff;color:#7135d5}
+#dashboardWrap .stat-card:nth-child(2):before{content:"▶";background:#e7f8ff;color:#48a9d5}
+#dashboardWrap .stat-card:nth-child(3):before{content:"✦";background:#fff1e9;color:#ed9562}
+#dashboardWrap .stat-card:nth-child(4):before{content:"↗";background:#ffedf2;color:#e76b91}
+#dashboardWrap .stat-accent{display:none}
+#dashboardWrap .stat-label{font-size:9px;letter-spacing:.09em;color:#9298a8}
+#dashboardWrap .stats{font:700 27px/1.15 Inter,"Segoe UI",sans-serif;color:#293044;letter-spacing:-.04em;margin:8px 0 5px}
+#dashboardWrap .status-word{font-size:25px;color:#159b7b}
+#dashboardWrap .studio-insights{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.8fr);gap:18px;align-items:stretch}
+#dashboardWrap .chart-panel,#dashboardWrap .mix-panel{min-height:270px}
+#dashboardWrap .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#dashboardWrap .chart-tag{font-size:8px;letter-spacing:.12em;font-weight:800;color:#9a9fb0;background:#f7f7fb;padding:7px 9px;border-radius:6px;white-space:nowrap}
+#dashboardWrap .service-bars{display:grid;gap:15px;margin-top:25px}
+#dashboardWrap .service-bar-label{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#697287;margin-bottom:7px}
+#dashboardWrap .service-bar-label b{color:#343b4d}
+#dashboardWrap .service-bar-track{height:9px;border-radius:20px;background:#f0f1f6;overflow:hidden}
+#dashboardWrap .service-bar-track i{display:block;height:100%;border-radius:20px}
+#dashboardWrap .mix-layout{display:flex;align-items:center;justify-content:center;gap:24px;padding:24px 8px 8px}
+#dashboardWrap .media-donut{width:150px;height:150px;flex:0 0 150px;border-radius:50%;display:grid;place-items:center;position:relative}
+#dashboardWrap .donut-hole{width:94px;height:94px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 2px 12px #28334b0b}
+#dashboardWrap .donut-hole strong{font-size:26px;color:#293044;line-height:1.1}#dashboardWrap .donut-hole small{font-size:10px;color:#9298a8}
+#dashboardWrap .media-legend{display:grid;gap:13px;min-width:90px}
+#dashboardWrap .media-legend div{display:grid;grid-template-columns:10px 1fr auto;gap:7px;align-items:center;font-size:11px;color:#70798d}
+#dashboardWrap .media-legend i{width:8px;height:8px;border-radius:50%}#dashboardWrap .media-legend b{color:#343b4d}
+#dashboardWrap .quick-panel{display:flex;align-items:center;justify-content:space-between;gap:20px}
+#dashboardWrap .quick-actions{display:flex;flex-wrap:wrap;gap:8px}
+#dashboardWrap .btn{border:1px solid #e8e9f0;border-radius:9px;background:#fff;color:#515b70;padding:10px 14px;font-size:11px;font-weight:650}
+#dashboardWrap .btn:hover{background:#f8f5ff;border-color:#d9c9f7;box-shadow:0 4px 12px #673ab712}
+#dashboardWrap .btn.primary{background:#7135d5;border-color:#7135d5;color:#fff}
+#dashboardWrap .btn.danger{background:#fff4f5;border-color:#f4dce0;color:#b84c61}
+#dashboardWrap .recent-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
+#dashboardWrap .recent-thumb{border-radius:10px;overflow:hidden;background:#f7f7fa;color:#333}
+#dashboardWrap .recent-thumb img{height:135px}
+#dashboardWrap input,#dashboardWrap select,#dashboardWrap textarea{background:#fff;border:1px solid #e4e6ee;border-radius:9px;color:#293044;padding:12px}
+#dashboardWrap input:focus,#dashboardWrap select:focus,#dashboardWrap textarea:focus{border-color:#8b62dc;box-shadow:0 0 0 3px #7135d515}
+#dashboardWrap .field label{color:#737d91;font-weight:650}
+#dashboardWrap .uploadbox{background:#faf9ff;border:1px dashed #cfc1ec;border-radius:12px;color:#535d72}
+#dashboardWrap .item{background:#fff;border:1px solid #ececf2;border-radius:12px}
+#dashboardWrap .item img,#dashboardWrap .item video{height:170px}
+#dashboardWrap .category{border-color:#ececf2}
+#dashboardWrap .notice{background:#fff9e9;border:1px solid #f2e7c9;color:#806b3c;border-radius:10px}
+@media(max-width:1100px){#dashboardWrap .dashboard-shell{grid-template-columns:220px minmax(0,1fr)}#dashboardWrap .studio-insights{grid-template-columns:1fr}#dashboardWrap .mix-panel{min-height:220px}}
+@media(max-width:760px){
+#dashboardWrap .top{height:66px;padding:0 13px}#dashboardWrap .dashboard-shell{display:block!important}
+#dashboardWrap .sidebar{position:relative;top:auto;height:auto;min-height:0;padding:9px 10px;border-right:0;border-bottom:1px solid #ececf2}
+#dashboardWrap .side-label,#dashboardWrap .sidebar-note{display:none}
+#dashboardWrap .tabs{flex-direction:row;overflow-x:auto;gap:5px}
+#dashboardWrap .tab{width:auto;flex:0 0 auto;padding:10px 13px;font-size:11px}#dashboardWrap .tab span{display:none}
+#dashboardWrap .main-content{padding:20px 13px 38px}
+#dashboardWrap .dashboard-heading{align-items:flex-start;flex-direction:column;margin-bottom:17px}
+#dashboardWrap .dashboard-heading h1{font-size:24px}
+#dashboardWrap .grid.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#dashboardWrap .stat-card{min-height:112px;padding:15px 10px 13px 59px}
+#dashboardWrap .stat-card:before{left:12px;top:27px;width:36px;height:36px;font-size:15px}
+#dashboardWrap .stats{font-size:24px}#dashboardWrap .panel{padding:16px;border-radius:12px}
+#dashboardWrap .studio-insights{grid-template-columns:1fr;gap:0}#dashboardWrap .mix-layout{gap:18px}
+#dashboardWrap .media-donut{width:125px;height:125px;flex-basis:125px}
+#dashboardWrap .donut-hole{width:80px;height:80px}
+#dashboardWrap .quick-panel{align-items:flex-start;flex-direction:column}
+#dashboardWrap .quick-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}
+#dashboardWrap .recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+#dashboardWrap .recent-thumb img{height:115px}#dashboardWrap .status{font-size:8px}
+}
+
 </style>
 </head>
 <body class="login-locked">
@@ -601,7 +696,10 @@ body{background:
 <div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">SERVICES</div><div class="stats" id="categoryCount">0</div><div class="muted">Portfolio categories</div></div>
 <div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">WEBSITE STATUS</div><div class="stats status-word">LIVE</div><div class="muted">GitHub Pages website</div></div>
 </div>
-<div class="panel quick-panel"><div><h2>Quick controls</h2><p class="muted">Frequently used management actions</p></div><div class="quick-actions"><button class="btn primary" data-go="media">Manage media →</button><button class="btn" data-go="categories">Manage services →</button><a class="btn" href="./" target="_blank" rel="noopener">View public site ↗</a><a class="btn" href="https://github.com/mayuu-p/Dishant-Portfolio" target="_blank" rel="noopener">Repository ↗</a></div></div>
+<div class="studio-insights">
+<section class="panel chart-panel"><div class="section-head"><div><h2>Work by service</h2><p class="muted">Live count from your published portfolio</p></div><span class="chart-tag">LIVE CONTENT</span></div><div id="serviceBars" class="service-bars"><p class="muted">Connect GitHub to load portfolio analytics.</p></div></section>
+<section class="panel mix-panel"><div class="section-head"><div><h2>Media distribution</h2><p class="muted">Photos vs. reels</p></div><span class="chart-tag">CONTENT MIX</span></div><div class="mix-layout"><div id="mediaDonut" class="media-donut"><div class="donut-hole"><strong id="donutTotal">0</strong><small>items</small></div></div><div id="mediaLegend" class="media-legend"></div></div></section>
+</div><div class="panel quick-panel"><div><h2>Quick controls</h2><p class="muted">Frequently used management actions</p></div><div class="quick-actions"><button class="btn primary" data-go="media">Manage media →</button><button class="btn" data-go="categories">Manage services →</button><a class="btn" href="./" target="_blank" rel="noopener">View public site ↗</a><a class="btn" href="https://github.com/mayuu-p/Dishant-Portfolio" target="_blank" rel="noopener">Repository ↗</a></div></div>
 <div class="panel recent-panel"><div class="section-head"><div><h2>Recently published work</h2><p class="muted">Latest photos and reels from your portfolio</p></div><button class="btn" data-go="media">View all</button></div><div id="recentMedia" class="recent-list"><p class="muted">Connect GitHub to view published work.</p></div></div>
 </section>
 <section class="page hidden" id="page-media">
@@ -673,7 +771,21 @@ function encodeBase64(buffer){let binary="",bytes=new Uint8Array(buffer),chunk=0
 async function uploadBytes(path,file){if(file.size>MAX)throw new Error("File exceeds 20 MB. Compress it before uploading.");const base64=encodeBase64(await file.arrayBuffer());return gh(api(path),{method:"PUT",body:JSON.stringify({message:"Add portfolio media: "+path.split("/").pop(),content:base64,branch:BRANCH})});}
 async function saveManifest(){const body=JSON.stringify(content,null,2);const payload={message:"Update Dishant portfolio content",content:btoa(unescape(encodeURIComponent(body))),branch:BRANCH};if(manifestSha)payload.sha=manifestSha;const saved=await gh(api(MANIFEST),{method:"PUT",body:JSON.stringify(payload)});manifestSha=saved.content.sha;render();}
 async function loadManifest(){try{const data=await gh(api(MANIFEST)+"?ref="+BRANCH);manifestSha=data.sha;content=JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,"")))));}catch(e){if(e.message.includes("Not Found")){content={works:[],services:[{icon:"camera",label:"Photography",blurb:"Photography sessions and portfolio work."},{icon:"video",label:"Videography",blurb:"Films, reels and event videography."},{icon:"baby",label:"Baby Shoot",blurb:"Newborn and baby photography."},{icon:"sparkles",label:"Candid Pics",blurb:"Natural candid moments."}]};manifestSha="";}else throw e;}}
-function render(){const works=content.works||[],services=content.services||[];$("photoCount").textContent=works.filter(x=>x.type==="stills").length;$("videoCount").textContent=works.filter(x=>x.type==="motion").length;$("categoryCount").textContent=services.length;$("mediaTotal").textContent=works.length+" items";$("recentMedia").innerHTML=works.slice(0,4).map(w=>'<div class="recent-thumb"><img src="'+escAttr(w.img||"") + '" alt=""><div>'+esc(w.title)+'</div></div>').join("")||'<p class="muted">No published media yet.</p>';$("category").innerHTML=services.map(s=>'<option>'+esc(s.label)+'</option>').join("");$("mediaList").innerHTML=works.map((w,i)=>'<article class="item"><'+(w.type==="motion"?"video":"img")+' src="'+escAttr(w.type==="motion"?(w.video||""):(w.img||""))+'" '+(w.type==="motion"?'poster="'+escAttr(w.img||"")+'" controls':'alt=""')+'></'+(w.type==="motion"?"video":"img")+'><div class="info"><strong>'+esc(w.title)+'</strong><small>'+esc(w.category)+" · "+(w.type==="motion"?"Video":"Photo")+'</small><div class="actions"><button class="btn danger" data-edit="'+i+'">Edit</button><button class="btn danger" data-delete="'+i+'">Remove</button></div></div></article>').join("")||'<p class="muted">No media added yet.</p>';$("categoryList").innerHTML=services.map((s,i)=>'<div class="category"><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.blurb)+'</div></div><button class="btn danger" data-catedit="'+i+'">Edit</button><button class="btn danger" data-catdelete="'+i+'">Remove</button></div>').join("");}
+function render(){const works=content.works||[],services=content.services||[];$("photoCount").textContent=works.filter(x=>x.type==="stills").length;$("videoCount").textContent=works.filter(x=>x.type==="motion").length;$("categoryCount").textContent=services.length;$("mediaTotal").textContent=works.length+" items";$("recentMedia").innerHTML=works.slice(0,4).map(w=>'<div class="recent-thumb"><img src="'+escAttr(w.img||"") + '" alt=""><div>'+esc(w.title)+'</div></div>').join("")||'<p class="muted">No published media yet.</p>';$("category").innerHTML=services.map(s=>'<option>'+esc(s.label)+'</option>').join("");$("mediaList").innerHTML=works.map((w,i)=>'<article class="item"><'+(w.type==="motion"?"video":"img")+' src="'+escAttr(w.type==="motion"?(w.video||""):(w.img||""))+'" '+(w.type==="motion"?'poster="'+escAttr(w.img||"")+'" controls':'alt=""')+'></'+(w.type==="motion"?"video":"img")+'><div class="info"><strong>'+esc(w.title)+'</strong><small>'+esc(w.category)+" · "+(w.type==="motion"?"Video":"Photo")+'</small><div class="actions"><button class="btn danger" data-edit="'+i+'">Edit</button><button class="btn danger" data-delete="'+i+'">Remove</button></div></div></article>').join("")||'<p class="muted">No media added yet.</p>';$("categoryList").innerHTML=services.map((s,i)=>'<div class="category"><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.blurb)+'</div></div><button class="btn danger" data-catedit="'+i+'">Edit</button><button class="btn danger" data-catdelete="'+i+'">Remove</button></div>').join("");renderStudioInsights(works,services);}
+
+function renderStudioInsights(works,services){
+ const palette=["#7135d5","#16bfa5","#f39a62","#5a9be8","#ed6b9a","#9b83e8","#62b6a7"];
+ const bars=$("serviceBars"),donut=$("mediaDonut"),legend=$("mediaLegend"),total=works.length;
+ const counts=services.map((service,index)=>({label:service.label,count:works.filter(w=>String(w.category||"").toLowerCase()===String(service.label).toLowerCase()).length,color:palette[index%palette.length]}));
+ const max=Math.max(1,...counts.map(x=>x.count));
+ bars.innerHTML=counts.length?counts.map(x=>'<div class="service-bar-row"><div class="service-bar-label"><span>'+esc(x.label)+'</span><b>'+x.count+'</b></div><div class="service-bar-track"><i style="width:'+Math.max(x.count?5:0,x.count/max*100)+'%;background:'+x.color+'"></i></div></div>').join(""):'<p class="muted">No services configured yet.</p>';
+ const photos=works.filter(w=>w.type==="stills").length,reels=works.filter(w=>w.type==="motion").length;
+ $("donutTotal").textContent=total;
+ let angle=0;const segments=[];
+ if(total){[[photos,"#7135d5"],[reels,"#16bfa5"]].forEach(([n,c])=>{const next=angle+n/total*360;segments.push(c+" "+angle+"deg "+next+"deg");angle=next;});donut.style.background="conic-gradient("+segments.join(",")+")";}
+ else donut.style.background="conic-gradient(#e7eaf2 0deg 360deg)";
+ legend.innerHTML='<div><i style="background:#7135d5"></i><span>Photos</span><b>'+photos+'</b></div><div><i style="background:#16bfa5"></i><span>Reels</span><b>'+reels+'</b></div>';
+}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function escAttr(s){return esc(s).replace(/\s/g," ");}
 async function connect(){token=$("token").value.trim();if(!token){message("connectMsg","Enter your fine-grained GitHub token.",false);return;}try{await gh("https://api.github.com/repos/"+OWNER+"/"+REPO);await loadManifest();$("connection").textContent="GITHUB: CONNECTED · "+OWNER+"/"+REPO;$("connectPanel").classList.add("hidden");$("sideNav").classList.remove("hidden");$("app").classList.remove("hidden");render();}catch(e){token="";message("connectMsg","Connection failed: "+e.message,false);}}
