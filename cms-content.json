@@ -1,0 +1,136 @@
+{
+  "works": [
+    {
+      "id": "dishant-original-1",
+      "type": "stills",
+      "category": "Photography",
+      "title": "Photo 01",
+      "location": "Dishant Mote Portfolio",
+      "year": "Original",
+      "img": "1.jpg",
+      "alt": "Dishant Mote portfolio photograph 1",
+      "camera": "—",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    },
+    {
+      "id": "dishant-original-2",
+      "type": "stills",
+      "category": "Photography",
+      "title": "Photo 02",
+      "location": "Dishant Mote Portfolio",
+      "year": "Original",
+      "img": "2.jpg",
+      "alt": "Dishant Mote portfolio photograph 2",
+      "camera": "—",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    },
+    {
+      "id": "dishant-original-3",
+      "type": "stills",
+      "category": "Photography",
+      "title": "Photo 03",
+      "location": "Dishant Mote Portfolio",
+      "year": "Original",
+      "img": "3.jpg",
+      "alt": "Dishant Mote portfolio photograph 3",
+      "camera": "—",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    },
+    {
+      "id": "dishant-original-4",
+      "type": "stills",
+      "category": "Photography",
+      "title": "Photo 04",
+      "location": "Dishant Mote Portfolio",
+      "year": "Original",
+      "img": "4.jpg",
+      "alt": "Dishant Mote portfolio photograph 4",
+      "camera": "—",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    },
+    {
+      "id": "dishant-original-5",
+      "type": "stills",
+      "category": "Photography",
+      "title": "Photo 05",
+      "location": "Dishant Mote Portfolio",
+      "year": "Original",
+      "img": "5.jpg",
+      "alt": "Dishant Mote portfolio photograph 5",
+      "camera": "—",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    },
+    {
+      "id": "dishant-original-6",
+      "type": "stills",
+      "category": "Photography",
+      "title": "Photo 06",
+      "location": "Dishant Mote Portfolio",
+      "year": "Original",
+      "img": "6.jpg",
+      "alt": "Dishant Mote portfolio photograph 6",
+      "camera": "—",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    }
+  ],
+  "services": [
+    {
+      "icon": "camera",
+      "label": "Photography",
+      "blurb": "Portraits, editorial and commercial stills shot with a cinematic eye."
+    },
+    {
+      "icon": "video",
+      "label": "Videography",
+      "blurb": "Full-service film coverage for brands, events and personal stories."
+    },
+    {
+      "icon": "clapperboard",
+      "label": "Cinematic Reels",
+      "blurb": "Short-form vertical films crafted for social reach and impact."
+    },
+    {
+      "icon": "sparkles",
+      "label": "Candid Pics",
+      "blurb": "Unposed, in-the-moment frames that keep the day feeling real."
+    },
+    {
+      "icon": "baby",
+      "label": "Baby Shoot",
+      "blurb": "Gentle, safe newborn and toddler sessions in soft natural light."
+    },
+    {
+      "icon": "heart-pulse",
+      "label": "Maternity Shoot",
+      "blurb": "Elegant maternity portraits, in studio or on location outdoors."
+    },
+    {
+      "icon": "gem",
+      "label": "Pre-Wedding",
+      "blurb": "Story-led pre-wedding shoots across scenic Indian locations."
+    },
+    {
+      "icon": "mail",
+      "label": "Custom Brief",
+      "blurb": "Have something else in mind? Tell me the idea and we'll shape it."
+    }
+  ]
+}
