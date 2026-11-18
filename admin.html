@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dishant Studio — Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{color-scheme:dark;--bg:#090909;--panel:#141414;--line:#292929;--muted:#aaa49a;--gold:#d6ad69;--text:#f5f1e9;--bad:#ff7777;--good:#79d6a2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#282015 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:20px}.brand{font:30px Georgia,serif}.brand small{display:block;font:10px/1.4 monospace;letter-spacing:.2em;color:var(--muted)}.status{font:11px monospace;color:var(--muted)}.panel{background:rgba(20,20,20,.94);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.stats{font:32px Georgia,serif}.muted{color:var(--muted);font-size:13px}.tabs{display:flex;gap:8px;overflow:auto;padding:18px 0 4px}.tab,.btn{border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:#1b1b1b;color:var(--text);white-space:nowrap}.tab.active,.btn.primary{background:var(--gold);border-color:var(--gold);color:#17120b}.btn.danger{color:#ff9a9a}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0d0d0d;border:1px solid #343434;border-radius:10px;padding:12px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--gold)}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.uploadbox{border:1px dashed #6b5a40;border-radius:14px;padding:22px;text-align:center;background:#17130e}.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#101010}.item img,.item video{width:100%;height:155px;object-fit:cover;display:block;background:#222}.item .info{padding:11px}.item strong{display:block;font-size:14px}.item small{color:var(--muted)}.item .actions{display:flex;gap:6px;margin-top:9px}.item .actions button{flex:1;padding:7px 8px;font-size:12px}.notice{padding:12px 14px;border-radius:10px;background:#211b12;color:#e7c991;font-size:13px;margin:12px 0}.msg{margin-top:12px;font-size:13px;white-space:pre-wrap}.msg.good{color:var(--good)}.msg.bad{color:var(--bad)}.category{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.small{font-size:11px}.right{margin-left:auto}@media(max-width:680px){.wrap{padding:14px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:15px}.top{align-items:flex-start}.brand{font-size:25px}.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.item img,.item video{height:125px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">DM <small>DISHANT MOTE / STUDIO CONTROL</small></div><div class="status" id="connection">GITHUB: NOT CONNECTED</div></header>
+<section class="panel" id="connectPanel">
+<h2>Connect your GitHub repository</h2>
+<p class="muted">A restricted GitHub token lets this dashboard save media and updates directly into the Dishant-Portfolio repository. The token stays only in this open browser tab and is never written to a file or database.</p>
+<div class="field"><label>Fine-grained Personal Access Token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..." /></div>
+<div class="row"><button class="btn primary" id="connectBtn">Connect repository</button><a class="muted" target="_blank" rel="noopener" href="https://github.com/settings/personal-access-tokens/new">Create restricted token ↗</a></div>
+<div class="notice">Create a Fine-grained token → select only <b>mayuu-p / Dishant-Portfolio</b> → Repository permissions → <b>Contents: Read and write</b>. No other permissions. Set an expiry. Never paste this token into public code or share it.</div>
+<div id="connectMsg" class="msg"></div>
+</section>
+<div id="app" class="hidden">
+<div class="tabs">
+<button class="tab active" data-page="overview">Overview</button>
+<button class="tab" data-page="media">Photos & Reels</button>
+<button class="tab" data-page="categories">Services & Categories</button>
+<button class="tab" data-page="settings">Settings</button>
+</div>
+<section class="page" id="page-overview">
+<div class="grid">
+<div class="panel"><div class="stats" id="photoCount">0</div><div class="muted">Published photos</div></div>
+<div class="panel"><div class="stats" id="videoCount">0</div><div class="muted">Published reels / videos</div></div>
+<div class="panel"><div class="stats" id="categoryCount">0</div><div class="muted">Services / categories</div></div>
+</div>
+<div class="panel"><h2>Quick actions</h2><div class="row"><button class="btn primary" data-go="media">＋ Add photo or reel</button><button class="btn" data-go="categories">Manage services</button><a class="btn" href="./" target="_blank">View live portfolio ↗</a></div><p class="muted">Changes are committed to GitHub. GitHub Pages may take a short time to publish them.</p></div>
+</section>
+<section class="page hidden" id="page-media">
+<div class="panel">
+<h2>Add new media</h2>
+<div class="row">
+<div class="field"><label>Media type</label><select id="kind"><option value="stills">Photo</option><option value="motion">Motion reel / video</option></select></div>
+<div class="field"><label>Category</label><select id="category"></select></div>
+</div>
+<div class="field"><label>Title</label><input id="title" placeholder="e.g. Wedding moments" maxlength="90"></div>
+<div class="field"><label>Location / short description</label><input id="location" placeholder="e.g. Pune, Maharashtra"></div>
+<div class="row">
+<div class="field"><label>Year</label><input id="year" placeholder="2026" maxlength="12"></div>
+<div class="field"><label>Alt text (accessibility)</label><input id="alt" placeholder="Describe the photograph"></div>
+</div>
+<div class="field"><label>Choose source</label><select id="source"><option value="device">Add from device gallery / files</option><option value="url">Use external media URL</option></select></div>
+<div id="deviceSource" class="uploadbox">
+<p>Choose photo or video from your phone gallery</p><input id="file" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,video/quicktime">
+<p class="muted">For reliable uploads, keep each file under 20 MB. Videos are stored in your GitHub repository too.</p>
+</div>
+<div id="urlSource" class="hidden">
+<div class="field"><label>Public image / video URL</label><input id="mediaUrl" type="url" placeholder="https://..."></div>
+<div class="field" id="posterField"><label>Video thumbnail image URL (required for external videos)</label><input id="posterUrl" type="url" placeholder="https://.../thumbnail.jpg"></div>
+</div>
+<div class="field"><label>Camera details (optional)</label><input id="camera" placeholder="Camera / lens / notes"></div>
+<button class="btn primary" id="publishBtn">Publish to website</button><div id="uploadMsg" class="msg"></div>
+</div>
+<div class="panel"><div class="row"><h2>Published media</h2><span class="muted" id="mediaTotal"></span></div><div class="media-grid" id="mediaList"></div></div>
+</section>
+<section class="page hidden" id="page-categories">
+<div class="panel"><h2>Add a service / category</h2><div class="row"><div class="field"><label>Category name</label><input id="newCategory" placeholder="e.g. Birthday Shoot"></div><div class="field"><label>Short description</label><input id="newBlurb" placeholder="What service is offered?"></div></div><button class="btn primary" id="addCategory">Add category</button><div id="categoryMsg" class="msg"></div></div>
+<div class="panel"><h2>Manage services</h2><div id="categoryList"></div><p class="muted">Removing a category is blocked while media is assigned to it. Reassign or delete those items first.</p></div>
+</section>
+<section class="page hidden" id="page-settings">
+<div class="panel"><h2>Website & repository</h2><p><a href="https://mayuu-p.github.io/Dishant-Portfolio/" target="_blank" rel="noopener">Open public portfolio ↗</a></p><p><a href="https://github.com/mayuu-p/Dishant-Portfolio" target="_blank" rel="noopener">Open GitHub repository ↗</a></p><p class="muted">Repository: mayuu-p/Dishant-Portfolio · Branch: main · Manifest: cms-content.json · Upload folder: media/</p><button class="btn danger" id="disconnectBtn">Disconnect GitHub (clear token from this tab)</button></div>
+<div class="notice">No database is used. GitHub stores the JSON content manifest and the actual media files. The repository is public, so uploaded portfolio media is public too. Do not upload private client photos without permission.</div>
+</section>
+</div>
+</div>
+<script>
+(function(){
+"use strict";
+const OWNER="mayuu-p",REPO="Dishant-Portfolio",BRANCH="main",MANIFEST="cms-content.json",MAX=20*1024*1024;
+let token="",content={works:[],services:[]},manifestSha="";
+const $=id=>document.getElementById(id);
+const api=(path)=>"https://api.github.com/repos/"+OWNER+"/"+REPO+"/contents/"+path;
+function message(id,text,ok){const el=$(id);el.textContent=text;el.className="msg "+(ok?"good":"bad");}
+function headers(){return {"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28","Content-Type":"application/json"};}
+async function gh(path,options={}){const res=await fetch(path,{...options,headers:{...headers(),...(options.headers||{})}});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.message||("GitHub API error "+res.status));return data;}
+function safeName(name){return name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g,"-").replace(/^-+|-+$/g,"").slice(0,80)||"upload";}
+function encodeBase64(buffer){let binary="",bytes=new Uint8Array(buffer),chunk=0x8000;for(let i=0;i<bytes.length;i+=chunk)binary+=String.fromCharCode.apply(null,bytes.subarray(i,Math.min(i+chunk,bytes.length)));return btoa(binary);}
+async function uploadBytes(path,file){if(file.size>MAX)throw new Error("File exceeds 20 MB. Compress it before uploading.");const base64=encodeBase64(await file.arrayBuffer());return gh(api(path),{method:"PUT",body:JSON.stringify({message:"Add portfolio media: "+path.split("/").pop(),content:base64,branch:BRANCH})});}
+async function saveManifest(){const body=JSON.stringify(content,null,2);const payload={message:"Update Dishant portfolio content",content:btoa(unescape(encodeURIComponent(body))),branch:BRANCH};if(manifestSha)payload.sha=manifestSha;const saved=await gh(api(MANIFEST),{method:"PUT",body:JSON.stringify(payload)});manifestSha=saved.content.sha;render();}
+async function loadManifest(){try{const data=await gh(api(MANIFEST)+"?ref="+BRANCH);manifestSha=data.sha;content=JSON.parse(decodeURIComponent(escape(atob(data.content.replace(/\n/g,"")))));}catch(e){if(e.message.includes("Not Found")){content={works:[],services:[{icon:"camera",label:"Photography",blurb:"Photography sessions and portfolio work."},{icon:"video",label:"Videography",blurb:"Films, reels and event videography."},{icon:"baby",label:"Baby Shoot",blurb:"Newborn and baby photography."},{icon:"sparkles",label:"Candid Pics",blurb:"Natural candid moments."}]};manifestSha="";}else throw e;}}
+function render(){const works=content.works||[],services=content.services||[];$("photoCount").textContent=works.filter(x=>x.type==="stills").length;$("videoCount").textContent=works.filter(x=>x.type==="motion").length;$("categoryCount").textContent=services.length;$("mediaTotal").textContent=works.length+" items";$("category").innerHTML=services.map(s=>'<option>'+esc(s.label)+'</option>').join("");$("mediaList").innerHTML=works.map((w,i)=>'<article class="item"><'+(w.type==="motion"?"video":"img")+' src="'+escAttr(w.type==="motion"?(w.video||""):(w.img||""))+'" '+(w.type==="motion"?'poster="'+escAttr(w.img||"")+'" controls':'alt=""')+'></'+(w.type==="motion"?"video":"img")+'><div class="info"><strong>'+esc(w.title)+'</strong><small>'+esc(w.category)+" · "+(w.type==="motion"?"Video":"Photo")+'</small><div class="actions"><button class="btn danger" data-delete="'+i+'">Remove</button></div></div></article>').join("")||'<p class="muted">No media added yet.</p>';$("categoryList").innerHTML=services.map((s,i)=>'<div class="category"><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.blurb)+'</div></div><button class="btn danger" data-catdelete="'+i+'">Remove</button></div>').join("");}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function escAttr(s){return esc(s).replace(/\s/g," ");}
+async function connect(){token=$("token").value.trim();if(!token){message("connectMsg","Enter your fine-grained GitHub token.",false);return;}try{await gh("https://api.github.com/repos/"+OWNER+"/"+REPO);await loadManifest();$("connection").textContent="GITHUB: CONNECTED · "+OWNER+"/"+REPO;$("connectPanel").classList.add("hidden");$("app").classList.remove("hidden");render();}catch(e){token="";message("connectMsg","Connection failed: "+e.message,false);}}
+$("connectBtn").addEventListener("click",connect);
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function showPage(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.page===name));document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.go)));
+$("source").addEventListener("change",()=>{$("deviceSource").classList.toggle("hidden",$("source").value!=="device");$("urlSource").classList.toggle("hidden",$("source").value!=="url");});
+$("kind").addEventListener("change",()=>{$("file").accept=$("kind").value==="motion"?"video/mp4,video/webm,video/quicktime":"image/jpeg,image/png,image/webp";$("posterField").classList.toggle("hidden",$("kind").value!=="motion");});
+function makeId(){return "dm-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7);}
+async function videoPoster(file){return new Promise((resolve,reject)=>{const video=document.createElement("video"),url=URL.createObjectURL(file);video.preload="metadata";video.muted=true;video.playsInline=true;video.onloadeddata=()=>{video.currentTime=Math.min(0.5,video.duration||0.5);};video.onseeked=()=>{try{const canvas=document.createElement("canvas");canvas.width=video.videoWidth;canvas.height=video.videoHeight;canvas.getContext("2d").drawImage(video,0,0);canvas.toBlob(blob=>{URL.revokeObjectURL(url);blob?resolve(new File([blob],"thumbnail.jpg",{type:"image/jpeg"})):reject(new Error("Could not create video thumbnail"));},"image/jpeg",.82);}catch(e){URL.revokeObjectURL(url);reject(e);}};video.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Could not read video for thumbnail"));};video.src=url;});}
+$("publishBtn").addEventListener("click",async()=>{const btn=$("publishBtn");btn.disabled=true;message("uploadMsg","Preparing media…",true);try{
+const type=$("kind").value,category=$("category").value,title=$("title").value.trim();if(!title)throw new Error("Enter a title.");if(!category)throw new Error("Add a category first.");
+let img="",video="",file=$("file").files[0];
+if($("source").value==="url"){const url=$("mediaUrl").value.trim();if(!/^https?:\/\//i.test(url))throw new Error("Enter a valid public HTTPS/HTTP media URL.");if(type==="motion"){const poster=$("posterUrl").value.trim();if(!/^https?:\/\//i.test(poster))throw new Error("External videos need a public thumbnail image URL.");video=url;img=poster;}else img=url;}
+else{if(!file)throw new Error("Choose a file from your device.");if(file.size>MAX)throw new Error("File exceeds 20 MB. Compress it before uploading.");const path="media/"+Date.now()+"-"+safeName(file.name);message("uploadMsg","Uploading "+file.name+" to GitHub…",true);await uploadBytes(path,file);const publicPath="./"+path;if(type==="motion"){video=publicPath;message("uploadMsg","Creating and uploading video thumbnail…",true);const poster=await videoPoster(file);const posterPath="media/"+Date.now()+"-thumb.jpg";await uploadBytes(posterPath,poster);img="./"+posterPath;}else img=publicPath;}
+const entry={id:makeId(),type,category,title,location:$("location").value.trim()||"India",year:$("year").value.trim()||String(new Date().getFullYear()),img,alt:$("alt").value.trim()||title,camera:$("camera").value.trim()||"—",lens:"—",iso:"—",aperture:"—",shutter:"—"};if(type==="motion")entry.video=video;content.works.unshift(entry);message("uploadMsg","Saving website content manifest…",true);await saveManifest();$("title").value="";$("location").value="";$("year").value="";$("alt").value="";$("camera").value="";$("file").value="";$("mediaUrl").value="";$("posterUrl").value="";message("uploadMsg","Published successfully. GitHub Pages will refresh the public portfolio shortly.",true);
+}catch(e){message("uploadMsg","Publish failed: "+e.message,false);}finally{btn.disabled=false;}});
+$("mediaList").addEventListener("click",async e=>{const i=e.target.dataset.delete;if(i===undefined)return;if(!confirm("Remove this item from the public website? The uploaded file will remain in GitHub storage."))return;content.works.splice(Number(i),1);try{await saveManifest();}catch(err){alert("Could not save: "+err.message);}});
+$("addCategory").addEventListener("click",async()=>{const label=$("newCategory").value.trim(),blurb=$("newBlurb").value.trim();if(!label){message("categoryMsg","Enter a category name.",false);return;}if(content.services.some(s=>s.label.toLowerCase()===label.toLowerCase())){message("categoryMsg","This category already exists.",false);return;}content.services.push({icon:"camera",label,blurb:blurb||"Photography and creative services."});try{await saveManifest();$("newCategory").value="";$("newBlurb").value="";message("categoryMsg","Category added to website.",true);}catch(e){message("categoryMsg",e.message,false);}});
+$("categoryList").addEventListener("click",async e=>{const i=e.target.dataset.catdelete;if(i===undefined)return;const name=content.services[Number(i)].label;if(content.works.some(w=>w.category===name)){alert("This category still has media. Reassign or remove that media first.");return;}if(!confirm("Remove category "+name+"?"))return;content.services.splice(Number(i),1);try{await saveManifest();}catch(err){alert(err.message);}});
+$("disconnectBtn").addEventListener("click",()=>{token="";$("token").value="";$("app").classList.add("hidden");$("connectPanel").classList.remove("hidden");$("connection").textContent="GITHUB: NOT CONNECTED";});
+})();
+</script>
+</body></html>
