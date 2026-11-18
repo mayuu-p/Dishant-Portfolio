@@ -149,7 +149,7 @@ body.login-locked #winLogin .win-card{z-index:2!important}
  </form>
 </div>
 
-<div class="wrap">
+<div class="wrap" id="dashboardWrap" style="display:none">
 <header class="top"><div class="brand-lockup"><div class="brand-mark">DM</div><div class="brand">Dishant Studio <small>OWNER CONTROL CENTRE</small></div></div><div class="top-actions"><span class="status" id="connection">GITHUB: NOT CONNECTED</span><button class="top-btn" id="refreshBtn" type="button">↻ Refresh</button><div class="profile-mark">D</div></div></header>
 <div class="dashboard-shell">
 <aside class="sidebar hidden" id="sideNav"><div class="side-label">MANAGEMENT</div><nav class="tabs" id="sideTabs">
@@ -230,7 +230,7 @@ body.login-locked #winLogin .win-card{z-index:2!important}
 (function(){
  const overlay=document.getElementById("winLogin"),form=document.getElementById("winForm"),input=document.getElementById("winPassword"),reveal=document.getElementById("winReveal"),error=document.getElementById("winError");
  reveal.addEventListener("click",function(){const show=input.type==="password";input.type=show?"text":"password";reveal.textContent=show?"⊘":"◉";reveal.setAttribute("aria-label",show?"Hide password":"Show password");});
- form.addEventListener("submit",async function(e){e.preventDefault();error.textContent="";try{const bytes=new TextEncoder().encode(input.value);const digest=await crypto.subtle.digest("SHA-256",bytes);const hash=Array.from(new Uint8Array(digest)).map(x=>x.toString(16).padStart(2,"0")).join("");if(hash!=="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982"){error.textContent="Incorrect password. Try again.";input.value="";input.focus();return;}overlay.classList.add("unlocking");setTimeout(function(){overlay.remove();document.body.classList.remove("login-locked");},560);}catch(err){error.textContent="Sign-in could not start in this browser.";}}); 
+ form.addEventListener("submit",async function(e){e.preventDefault();error.textContent="";try{const bytes=new TextEncoder().encode(input.value);const digest=await crypto.subtle.digest("SHA-256",bytes);const hash=Array.from(new Uint8Array(digest)).map(x=>x.toString(16).padStart(2,"0")).join("");if(hash!=="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982"){error.textContent="Incorrect password. Try again.";input.value="";input.focus();return;}overlay.classList.add("unlocking");setTimeout(function(){overlay.remove();document.body.classList.remove("login-locked");var dashboard=document.getElementById("dashboardWrap");if(dashboard)dashboard.style.display="";},560);}catch(err){error.textContent="Sign-in could not start in this browser.";}}); 
  input.focus();
 })();
 
