@@ -257,6 +257,30 @@ body.login-locked #winLogin .win-card{
   body.login-locked #winLogin .win-card{width:calc(100vw - 32px)!important}
 }
 
+
+/* Windows 11-inspired unlock transition: wallpaper zooms forward, sign-in fades away, desktop arrives */
+@keyframes win11UnlockZoom{
+  0%{opacity:1;transform:scale(1);filter:blur(0)}
+  55%{opacity:1;transform:scale(1.075);filter:blur(0)}
+  100%{opacity:0;transform:scale(1.16);filter:blur(4px)}
+}
+@keyframes win11DesktopReveal{
+  0%{opacity:0;transform:scale(1.025);filter:blur(7px)}
+  65%{opacity:1;transform:scale(1.004);filter:blur(1px)}
+  100%{opacity:1;transform:scale(1);filter:blur(0)}
+}
+body.login-locked #winLogin.unlocking{
+  animation:win11UnlockZoom .95s cubic-bezier(.2,.75,.18,1) forwards!important;
+  transform-origin:50% 50%!important;pointer-events:none!important;
+}
+#dashboardWrap.dashboard-enter{
+  animation:win11DesktopReveal .95s cubic-bezier(.2,.75,.18,1) both!important;
+  transform-origin:50% 50%!important;
+}
+@media(prefers-reduced-motion:reduce){
+  body.login-locked #winLogin.unlocking,#dashboardWrap.dashboard-enter{animation-duration:.01ms!important}
+}
+
 </style>
 </head>
 <body class="login-locked">
@@ -357,7 +381,7 @@ body.login-locked #winLogin .win-card{
 (function(){
  const overlay=document.getElementById("winLogin"),form=document.getElementById("winForm"),input=document.getElementById("winPassword"),reveal=document.getElementById("winReveal"),error=document.getElementById("winError");
  reveal.addEventListener("click",function(){const show=input.type==="password";input.type=show?"text":"password";reveal.textContent=show?"⊘":"◉";reveal.setAttribute("aria-label",show?"Hide password":"Show password");});
- form.addEventListener("submit",async function(e){e.preventDefault();error.textContent="";try{const bytes=new TextEncoder().encode(input.value);const digest=await crypto.subtle.digest("SHA-256",bytes);const hash=Array.from(new Uint8Array(digest)).map(x=>x.toString(16).padStart(2,"0")).join("");if(hash!=="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982"){error.textContent="Incorrect password. Try again.";input.value="";input.focus();return;}overlay.classList.add("unlocking");setTimeout(function(){overlay.remove();document.body.classList.remove("login-locked");var dashboard=document.getElementById("dashboardWrap");if(dashboard)dashboard.style.display="";},560);}catch(err){error.textContent="Sign-in could not start in this browser.";}}); 
+ form.addEventListener("submit",async function(e){e.preventDefault();error.textContent="";try{const bytes=new TextEncoder().encode(input.value);const digest=await crypto.subtle.digest("SHA-256",bytes);const hash=Array.from(new Uint8Array(digest)).map(x=>x.toString(16).padStart(2,"0")).join("");if(hash!=="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982"){error.textContent="Incorrect password. Try again.";input.value="";input.focus();return;}var dashboard=document.getElementById("dashboardWrap");if(dashboard){dashboard.style.display="";dashboard.classList.add("dashboard-enter");}overlay.classList.add("unlocking");setTimeout(function(){overlay.remove();document.body.classList.remove("login-locked");if(dashboard)dashboard.classList.remove("dashboard-enter");},950);}catch(err){error.textContent="Sign-in could not start in this browser.";}}); 
  input.focus();
 })();
 
