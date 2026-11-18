@@ -32,6 +32,22 @@ body.login-locked{overflow:hidden}
 @keyframes winFade{to{opacity:0;visibility:hidden;transform:scale(1.025)}}
 @media(max-width:480px){.win-card{padding:36px 24px 26px}}
 
+
+/* Responsive CMS form and media cards */
+@media(max-width:680px){
+  .row{display:grid;grid-template-columns:1fr;gap:4px}
+  .row>*{min-width:0;width:100%}
+  .top{gap:10px;flex-wrap:wrap}
+  .tabs{scrollbar-width:none;flex-wrap:nowrap}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{font-size:12px;padding:9px 12px}
+  .media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .item .actions{flex-wrap:wrap}
+  .item .actions button{min-width:0}
+  .panel h2{font-size:19px}
+  input,select,textarea{min-width:0}
+}
+
 </style>
 </head>
 <body class="login-locked">
@@ -141,6 +157,8 @@ function render(){const works=content.works||[],services=content.services||[];$(
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function escAttr(s){return esc(s).replace(/\s/g," ");}
 async function connect(){token=$("token").value.trim();if(!token){message("connectMsg","Enter your fine-grained GitHub token.",false);return;}try{await gh("https://api.github.com/repos/"+OWNER+"/"+REPO);await loadManifest();$("connection").textContent="GITHUB: CONNECTED · "+OWNER+"/"+REPO;$("connectPanel").classList.add("hidden");$("app").classList.remove("hidden");render();}catch(e){token="";message("connectMsg","Connection failed: "+e.message,false);}}
+$("posterField").classList.toggle("hidden",$("kind").value!=="motion");
+$("file").accept="image/jpeg,image/png,image/webp";
 $("connectBtn").addEventListener("click",connect);
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 function showPage(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.page===name));document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));}
