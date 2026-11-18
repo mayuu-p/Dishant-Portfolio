@@ -1,22 +1,6 @@
 {
   "works": [
     {
-      "id": "dm-mwm00r1x-ajwgp",
-      "type": "motion",
-      "category": "Photography ✨",
-      "title": "Mayur",
-      "location": "Watapur",
-      "year": "2090",
-      "img": "./media/1794998933497-thumb.jpg",
-      "alt": "Yhtchtfht",
-      "camera": "Sony",
-      "lens": "—",
-      "iso": "—",
-      "aperture": "—",
-      "shutter": "—",
-      "video": "./media/1794998929004-69205.mp4"
-    },
-    {
       "id": "dishant-original-1",
       "type": "stills",
       "category": "Photography ✨",
