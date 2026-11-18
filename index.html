@@ -956,7 +956,7 @@ header.glass > div {
       if (Array.isArray(data.works)) WORKS = data.works;
       if (Array.isArray(data.services)) SERVICES = data.services;
       // Rebuild category tabs and service cards from the current published manifest.
-      var oldTabs = $(".tab[data-filter^='category:']");
+      var oldTabs = $(".tab").filter(function(t){return t.dataset.filter.indexOf("category:")===0;});
       oldTabs.forEach(function (tab) { tab.remove(); });
       SERVICES.forEach(function (service) {
         var categoryTab = document.createElement("button");
