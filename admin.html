@@ -6,9 +6,51 @@
 <meta name="robots" content="noindex,nofollow">
 <style>
 :root{color-scheme:dark;--bg:#090909;--panel:#141414;--line:#292929;--muted:#aaa49a;--gold:#d6ad69;--text:#f5f1e9;--bad:#ff7777;--good:#79d6a2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#282015 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:20px}.brand{font:30px Georgia,serif}.brand small{display:block;font:10px/1.4 monospace;letter-spacing:.2em;color:var(--muted)}.status{font:11px monospace;color:var(--muted)}.panel{background:rgba(20,20,20,.94);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.stats{font:32px Georgia,serif}.muted{color:var(--muted);font-size:13px}.tabs{display:flex;gap:8px;overflow:auto;padding:18px 0 4px}.tab,.btn{border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:#1b1b1b;color:var(--text);white-space:nowrap}.tab.active,.btn.primary{background:var(--gold);border-color:var(--gold);color:#17120b}.btn.danger{color:#ff9a9a}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0d0d0d;border:1px solid #343434;border-radius:10px;padding:12px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--gold)}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.uploadbox{border:1px dashed #6b5a40;border-radius:14px;padding:22px;text-align:center;background:#17130e}.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#101010}.item img,.item video{width:100%;height:155px;object-fit:cover;display:block;background:#222}.item .info{padding:11px}.item strong{display:block;font-size:14px}.item small{color:var(--muted)}.item .actions{display:flex;gap:6px;margin-top:9px}.item .actions button{flex:1;padding:7px 8px;font-size:12px}.notice{padding:12px 14px;border-radius:10px;background:#211b12;color:#e7c991;font-size:13px;margin:12px 0}.msg{margin-top:12px;font-size:13px;white-space:pre-wrap}.msg.good{color:var(--good)}.msg.bad{color:var(--bad)}.category{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.small{font-size:11px}.right{margin-left:auto}@media(max-width:680px){.wrap{padding:14px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:15px}.top{align-items:flex-start}.brand{font-size:25px}.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.item img,.item video{height:125px}}
+
+/* Windows 11-inspired sign-in */
+body.login-locked{overflow:hidden}
+#winLogin{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,#07152b 0%,#102b50 48%,#161d3c 100%);font-family:"Segoe UI",system-ui,sans-serif}
+#winLogin:before,#winLogin:after{content:"";position:absolute;width:70vmax;height:70vmax;border-radius:50%;filter:blur(70px);opacity:.24;animation:winFloat 16s ease-in-out infinite alternate}
+#winLogin:before{background:#3b82f6;left:-28vmax;top:-35vmax}
+#winLogin:after{background:#8b5cf6;right:-30vmax;bottom:-40vmax;animation-delay:-7s}
+@keyframes winFloat{to{transform:translate(9vw,8vh) scale(1.12)}}
+.win-card{position:relative;z-index:1;width:min(420px,calc(100vw - 36px));padding:42px 34px 32px;border:1px solid rgba(255,255,255,.2);border-radius:18px;background:rgba(19,30,49,.55);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);box-shadow:0 24px 90px #0007;text-align:center;color:#fff;animation:winAppear .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes winAppear{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}
+.win-avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(145deg,#e9f2ff,#a9c9f5);color:#174477;font-size:38px;font-weight:300;box-shadow:0 8px 28px #0003}
+.win-card h1{font-size:25px;font-weight:400;margin:0 0 5px;letter-spacing:.1px}
+.win-card .win-sub{font-size:13px;color:#d5e2f4;margin:0 0 26px}
+.win-input-wrap{position:relative}
+#winPassword{width:100%;height:48px;padding:0 48px 0 14px;border:1px solid rgba(255,255,255,.5);border-radius:5px;background:rgba(8,17,30,.55);color:white;font-size:16px;outline:none}
+#winPassword:focus{border:2px solid #9bc8ff}
+#winPassword::placeholder{color:#c6d3e4}
+#winReveal{position:absolute;right:7px;top:6px;width:36px;height:36px;border:0;background:transparent;color:#fff;border-radius:4px}
+#winSignIn{width:100%;height:42px;margin-top:14px;border:0;border-radius:5px;background:#dcecff;color:#102a49;font-weight:600}
+#winSignIn:active{transform:scale(.99)}
+#winError{min-height:20px;margin-top:12px;font-size:12px;color:#ffb8b8}
+.win-foot{margin-top:22px;font-size:11px;color:#c5d5e9;letter-spacing:.08em}
+#winLogin.unlocking{animation:winFade .55s ease forwards}
+@keyframes winFade{to{opacity:0;visibility:hidden;transform:scale(1.025)}}
+@media(max-width:480px){.win-card{padding:36px 24px 26px}}
+
 </style>
 </head>
-<body>
+<body class="login-locked">
+
+<div id="winLogin" role="dialog" aria-label="Dishant Studio sign in">
+ <form class="win-card" id="winForm">
+  <div class="win-avatar" aria-hidden="true">D</div>
+  <h1>Dishant Studio</h1>
+  <p class="win-sub">Welcome back · Administrator</p>
+  <div class="win-input-wrap">
+   <input id="winPassword" type="password" placeholder="Enter your password" autocomplete="current-password" aria-label="Password" required>
+   <button id="winReveal" type="button" aria-label="Show password" title="Show password">◉</button>
+  </div>
+  <button id="winSignIn" type="submit">Sign in</button>
+  <div id="winError" role="status" aria-live="polite"></div>
+  <div class="win-foot">DISHANT MOTE · STUDIO CONTROL CENTRE</div>
+ </form>
+</div>
+
 <div class="wrap">
 <header class="top"><div class="brand">DM <small>DISHANT MOTE / STUDIO CONTROL</small></div><div class="status" id="connection">GITHUB: NOT CONNECTED</div></header>
 <section class="panel" id="connectPanel">
@@ -72,6 +114,15 @@
 </div>
 </div>
 <script>
+
+/* Visual sign-in gate only: GitHub Pages is static, so this is not server-side authentication. */
+(function(){
+ const overlay=document.getElementById("winLogin"),form=document.getElementById("winForm"),input=document.getElementById("winPassword"),reveal=document.getElementById("winReveal"),error=document.getElementById("winError");
+ reveal.addEventListener("click",function(){const show=input.type==="password";input.type=show?"text":"password";reveal.textContent=show?"⊘":"◉";reveal.setAttribute("aria-label",show?"Hide password":"Show password");});
+ form.addEventListener("submit",async function(e){e.preventDefault();error.textContent="";try{const bytes=new TextEncoder().encode(input.value);const digest=await crypto.subtle.digest("SHA-256",bytes);const hash=Array.from(new Uint8Array(digest)).map(x=>x.toString(16).padStart(2,"0")).join("");if(hash!=="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982"){error.textContent="Incorrect password. Try again.";input.value="";input.focus();return;}overlay.classList.add("unlocking");setTimeout(function(){overlay.remove();document.body.classList.remove("login-locked");},560);}catch(err){error.textContent="Sign-in could not start in this browser.";}}); 
+ input.focus();
+})();
+
 (function(){
 "use strict";
 const OWNER="mayuu-p",REPO="Dishant-Portfolio",BRANCH="main",MANIFEST="cms-content.json",MAX=20*1024*1024;
