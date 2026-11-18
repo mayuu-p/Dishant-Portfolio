@@ -1627,7 +1627,7 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
   <p class="win-sub">Welcome back · Administrator</p>
   <div id="winCredentialWrap" class="win-input-wrap"><input id="winPassword" type="password" placeholder="Enter your password" autocomplete="current-password" aria-label="Password" required><button id="winReveal" type="button" aria-label="Show password">◉</button></div>
   <div id="winPattern" class="pattern-pad hidden" aria-label="Unlock pattern"></div>
-  <button id="winSignIn" type="submit">Sign in</button><div id="winError" role="status" aria-live="polite"></div>
+  <button id="winSignIn" type="button">Sign in</button><div id="winError" role="status" aria-live="polite"></div>
   <button id="winResetLock" type="button" style="margin-top:12px;border:0;background:transparent;color:#fff;text-decoration:underline;font:12px 'Segoe UI',sans-serif;cursor:pointer">Can't sign in? Reset this device lock</button>
   <div class="win-foot">DISHANT STUDIO · OWNER CONTROL CENTRE</div>
  </form>
@@ -1749,7 +1749,7 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
   const c=readConfig(),mode=c&&c.mode?c.mode:"password";
   input.value="";loginPattern=[];
   if(mode==="pattern"){credentialWrap.classList.add("hidden");input.required=false;patternBox.classList.remove("hidden");makeGrid(patternBox,loginPattern)}
-  else{credentialWrap.classList.remove("hidden");patternBox.classList.add("hidden");input.required=true;input.type="password";input.inputMode=mode==="pin"?"numeric":"text";input.placeholder=mode==="pin"?"Enter your PIN":"Enter your password"}
+  else{credentialWrap.classList.remove("hidden");patternBox.classList.add("hidden");input.required=false;input.type="password";input.inputMode=mode==="pin"?"numeric":"text";input.placeholder=mode==="pin"?"Enter your PIN":"Enter your password"}
  }
  async function digest(value,salt){
   const enc=new TextEncoder(),key=await crypto.subtle.importKey("raw",enc.encode(value),"PBKDF2",false,["deriveBits"]);
@@ -1792,19 +1792,26 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
   const params=new URLSearchParams(location.search);
   if(params.get("reset-lock")==="1"){history.replaceState(null,"",location.pathname);resetLocalLock();return}
  }catch(_){}
- form.addEventListener("submit",async e=>{
-  e.preventDefault();if(busy)return;busy=true;error.textContent="";
+ async function attemptSignIn(){
+  if(busy)return;busy=true;error.textContent="Checking…";
   const c=readConfig(),mode=c&&c.mode?c.mode:"password";
   const value=mode==="pattern"?loginPattern.join("-"):input.value;
   if(mode==="pattern"&&loginPattern.length<4){error.textContent="Connect at least 4 dots.";busy=false;return}
+  if(mode!=="pattern"&&!value){error.textContent="Enter your "+(mode==="pin"?"PIN":"password") +" first.";busy=false;input.focus();return}
   try{
+   if(!window.crypto||!crypto.subtle)throw new Error("Secure browser crypto is unavailable. Open this page in Chrome.");
    const valid=await verify(value);
-   if(!valid){error.textContent="Incorrect sign-in. Try again.";input.value="";loginPattern=[];if(mode==="pattern")makeGrid(patternBox,loginPattern);busy=false;return}
-   if(!setUnlockedFlag()){busy=false;return}
+   if(!valid){error.textContent="Incorrect sign-in. Check your saved password, PIN or pattern.";input.value="";loginPattern=[];if(mode==="pattern")makeGrid(patternBox,loginPattern);else input.focus();return}
+   if(!setUnlockedFlag())return;
    openDashboard();
-  }catch(err){error.textContent="Sign-in unavailable: "+(err&&err.message?err.message:"browser security check failed")}
+  }catch(err){error.textContent="Sign-in error: "+(err&&err.message?err.message:"unknown error")}
   finally{busy=false}
- });
+ }
+ form.addEventListener("submit",e=>{e.preventDefault();attemptSignIn()});
+ document.getElementById("winSignIn").addEventListener("click",e=>{e.preventDefault();attemptSignIn()});
+ input.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();attemptSignIn()}});
+ window.addEventListener("error",e=>{if(error&&!error.textContent)error.textContent="Page script error: "+(e.message||"unknown error")});
+
  renderLogin();
  try{if(sessionStorage.getItem("dishantStudioUnlocked")==="1")openDashboard();else{document.body.classList.add("login-locked");overlay.style.display="flex";input.focus()}}
  catch(_){document.body.classList.add("login-locked");overlay.style.display="flex";input.focus()}
