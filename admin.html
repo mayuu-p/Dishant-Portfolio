@@ -48,6 +48,28 @@ body.login-locked{overflow:hidden}
   input,select,textarea{min-width:0}
 }
 
+
+:root{color-scheme:light;--bg:#edf1fb;--panel:rgba(255,255,255,.72);--line:rgba(115,132,165,.23);--muted:#657187;--gold:#6688ed;--text:#26364e;--bad:#c94b5c;--good:#178b69}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 78% 5%,rgba(170,170,255,.34),transparent 36%),radial-gradient(ellipse at 8% 12%,rgba(255,218,183,.38),transparent 34%),linear-gradient(125deg,#f8f0e9 0%,#eef0ff 48%,#e0f1f6 100%);color:var(--text);font:14px/1.5 Inter,"Segoe UI",system-ui,sans-serif}
+.wrap{max-width:none;margin:0;padding:0 0 34px}.top{height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 24px;border-bottom:1px solid rgba(255,255,255,.72);background:rgba(255,255,255,.43);backdrop-filter:blur(22px);position:sticky;top:0;z-index:30}
+.brand-lockup,.top-actions{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#8caaf7,#c5d5ff);color:white;font-weight:800;box-shadow:0 5px 15px #7b95d633}.brand{font:700 16px/1.2 Inter,"Segoe UI",sans-serif;color:#29364b}.brand small{display:block;margin-top:3px;font:700 9px/1.2 Inter,sans-serif;letter-spacing:.16em;color:#78849a}
+.top-actions{gap:10px}.status{font:10px monospace;color:#62708a}.top-btn,.profile-mark{height:38px;border:1px solid var(--line);background:rgba(255,255,255,.65);border-radius:22px;padding:0 14px;color:#40516c;font-weight:650}.profile-mark{width:38px;padding:0;border-radius:50%;display:grid;place-items:center}
+.dashboard-shell{display:grid;grid-template-columns:228px minmax(0,1fr);gap:28px;padding:16px 18px 0;min-height:calc(100vh - 72px)}
+.sidebar{position:sticky;top:88px;height:calc(100vh - 104px);min-height:500px;border:1px solid rgba(255,255,255,.8);border-radius:24px;background:rgba(255,249,244,.48);backdrop-filter:blur(22px);padding:22px 13px;display:flex;flex-direction:column;box-shadow:0 10px 35px #536b9710}
+.side-label,.eyebrow{font-size:9px;font-weight:800;letter-spacing:.18em;color:#657187}.side-label{padding:6px 10px 16px}.tabs{display:flex;flex-direction:column;gap:5px;padding:0;margin:0;overflow:visible}
+.tab{width:100%;display:flex;align-items:center;gap:12px;text-align:left;border:0;border-radius:15px;padding:12px 13px;background:transparent;color:#68758a;font-weight:650;font-size:12px;transition:background .2s,transform .2s,color .2s}.tab span{width:17px;text-align:center;font-size:14px}.tab:hover{background:#ffffff8a;color:#34445e}.tab.active{background:linear-gradient(110deg,#6f92f3,#7d80e7);color:white;box-shadow:0 8px 18px #6d87e744}
+.sidebar-note{margin-top:auto;padding:14px 5px 0;color:#758197;font-size:11px}.sidebar-note b{color:#52627a}.main-content{min-width:0;max-width:1700px;width:100%;margin:0 auto;padding:10px 0 0}
+.dashboard-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:4px 0 22px}.dashboard-heading h1{font-size:25px;line-height:1.15;margin:5px 0;color:#26364e;letter-spacing:-.04em}.dashboard-heading p{margin:0;color:#647188;font-size:12px}.eyebrow{font-size:9px}
+.panel{background:var(--panel);border:1px solid rgba(255,255,255,.86);border-radius:22px;padding:20px;margin:0 0 18px;box-shadow:0 8px 26px rgba(74,94,135,.055);backdrop-filter:blur(16px)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat-card{min-height:132px;padding:17px 20px;position:relative;overflow:hidden}.stat-accent{height:3px;width:28px;background:linear-gradient(90deg,#7696ef,#9e8be9);border-radius:8px;margin-bottom:7px}.stat-label{font-size:9px;letter-spacing:.12em;font-weight:800;color:#62718a}.stats{font:700 31px/1.2 Inter,"Segoe UI",sans-serif;color:#293b55;margin:9px 0 6px;letter-spacing:-.04em}.status-word{font-size:26px;color:#198b6d}.muted{color:var(--muted);font-size:11px}
+h2{font-size:15px;margin:0 0 3px;color:#2d3c53;letter-spacing:-.02em}.quick-panel{padding:20px 22px}.quick-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.btn{border:1px solid rgba(130,147,178,.28);border-radius:13px;padding:10px 14px;background:rgba(255,255,255,.72);color:#41516a;font-size:11px;font-weight:700;white-space:nowrap;transition:transform .18s,box-shadow .18s,background .18s}.btn:hover{transform:translateY(-1px);box-shadow:0 6px 14px #526b9820}.btn.primary{background:linear-gradient(110deg,#6c91f1,#7d80e7);border-color:transparent;color:white}.btn.danger{color:#b64f60;background:#fff5f5}.hidden{display:none!important}
+#connectPanel{max-width:760px;margin:35px auto}.notice{background:#fff5df;border:1px solid #f0dcae;color:#765d2b;border-radius:13px}.page .panel{background:rgba(255,255,255,.78)}.media-grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}.item{border:1px solid var(--line);border-radius:15px;background:#fff;box-shadow:0 5px 15px #566c9810}.item img,.item video{height:170px}.item .info{padding:12px}.item small{color:#78849a}
+.field label{font-size:11px;font-weight:650;color:#62718a}input,select,textarea{background:rgba(255,255,255,.86);border:1px solid #d9e0ee;border-radius:12px;color:#2d3c53;padding:12px}input:focus,select:focus,textarea:focus{border-color:#7898f2;box-shadow:0 0 0 3px #7898f222}.uploadbox{background:#f6f8ff;border:1px dashed #aab9dc;border-radius:16px;color:#52617a}.category{border-color:#e4e9f2}.msg.good{color:#168666}.msg.bad{color:#bd4e5e}
+@media(max-width:900px){.dashboard-shell{grid-template-columns:190px minmax(0,1fr);gap:16px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.status{display:none}}
+@media(max-width:680px){.top{height:62px;padding:0 13px}.brand-mark{width:36px;height:36px}.brand{font-size:14px}.dashboard-shell{display:block;padding:10px 12px 0}.sidebar{position:relative;top:auto;height:auto;min-height:0;padding:9px;border-radius:17px;margin-bottom:16px}.side-label,.sidebar-note{display:none}.tabs{flex-direction:row;overflow-x:auto;scrollbar-width:none;gap:5px}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;width:auto;padding:10px 12px;border-radius:12px;font-size:11px}.tab span{display:none}.main-content{padding:0}.dashboard-heading{align-items:flex-start;margin:7px 2px 16px}.dashboard-heading h1{font-size:22px}.dashboard-heading p{max-width:230px;font-size:11px}.dashboard-heading>.btn{font-size:0;padding:11px 13px}.dashboard-heading>.btn:after{content:"＋ Add";font-size:11px}.grid{gap:9px}.stat-card{min-height:116px;padding:13px}.stats{font-size:27px}.stat-label{font-size:8px}.panel{padding:15px;border-radius:17px;margin-bottom:12px}.quick-actions{gap:7px}.quick-actions .btn{flex:1 1 calc(50% - 7px);text-align:center;white-space:normal}.media-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.item img,.item video{height:120px}.row{display:grid;grid-template-columns:1fr;gap:4px}.row>*{width:100%;min-width:0}.top-actions{gap:6px}.top-btn{height:34px;padding:0 10px;font-size:10px}.status{display:none}#connectPanel{margin:14px 0}}
+@media(max-width:360px){.dashboard-heading h1{font-size:19px}.tab{padding:9px 10px}.media-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
 </style>
 </head>
 <body class="login-locked">
@@ -68,7 +90,15 @@ body.login-locked{overflow:hidden}
 </div>
 
 <div class="wrap">
-<header class="top"><div class="brand">DM <small>DISHANT MOTE / STUDIO CONTROL</small></div><div class="status" id="connection">GITHUB: NOT CONNECTED</div></header>
+<header class="top"><div class="brand-lockup"><div class="brand-mark">DM</div><div class="brand">Dishant Studio <small>OWNER CONTROL CENTRE</small></div></div><div class="top-actions"><span class="status" id="connection">GITHUB: NOT CONNECTED</span><button class="top-btn" id="refreshBtn" type="button">↻ Refresh</button><div class="profile-mark">D</div></div></header>
+<div class="dashboard-shell">
+<aside class="sidebar"><div class="side-label">MANAGEMENT</div><nav class="tabs">
+<button class="tab active" data-page="overview"><span>▦</span> Overview</button>
+<button class="tab" data-page="media"><span>▧</span> Photos & Reels</button>
+<button class="tab" data-page="categories"><span>◈</span> Services</button>
+<button class="tab" data-page="settings"><span>⚙</span> Settings</button>
+</nav><div class="sidebar-note"><b>Live controller</b><br>Portfolio changes sync to the public website after GitHub Pages deployment.</div></aside>
+<main class="main-content">
 <section class="panel" id="connectPanel">
 <h2>Connect your GitHub repository</h2>
 <p class="muted">A restricted GitHub token lets this dashboard save media and updates directly into the Dishant-Portfolio repository. The token stays only in this open browser tab and is never written to a file or database.</p>
@@ -78,19 +108,15 @@ body.login-locked{overflow:hidden}
 <div id="connectMsg" class="msg"></div>
 </section>
 <div id="app" class="hidden">
-<div class="tabs">
-<button class="tab active" data-page="overview">Overview</button>
-<button class="tab" data-page="media">Photos & Reels</button>
-<button class="tab" data-page="categories">Services & Categories</button>
-<button class="tab" data-page="settings">Settings</button>
-</div>
+<div class="dashboard-heading"><div><div class="eyebrow">LIVE CONTROL ROOM</div><h1>Good day, owner.</h1><p>Manage your photography portfolio, media and services from one place.</p></div><button class="btn primary" type="button" data-go="media">＋ Add new media</button></div>
 <section class="page" id="page-overview">
-<div class="grid">
-<div class="panel"><div class="stats" id="photoCount">0</div><div class="muted">Published photos</div></div>
-<div class="panel"><div class="stats" id="videoCount">0</div><div class="muted">Published reels / videos</div></div>
-<div class="panel"><div class="stats" id="categoryCount">0</div><div class="muted">Services / categories</div></div>
+<div class="grid stats-grid">
+<div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">PUBLISHED PHOTOS</div><div class="stats" id="photoCount">0</div><div class="muted">Images in your portfolio</div></div>
+<div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">ACTIVE REELS</div><div class="stats" id="videoCount">0</div><div class="muted">Motion and video work</div></div>
+<div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">SERVICES</div><div class="stats" id="categoryCount">0</div><div class="muted">Portfolio categories</div></div>
+<div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">WEBSITE STATUS</div><div class="stats status-word">LIVE</div><div class="muted">GitHub Pages website</div></div>
 </div>
-<div class="panel"><h2>Quick actions</h2><div class="row"><button class="btn primary" data-go="media">＋ Add photo or reel</button><button class="btn" data-go="categories">Manage services</button><a class="btn" href="./" target="_blank">View live portfolio ↗</a></div><p class="muted">Changes are committed to GitHub. GitHub Pages may take a short time to publish them.</p></div>
+<div class="panel quick-panel"><div><h2>Quick controls</h2><p class="muted">Frequently used management actions</p></div><div class="quick-actions"><button class="btn primary" data-go="media">Manage media →</button><button class="btn" data-go="categories">Manage services →</button><a class="btn" href="./" target="_blank" rel="noopener">View public site ↗</a><a class="btn" href="https://github.com/mayuu-p/Dishant-Portfolio" target="_blank" rel="noopener">Repository ↗</a></div></div>
 </section>
 <section class="page hidden" id="page-media">
 <div class="panel">
@@ -128,6 +154,8 @@ body.login-locked{overflow:hidden}
 <div class="notice">No database is used. GitHub stores the JSON content manifest and the actual media files. The repository is public, so uploaded portfolio media is public too. Do not upload private client photos without permission.</div>
 </section>
 </div>
+</main>
+</div>
 </div>
 <script>
 
@@ -160,6 +188,7 @@ async function connect(){token=$("token").value.trim();if(!token){message("conne
 $("posterField").classList.toggle("hidden",$("kind").value!=="motion");
 $("file").accept="image/jpeg,image/png,image/webp";
 $("connectBtn").addEventListener("click",connect);
+$("refreshBtn").addEventListener("click",async()=>{if(!token){message("connectMsg","Connect GitHub first to refresh dashboard data.",false);return;}try{await loadManifest();render();}catch(e){alert("Refresh failed: "+e.message);}});
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 function showPage(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.page===name));document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));}
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.go)));
