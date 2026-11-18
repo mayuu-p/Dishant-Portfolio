@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="format-detection" content="telephone=no" />
 <title>Dishant Mote — Photographer &amp; Visual Artist</title>
 <meta name="description" content="Luxury photography and film portfolio of Dishant Mote: portraits, editorial, cinematic reels, candid, maternity and pre-wedding work." />
@@ -427,6 +427,52 @@ header.glass > div {
   border-radius: 0 !important;
 }
 </style>
+
+<style id="portfolio-responsive-polish">
+  html { scroll-behavior:smooth; scroll-padding-top:88px; }
+  body { overflow-x:clip; }
+  #work .tab-track {
+    display:flex; flex-wrap:wrap; align-items:center; gap:.2rem;
+    max-width:100%; min-width:0;
+  }
+  #work .tab { flex:0 0 auto; white-space:nowrap; min-height:40px; }
+  #work .tab-pill { pointer-events:none; }
+  #services-grid > li { min-width:0; cursor:pointer; }
+  #services-grid > li:focus-visible { outline:2px solid var(--color-ink); outline-offset:-4px; }
+  #grid { min-width:0; }
+  .tile { max-width:100%; }
+  @media (max-width:767px) {
+    html { scroll-padding-top:76px; }
+    #work .tab-track {
+      width:100%; flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden;
+      justify-content:flex-start; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none; border-radius:24px; padding:.3rem;
+      overscroll-behavior-x:contain;
+    }
+    #work .tab-track::-webkit-scrollbar { display:none; }
+    #work .tab { padding:.7rem .9rem; font-size:.68rem; letter-spacing:.1em; }
+    #work .tab-pill { position:absolute; }
+    #services-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #services-grid > li { padding:1rem!important; }
+    #services-grid > li h3 { font-size:1.35rem; }
+    #services-grid > li p { font-size:.78rem; }
+    .masonry { columns:2; column-gap:.65rem; }
+    .tile { margin-bottom:.65rem; }
+    #lightbox > div { padding:max(12px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom))!important; }
+    #lb-frame { min-height:calc(100dvh - 24px)!important; }
+    #lb-frame img,#lb-frame video { max-height:72dvh!important; }
+    .hero-shell { min-height:auto; }
+    button,a { -webkit-tap-highlight-color:transparent; }
+  }
+  @media (max-width:360px) {
+    #services-grid { grid-template-columns:1fr; }
+    .masonry { columns:1; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto; }
+  }
+</style>
+
 </head>
 <body>
 
@@ -1033,40 +1079,7 @@ header.glass > div {
 })();
 </script>
 
-<script>
-/* Block Ctrl/Cmd + wheel zoom, Ctrl/Cmd + plus/minus zoom, pinch gestures */
-(function(){
-  /* Ctrl/Cmd + wheel */
-  window.addEventListener('wheel', function(e){
-    if (e.ctrlKey || e.metaKey) e.preventDefault();
-  }, { passive: false });
 
-  /* Ctrl/Cmd + '+' / '-' / '0' */
-  window.addEventListener('keydown', function(e){
-    if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
-      e.preventDefault();
-    }
-  });
-
-  /* iOS Safari pinch-zoom (gesturestart / gesturechange / gestureend) */
-  ['gesturestart','gesturechange','gestureend'].forEach(function(ev){
-    document.addEventListener(ev, function(e){ e.preventDefault(); }, { passive: false });
-  });
-
-  /* Double-tap zoom (iOS + Android) */
-  var lastTouch = 0;
-  document.addEventListener('touchend', function(e){
-    var now = Date.now();
-    if (now - lastTouch <= 300) e.preventDefault();
-    lastTouch = now;
-  }, { passive: false });
-
-  /* Block text copy / cut / right-click context menu on text */
-  document.addEventListener('copy', function(e){ e.preventDefault(); });
-  document.addEventListener('cut', function(e){ e.preventDefault(); });
-  document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-})();
-</script>
 
 <script>
 /* Subtle pointer-driven 3D for tiles (desktop only) */
