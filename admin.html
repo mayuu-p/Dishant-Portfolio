@@ -281,6 +281,87 @@ body.login-locked #winLogin.unlocking{
   body.login-locked #winLogin.unlocking,#dashboardWrap.dashboard-enter{animation-duration:.01ms!important}
 }
 
+
+/* ── Dishant Studio dashboard visual refresh (layout/styles only) ── */
+#dashboardWrap{background:#e9e9e7;color:#202020;min-height:100vh}
+#dashboardWrap .top{height:76px;padding:0 clamp(16px,4vw,58px);background:rgba(255,255,255,.76);border:0;border-bottom:1px solid rgba(30,30,30,.06);backdrop-filter:blur(24px)}
+#dashboardWrap .brand-mark{background:#242424;color:#fff;border-radius:50%;box-shadow:none}
+#dashboardWrap .brand{color:#222;font-size:17px;letter-spacing:-.04em}
+#dashboardWrap .brand small{color:#777;letter-spacing:.17em}
+#dashboardWrap .status{color:#686868}
+#dashboardWrap .top-btn,#dashboardWrap .profile-mark{background:#fff;border:1px solid #e7e4dc;color:#333;box-shadow:0 2px 8px #00000008}
+#dashboardWrap .dashboard-shell{display:block;max-width:1500px;margin:0 auto;padding:20px clamp(14px,4vw,58px) 44px;min-height:calc(100vh - 76px)}
+#dashboardWrap .sidebar{position:relative;top:auto;height:auto;min-height:0;display:flex;flex-direction:row;align-items:center;gap:16px;padding:10px 14px;margin:0 0 27px;border:1px solid #fff;border-radius:28px;background:rgba(255,255,255,.7);box-shadow:0 10px 30px #38352a0a;backdrop-filter:blur(22px)}
+#dashboardWrap .side-label{padding:0 10px;color:#8b887f;white-space:nowrap}
+#dashboardWrap .tabs{display:flex;flex-direction:row;gap:5px;overflow:auto;padding:0;scrollbar-width:none}
+#dashboardWrap .tabs::-webkit-scrollbar{display:none}
+#dashboardWrap .tab{width:auto;display:flex;flex:0 0 auto;align-items:center;gap:8px;padding:10px 17px;border-radius:24px;background:transparent;color:#5e5d58;font-size:12px}
+#dashboardWrap .tab:hover{background:#f0eee8;color:#222}
+#dashboardWrap .tab.active{background:#252525;color:#fff;box-shadow:none}
+#dashboardWrap .sidebar-note{display:none}
+#dashboardWrap .main-content{max-width:none;padding:0}
+#dashboardWrap .dashboard-heading{margin:0 0 24px;align-items:flex-end}
+#dashboardWrap .eyebrow,#dashboardWrap .stat-label{color:#858176;letter-spacing:.17em;font-weight:800}
+#dashboardWrap .dashboard-heading h1{font-size:clamp(28px,3.2vw,42px);font-weight:500;letter-spacing:-.055em;color:#202020;margin:8px 0}
+#dashboardWrap .dashboard-heading p{color:#77756f;margin:0}
+#dashboardWrap .btn,#dashboardWrap .tab{transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+#dashboardWrap .btn{border-radius:22px;background:#fff;border:1px solid #e9e6dd;color:#35342f;padding:11px 17px;font-size:12px;font-weight:650}
+#dashboardWrap .btn:hover{transform:translateY(-1px);box-shadow:0 7px 18px #0000000d}
+#dashboardWrap .btn.primary{background:#292929;border-color:#292929;color:#fff}
+#dashboardWrap .btn.danger{background:#fff5f2;border-color:#f0d8d1;color:#a44738}
+#dashboardWrap .panel{background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.92);border-radius:25px;padding:23px;margin:0 0 16px;box-shadow:0 8px 30px #39362c08;backdrop-filter:blur(18px)}
+#dashboardWrap .panel h2{color:#292824;font-size:17px;font-weight:650;letter-spacing:-.025em;margin:0 0 8px}
+#dashboardWrap .muted{color:#817e75}
+#dashboardWrap .grid.stats-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+#dashboardWrap .stat-card{min-height:145px;position:relative;overflow:hidden}
+#dashboardWrap .stat-accent{width:34px;height:5px;border-radius:8px;background:#f2d66b;margin-bottom:17px}
+#dashboardWrap .stat-card:nth-child(2) .stat-accent{background:#282828}
+#dashboardWrap .stat-card:nth-child(3) .stat-accent{background:#c7c4ba}
+#dashboardWrap .stat-card:nth-child(4) .stat-accent{background:#a6b5a2}
+#dashboardWrap .stat-label{font-size:9px}
+#dashboardWrap .stats{font:500 40px/1.2 Inter,"Segoe UI",sans-serif;color:#222;letter-spacing:-.06em;margin:6px 0}
+#dashboardWrap .status-word{font-size:34px;color:#4f7257}
+#dashboardWrap .quick-panel{display:flex;align-items:center;justify-content:space-between;gap:20px}
+#dashboardWrap .quick-actions{display:flex;flex-wrap:wrap;gap:8px}
+#dashboardWrap .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#dashboardWrap .recent-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:15px}
+#dashboardWrap .recent-thumb{border-radius:17px;overflow:hidden;background:#f0eee8;color:#333}
+#dashboardWrap .recent-thumb img{width:100%;height:145px;display:block;object-fit:cover}
+#dashboardWrap .recent-thumb div{padding:10px 12px;font-size:12px;font-weight:650}
+#dashboardWrap input,#dashboardWrap select,#dashboardWrap textarea{background:#fff;border:1px solid #e5e1d8;border-radius:13px;color:#282722;padding:13px}
+#dashboardWrap input:focus,#dashboardWrap select:focus,#dashboardWrap textarea:focus{border-color:#b8a85c;box-shadow:0 0 0 3px #e9d98235}
+#dashboardWrap .field label{color:#77746b;font-weight:650}
+#dashboardWrap .uploadbox{background:#faf9f5;border:1px dashed #c9c3b4;border-radius:20px;color:#38372f}
+#dashboardWrap .item{background:#fff;border:1px solid #ebe8df;border-radius:18px}
+#dashboardWrap .item img,#dashboardWrap .item video{height:175px}
+#dashboardWrap .item .info{padding:13px}
+#dashboardWrap .category{border-color:#ece9e1}
+#dashboardWrap .notice{background:#fff7dc;border:1px solid #f0e4b6;color:#77652e;border-radius:15px}
+#dashboardWrap .mobile-nav{display:none}
+@media(max-width:900px){
+ #dashboardWrap .grid.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #dashboardWrap .recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #dashboardWrap .quick-panel{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:680px){
+ #dashboardWrap .top{height:66px;padding:0 13px}
+ #dashboardWrap .dashboard-shell{padding:13px 12px 82px}
+ #dashboardWrap .sidebar{margin-bottom:18px;padding:8px;border-radius:22px;gap:7px}
+ #dashboardWrap .side-label{display:none}
+ #dashboardWrap .tabs{width:100%;justify-content:flex-start}
+ #dashboardWrap .tab{padding:10px 13px;font-size:11px}
+ #dashboardWrap .dashboard-heading{align-items:flex-start;flex-direction:column;margin-bottom:17px}
+ #dashboardWrap .dashboard-heading h1{font-size:29px}
+ #dashboardWrap .panel{padding:16px;border-radius:20px}
+ #dashboardWrap .grid.stats-grid{gap:9px}
+ #dashboardWrap .stat-card{min-height:125px}
+ #dashboardWrap .stats{font-size:34px}
+ #dashboardWrap .recent-thumb img{height:115px}
+ #dashboardWrap .mobile-nav{display:none}
+ #dashboardWrap .top-actions{gap:6px}
+ #dashboardWrap .status{font-size:8px}
+}
+
 </style>
 </head>
 <body class="login-locked">
