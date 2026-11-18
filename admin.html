@@ -1678,7 +1678,6 @@ body.login-locked #winLogin{
   <button id="winSignIn" type="button">Sign in</button><div id="winError" role="status" aria-live="polite"></div>
   <button id="winRecoveryToggle" type="button" class="win-recovery-toggle">I forgot my sign-in</button>
   <div id="winRecoveryPanel" class="win-recovery-panel hidden"><p class="recovery-intro">Answer all three security questions to recover access.</p><div id="winRecoveryQuestions"></div><button id="winRecoverySubmit" type="button">Verify answers & recover</button><p id="winRecoveryError" role="status"></p></div>
-  <button id="winResetLock" type="button" style="margin-top:12px;border:0;background:transparent;color:#fff;text-decoration:underline;font:12px 'Segoe UI',sans-serif;cursor:pointer">Can't sign in? Reset this device lock</button>
   <div class="win-foot">DISHANT STUDIO · OWNER CONTROL CENTRE</div>
  </form>
 </div>
@@ -1846,14 +1845,6 @@ body.login-locked #winLogin{
  document.getElementById("winRecoveryToggle").addEventListener("click",()=>{const panel=document.getElementById("winRecoveryPanel");panel.classList.toggle("hidden");if(!panel.classList.contains("hidden")){renderRecoveryQuestions();const first=panel.querySelector("input");if(first)first.focus()}});
  document.getElementById("winRecoverySubmit").addEventListener("click",recoverWithQuestions);
  document.getElementById("winRecoveryPanel").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();recoverWithQuestions()}});
- document.getElementById("winResetLock").addEventListener("click",()=>{
-  if(!window.confirm("Reset the local sign-in lock on THIS browser? Portfolio files will not be changed."))return;
-  resetLocalLock();
- });
- try{
-  const params=new URLSearchParams(location.search);
-  if(params.get("reset-lock")==="1"){history.replaceState(null,"",location.pathname);resetLocalLock();return}
- }catch(_){}
  async function attemptSignIn(){
   if(busy)return;busy=true;error.textContent="Checking…";
   const c=readConfig(),mode=c&&c.mode?c.mode:"password";
