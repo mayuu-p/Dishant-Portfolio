@@ -362,6 +362,34 @@ body.login-locked #winLogin.unlocking{
  #dashboardWrap .status{font-size:8px}
 }
 
+
+/* Windows 11-style unlock: full-screen camera push-in + profile-card dissolve */
+#winLogin{transform-origin:50% 50%;will-change:transform,filter,opacity}
+#winLogin.unlocking{pointer-events:none;animation:winUnlockZoom .95s cubic-bezier(.16,1,.3,1) forwards}
+#winLogin.unlocking .win-card{animation:winCardZoom .72s cubic-bezier(.16,1,.3,1) forwards}
+#winLogin.unlocking:before{animation:winGlowZoom .95s cubic-bezier(.16,1,.3,1) forwards}
+#winLogin.unlocking:after{animation:winGlowZoom .95s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes winUnlockZoom{
+  0%{opacity:1;transform:scale(1);filter:blur(0)}
+  38%{opacity:1;transform:scale(1.055);filter:blur(1px)}
+  100%{opacity:0;visibility:hidden;transform:scale(1.24);filter:blur(13px)}
+}
+@keyframes winCardZoom{
+  0%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+  42%{opacity:1;transform:translateY(-9px) scale(1.045);filter:blur(0)}
+  100%{opacity:0;transform:translateY(-24px) scale(1.16);filter:blur(8px)}
+}
+@keyframes winGlowZoom{to{transform:scale(1.2);opacity:0}}
+#dashboardWrap.dashboard-enter{animation:winDesktopReveal .9s cubic-bezier(.16,1,.3,1) both}
+@keyframes winDesktopReveal{
+  0%{opacity:0;filter:blur(9px);transform:scale(1.045)}
+  65%{opacity:1;filter:blur(0);transform:scale(1.008)}
+  100%{opacity:1;filter:blur(0);transform:scale(1)}
+}
+@media(prefers-reduced-motion:reduce){
+ #winLogin.unlocking,#winLogin.unlocking .win-card,#dashboardWrap.dashboard-enter{animation-duration:.01ms}
+}
+
 </style>
 </head>
 <body class="login-locked">
