@@ -115,6 +115,14 @@ body.login-locked{overflow:hidden!important;height:100vh!important}
 #winLogin .win-foot{margin-top:24px!important;font-size:10px!important;letter-spacing:.12em!important;color:rgba(255,255,255,.78)!important;text-shadow:0 1px 4px #0005!important}
 #winLogin.unlocking{animation:winFade .55s ease forwards!important}
 @media(max-width:600px){#winLogin:before{background-position:center center!important;filter:blur(2.5px)!important}#winLogin .win-card{width:calc(100vw - 28px)!important;padding:0 14px 10px!important}#winLogin .win-avatar{width:84px!important;height:84px!important;flex-basis:84px!important}}
+
+/* Lock-screen isolation: never show dashboard chrome behind sign-in */
+body.login-locked{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;min-height:100%!important;overflow:hidden!important;background:#101827!important}
+body.login-locked .wrap,body.login-locked .mobile-nav,body.login-locked #connectPanel,body.login-locked header,body.login-locked .dashboard-shell{visibility:hidden!important;pointer-events:none!important}
+body.login-locked #winLogin{visibility:visible!important;display:flex!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;z-index:2147483647!important;background:#182338!important}
+body.login-locked #winLogin:before{background-image:url("./Windows.jpg")!important;background-color:#182338!important;background-size:cover!important;background-position:center!important;opacity:1!important;filter:blur(2px)!important;transform:scale(1.025)!important}
+body.login-locked #winLogin:after{background:rgba(7,14,26,.18)!important;z-index:1!important}
+body.login-locked #winLogin .win-card{z-index:2!important}
 </style>
 </head>
 <body class="login-locked">
