@@ -473,6 +473,37 @@ header.glass > div {
   }
 </style>
 
+
+<style id="portfolio-filter-layout-fix">
+  /* Keep every category on one clean horizontal rail. Never wrap into a second row. */
+  #work .tab-track{
+    display:flex!important; flex-flow:row nowrap!important; align-items:center;
+    justify-content:flex-start; gap:2px; width:100%; max-width:100%;
+    min-width:0; box-sizing:border-box; overflow-x:auto; overflow-y:hidden;
+    -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain;
+    scrollbar-width:none; padding:5px; border-radius:999px;
+    scroll-behavior:smooth;
+  }
+  #work .tab-track::-webkit-scrollbar{display:none}
+  #work .tab-track .tab{position:relative;z-index:1;flex:0 0 auto;white-space:nowrap;
+    min-height:42px;padding:11px clamp(10px,1.15vw,18px);font-size:clamp(10px,.68vw,12px);
+    letter-spacing:.12em;line-height:1;border-radius:999px}
+  #work .tab-track .tab-pill{z-index:0;top:5px;left:0;height:calc(100% - 10px);
+    pointer-events:none;will-change:transform,width}
+  #work .tab-track .tab[aria-selected="true"]{color:var(--color-page)}
+  @media(min-width:768px){
+    #work .tab-track{scrollbar-width:none}
+    #work .tab-track .tab{padding-left:clamp(9px,.92vw,15px);padding-right:clamp(9px,.92vw,15px)}
+  }
+  @media(max-width:767px){
+    #work .tab-track{border-radius:24px;justify-content:flex-start}
+    #work .tab-track .tab{min-height:40px;padding:10px 13px;font-size:10px;letter-spacing:.1em}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #work .tab-track{scroll-behavior:auto}
+    #work .tab-track .tab-pill{transition:none}
+  }
+</style>
 </head>
 <body>
 
@@ -754,8 +785,17 @@ header.glass > div {
   var pill = $(".tab-pill");
 
   function movePill(tab) {
+    if (!tab || !pill || !track) return;
+    var left = tab.offsetLeft;
     pill.style.width = tab.offsetWidth + "px";
-    pill.style.transform = "translateX(" + tab.offsetLeft + "px)";
+    pill.style.transform = "translate3d(" + left + "px,0,0)";
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      var visibleLeft = tab.offsetLeft - track.scrollLeft;
+      var visibleRight = visibleLeft + tab.offsetWidth;
+      if (visibleLeft < 8 || visibleRight > track.clientWidth - 8) {
+        track.scrollTo({ left: Math.max(0, tab.offsetLeft - track.clientWidth / 2 + tab.offsetWidth / 2), behavior: "smooth" });
+      }
+    }
   }
 
   tabs.forEach(function (tab) {
