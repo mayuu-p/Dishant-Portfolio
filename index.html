@@ -789,12 +789,10 @@ header.glass > div {
     var left = tab.offsetLeft;
     pill.style.width = tab.offsetWidth + "px";
     pill.style.transform = "translate3d(" + left + "px,0,0)";
-    if (window.matchMedia("(max-width: 767px)").matches) {
-      var visibleLeft = tab.offsetLeft - track.scrollLeft;
-      var visibleRight = visibleLeft + tab.offsetWidth;
-      if (visibleLeft < 8 || visibleRight > track.clientWidth - 8) {
-        track.scrollTo({ left: Math.max(0, tab.offsetLeft - track.clientWidth / 2 + tab.offsetWidth / 2), behavior: "smooth" });
-      }
+    var visibleLeft = tab.offsetLeft - track.scrollLeft;
+    var visibleRight = visibleLeft + tab.offsetWidth;
+    if (visibleLeft < 8 || visibleRight > track.clientWidth - 8) {
+      track.scrollTo({ left: Math.max(0, tab.offsetLeft - track.clientWidth / 2 + tab.offsetWidth / 2), behavior: "smooth" });
     }
   }
 
@@ -1091,8 +1089,9 @@ header.glass > div {
     } catch (err) {}
     paintIcon();
 
+    tabs.forEach(function (tab) { tab.setAttribute("aria-selected", String(tab.dataset.filter === "all")); });
     renderGrid("all");
-    movePill(tabs[0]);
+    movePill(tabs.filter(function (tab) { return tab.dataset.filter === "all"; })[0]);
 
     if (window.lucide) window.lucide.createIcons();
 
