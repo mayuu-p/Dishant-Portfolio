@@ -1606,6 +1606,13 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
 #dashboardWrap .main-content{scroll-margin-top:0!important;overflow-anchor:none!important}
 #dashboardWrap .page>.panel:first-child{margin-top:0!important}
 
+
+/* NAVIGATION RENDER FIX: exactly one workspace is visible after every sidebar tap. */
+#dashboardWrap #app>.page{display:none!important;position:relative!important;width:100%!important;height:auto!important;min-height:0!important;overflow:visible!important}
+#dashboardWrap #app>.page.is-active{display:block!important;visibility:visible!important;opacity:1!important}
+#dashboardWrap #app>.page.hidden{display:none!important}
+#dashboardWrap #app>.page.is-active>.panel{display:block!important;visibility:visible!important}
+#dashboardWrap .main-content{min-height:0!important}
 </style>
 </head>
 <body class="login-locked">
@@ -1754,21 +1761,28 @@ $("file").accept="image/jpeg,image/png,image/webp";
 $("connectBtn").addEventListener("click",connect);
 $("refreshBtn").addEventListener("click",async()=>{try{if(token){await loadManifest();}else{await loadPublicManifest();}render();}catch(e){alert("Refresh failed: "+e.message);}});
 function showPage(name){
+ const app=document.getElementById("app");
  const target=document.getElementById("page-"+name);
- if(!target) return;
- document.querySelectorAll(".tab,[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
- document.querySelectorAll("#app>.page").forEach(p=>{
+ if(!app||!target) return;
+ app.classList.remove("hidden");
+ document.querySelectorAll("#sideTabs .tab,#mobileNav [data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+ app.querySelectorAll(":scope > .page").forEach(p=>{
   const active=p===target;
   p.classList.toggle("hidden",!active);
+  p.classList.toggle("is-active",active);
+  p.style.display=active?"block":"none";
   p.setAttribute("aria-hidden",active?"false":"true");
  });
  document.querySelectorAll(".home-only").forEach(el=>el.classList.toggle("hidden",name!=="overview"));
  const main=document.querySelector("#dashboardWrap .main-content");
- if(main) main.scrollTop=0;
- document.getElementById("dashboardWrap").scrollTop=0;
- document.documentElement.scrollTop=0;
- document.body.scrollTop=0;
- requestAnimationFrame(()=>{if(main)main.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"instant"});});
+ if(main) main.scrollTo({top:0,left:0,behavior:"instant"});
+ const shell=document.querySelector("#dashboardWrap .dashboard-shell");
+ if(shell) shell.scrollTop=0;
+ requestAnimationFrame(()=>{
+  if(main) main.scrollTo({top:0,left:0,behavior:"instant"});
+  target.scrollIntoView({block:"start",behavior:"instant"});
+  if(main) main.scrollTo({top:0,left:0,behavior:"instant"});
+ });
 }
 document.querySelectorAll(".tab,#mobileNav [data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.go)));
