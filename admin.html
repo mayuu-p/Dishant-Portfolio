@@ -743,6 +743,29 @@ body{font-family:Inter,"Segoe UI",system-ui,sans-serif}
 #dashboardWrap .recent-thumb div{padding:9px 10px;font-size:12px;font-weight:650;color:#42495a}
 @media(max-width:760px){#dashboardWrap .recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* HOTFIX: keep the disconnected state visible and let the main area use the full viewport */
+#dashboardWrap{display:block!important;width:100%!important;max-width:none!important;min-height:100vh!important;margin:0!important;padding:0!important;overflow:visible!important}
+#dashboardWrap .dashboard-shell{display:flex!important;flex-direction:row!important;align-items:stretch!important;gap:0!important;width:100%!important;max-width:none!important;min-height:calc(100vh - 76px)!important;margin:0!important;padding:0!important;overflow:visible!important}
+#dashboardWrap .sidebar.hidden{display:none!important;flex:none!important;width:0!important;min-width:0!important;padding:0!important;border:0!important;margin:0!important}
+#dashboardWrap .sidebar:not(.hidden){display:flex!important;flex:0 0 250px!important;width:250px!important}
+#dashboardWrap .main-content{display:block!important;flex:1 1 0!important;width:auto!important;min-width:0!important;max-width:none!important;height:auto!important;min-height:calc(100vh - 76px)!important;margin:0!important;padding:30px clamp(16px,3vw,48px) 50px!important;overflow:visible!important;background:#f4f5fa!important}
+#dashboardWrap #connectPanel{display:block!important;visibility:visible!important;opacity:1!important;width:min(760px,100%)!important;max-width:760px!important;margin:24px auto!important;padding:26px!important;background:#fff!important;color:#252938!important;border:1px solid #edf0f5!important;border-radius:16px!important;box-shadow:0 8px 28px #282d500a!important}
+#dashboardWrap #connectPanel h2{color:#252938!important;font-size:21px!important;margin:0 0 10px!important}
+#dashboardWrap #connectPanel p,#dashboardWrap #connectPanel label{color:#777e8e!important}
+#dashboardWrap #connectPanel input{width:100%!important;min-height:48px!important;background:#fff!important;color:#252938!important;border:1px solid #e5e8ef!important}
+#dashboardWrap #connectPanel .notice{display:block!important;margin-top:16px!important;padding:14px!important;background:#fff8e8!important;color:#765d2b!important;border:1px solid #f0dfb8!important;border-radius:12px!important}
+#dashboardWrap #connectPanel .row{display:flex!important;align-items:center!important;gap:14px!important;flex-wrap:wrap!important;margin:14px 0!important}
+#dashboardWrap #connectPanel .btn{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:44px!important}
+#dashboardWrap #connectPanel .msg{display:block!important;min-height:20px!important;margin-top:10px!important}
+#dashboardWrap #app.hidden{display:none!important}
+@media(max-width:760px){
+ #dashboardWrap .dashboard-shell{display:block!important;min-height:calc(100vh - 68px)!important}
+ #dashboardWrap .sidebar:not(.hidden){display:flex!important;position:relative!important;top:auto!important;width:auto!important;min-height:0!important;height:auto!important;margin:0 14px 14px!important;padding:10px!important;border:1px solid #edf0f5!important;border-radius:14px!important;flex-direction:row!important}
+ #dashboardWrap .main-content{width:100%!important;min-height:calc(100vh - 68px)!important;padding:18px 14px 90px!important}
+ #dashboardWrap #connectPanel{margin:12px auto!important;padding:20px!important}
+}
+
 </style>
 </head>
 <body class="login-locked">
