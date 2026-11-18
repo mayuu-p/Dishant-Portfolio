@@ -1633,6 +1633,25 @@ body.login-locked #winLogin{
  opacity:1!important;
  pointer-events:auto!important;
 }
+
+/* FINAL RESPONSIVE OVERRIDE: phones + portrait tablets (including 800px CSS viewports) */
+@media (max-width:900px){
+ html,body{width:100%!important;height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important}
+ #dashboardWrap{position:relative!important;display:block!important;width:100%!important;height:auto!important;min-height:100dvh!important;overflow:visible!important}
+ #dashboardWrap>.top{position:sticky!important;inset:0 0 auto!important;width:100%!important;height:66px!important;min-height:66px!important;padding:0 13px!important;z-index:1200!important}
+ #dashboardWrap .dashboard-shell{position:relative!important;inset:auto!important;display:block!important;grid-template-columns:minmax(0,1fr)!important;width:100%!important;height:auto!important;min-height:calc(100dvh - 66px)!important;margin:0!important;padding:12px 12px 0!important;overflow:visible!important}
+ #dashboardWrap .sidebar,#dashboardWrap .sidebar:not(.hidden){display:none!important;visibility:hidden!important;width:0!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important}
+ #dashboardWrap .main-content{display:block!important;position:relative!important;grid-column:auto!important;width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;margin:0!important;padding:0 0 calc(112px + env(safe-area-inset-bottom))!important;overflow:visible!important}
+ #dashboardWrap #app{display:block!important;position:relative!important;width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important}
+ #dashboardWrap #app>.page{width:100%!important;max-width:none!important;min-width:0!important}
+ #dashboardWrap .mobile-nav{display:flex!important;position:fixed!important;z-index:1500!important;left:12px!important;right:12px!important;bottom:calc(9px + env(safe-area-inset-bottom))!important;width:auto!important;min-height:76px!important;padding:7px!important;gap:5px!important}
+ #dashboardWrap .mobile-nav button{display:flex!important;flex:1 1 0!important;min-width:0!important;min-height:62px!important;flex-direction:column!important;align-items:center!important;justify-content:center!important}
+ body:has(#app.hidden) #dashboardWrap .mobile-nav{display:none!important}
+}
+@media (min-width:901px){
+ #dashboardWrap .sidebar:not(.hidden){display:flex!important}
+ #dashboardWrap .mobile-nav{display:none!important}
+}
 </style>
 
 </head>
