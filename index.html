@@ -969,7 +969,7 @@ header.glass > div {
         track.appendChild(categoryTab);
       });
       tabs = $(".tab");
-      tabs.forEach(function (tab) {
+      tabs.filter(function (tab) { return tab.dataset.filter.indexOf("category:") === 0; }).forEach(function (tab) {
         tab.addEventListener("click", function () {
           tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t === tab)); });
           movePill(tab);
