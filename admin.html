@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dishant Studio — Admin</title>
-<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://mayuu-p.github.io/Dishant-Portfolio/admin.html">
 <script>/* Keep the admin page on its one canonical URL; ignore accidental query/hash text. */(function(){if(window.location.search||window.location.hash){window.history.replaceState(null,"",window.location.pathname);}})();</script>
 <style>
 :root{color-scheme:dark;--bg:#090909;--panel:#141414;--line:#292929;--muted:#aaa49a;--gold:#d6ad69;--text:#f5f1e9;--bad:#ff7777;--good:#79d6a2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#282015 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:20px}.brand{font:30px Georgia,serif}.brand small{display:block;font:10px/1.4 monospace;letter-spacing:.2em;color:var(--muted)}.status{font:11px monospace;color:var(--muted)}.panel{background:rgba(20,20,20,.94);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.stats{font:32px Georgia,serif}.muted{color:var(--muted);font-size:13px}.tabs{display:flex;gap:8px;overflow:auto;padding:18px 0 4px}.tab,.btn{border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:#1b1b1b;color:var(--text);white-space:nowrap}.tab.active,.btn.primary{background:var(--gold);border-color:var(--gold);color:#17120b}.btn.danger{color:#ff9a9a}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0d0d0d;border:1px solid #343434;border-radius:10px;padding:12px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--gold)}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.uploadbox{border:1px dashed #6b5a40;border-radius:14px;padding:22px;text-align:center;background:#17130e}.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#101010}.item img,.item video{width:100%;height:155px;object-fit:cover;display:block;background:#222}.item .info{padding:11px}.item strong{display:block;font-size:14px}.item small{color:var(--muted)}.item .actions{display:flex;gap:6px;margin-top:9px}.item .actions button{flex:1;padding:7px 8px;font-size:12px}.notice{padding:12px 14px;border-radius:10px;background:#211b12;color:#e7c991;font-size:13px;margin:12px 0}.msg{margin-top:12px;font-size:13px;white-space:pre-wrap}.msg.good{color:var(--good)}.msg.bad{color:var(--bad)}.category{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.small{font-size:11px}.right{margin-left:auto}@media(max-width:680px){.wrap{padding:14px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:15px}.top{align-items:flex-start}.brand{font-size:25px}.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.item img,.item video{height:125px}}
@@ -390,6 +390,63 @@ body.login-locked #winLogin.unlocking{
  #winLogin.unlocking,#winLogin.unlocking .win-card,#dashboardWrap.dashboard-enter{animation-duration:.01ms}
 }
 
+
+/* FINAL RESPONSIVE LAYOUT REPAIR — natural document scrolling on every screen */
+html,body{width:100%;min-height:100%;height:auto;overflow-x:hidden!important;overflow-y:auto!important}
+body.login-locked{position:fixed!important;inset:0!important;height:100vh!important;height:100dvh!important;overflow:hidden!important}
+#dashboardWrap{width:100%;min-height:100vh;overflow:visible!important}
+#dashboardWrap .top{position:sticky;top:0;z-index:50}
+#dashboardWrap .dashboard-shell{
+ display:block!important;width:100%;height:auto!important;min-height:calc(100vh - 76px)!important;
+ max-width:1500px;margin:0 auto;padding:20px clamp(14px,4vw,58px) 48px!important;
+ overflow:visible!important
+}
+#dashboardWrap .main-content{
+ display:block!important;width:100%;max-width:none;height:auto!important;min-height:0!important;
+ overflow:visible!important;overflow-x:clip!important;padding:0 0 40px!important
+}
+#dashboardWrap .sidebar{position:relative!important;top:auto!important;height:auto!important;min-height:0!important;overflow:visible!important}
+#dashboardWrap .page{width:100%;min-width:0}
+#dashboardWrap .panel{min-width:0;overflow-wrap:anywhere}
+#dashboardWrap .grid.stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+#dashboardWrap .media-grid{grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr))}
+#dashboardWrap .item{min-width:0}
+#dashboardWrap .item img,#dashboardWrap .item video{width:100%;max-width:100%;object-fit:cover}
+#dashboardWrap .row>*{min-width:0}
+#dashboardWrap .field{min-width:0}
+#dashboardWrap input,#dashboardWrap select,#dashboardWrap textarea{max-width:100%;min-width:0}
+#dashboardWrap .tabs{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+#dashboardWrap .category{flex-wrap:wrap}
+#dashboardWrap .category>div{min-width:0;flex:1 1 180px}
+@media(max-width:900px){
+ #dashboardWrap .grid.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #dashboardWrap .recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+ html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important}
+ #dashboardWrap .top{position:sticky;top:0;height:66px;padding:0 12px}
+ #dashboardWrap .dashboard-shell{display:block!important;height:auto!important;min-height:calc(100dvh - 66px)!important;padding:12px 12px calc(100px + env(safe-area-inset-bottom))!important;overflow:visible!important}
+ #dashboardWrap .sidebar{display:none!important}
+ #dashboardWrap .main-content{height:auto!important;overflow:visible!important;padding:0 0 20px!important}
+ #dashboardWrap .dashboard-heading{align-items:flex-start;flex-direction:column;gap:12px}
+ #dashboardWrap .dashboard-heading>.btn{font-size:12px}
+ #dashboardWrap .dashboard-heading>.btn:after{content:none}
+ #dashboardWrap .grid.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #dashboardWrap .recent-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #dashboardWrap .media-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #dashboardWrap .row{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
+ #dashboardWrap .row>*{width:100%;min-width:0}
+ #dashboardWrap .panel{padding:15px;margin-bottom:12px}
+ #dashboardWrap .item img,#dashboardWrap .item video{height:130px}
+ #dashboardWrap .mobile-nav{display:flex!important}
+ body:has(#app.hidden) #dashboardWrap .mobile-nav{display:none!important}
+}
+@media(max-width:380px){
+ #dashboardWrap .recent-list,#dashboardWrap .media-grid{grid-template-columns:minmax(0,1fr)}
+ #dashboardWrap .grid.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #dashboardWrap .stats{font-size:29px}
+}
+
 </style>
 </head>
 <body class="login-locked">
@@ -517,8 +574,10 @@ $("file").accept="image/jpeg,image/png,image/webp";
 $("connectBtn").addEventListener("click",connect);
 $("refreshBtn").addEventListener("click",async()=>{if(!token){message("connectMsg","Connect GitHub first to refresh dashboard data.",false);return;}try{await loadManifest();render();}catch(e){alert("Refresh failed: "+e.message);}});
 function showPage(name){
-document.querySelectorAll(".tab,[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
-document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));
+ if(!document.getElementById("page-"+name)) return;
+ document.querySelectorAll(".tab,[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 document.querySelectorAll(".tab,#mobileNav [data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.go)));
