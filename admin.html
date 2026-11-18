@@ -130,6 +130,23 @@ body.login-locked #winLogin{visibility:visible!important;display:flex!important;
 body.login-locked #winLogin:before{background-image:url("./Windows.jpg")!important;background-color:#182338!important;background-size:cover!important;background-position:center!important;opacity:1!important;filter:blur(2px)!important;transform:scale(1.025)!important}
 body.login-locked #winLogin:after{background:rgba(7,14,26,.18)!important;z-index:1!important}
 body.login-locked #winLogin .win-card{z-index:2!important}
+
+/* Final full-frame wallpaper correction */
+#winLogin{background:#17243a!important;overflow:hidden!important}
+#winLogin:before{
+  inset:0!important;
+  background-image:url("./Windows.jpg")!important;
+  background-size:100% 100%!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  filter:blur(2px)!important;
+  transform:none!important;
+  border-radius:0!important;
+}
+#winLogin:after{inset:0!important;background:rgba(8,14,24,.16)!important}
+@media(max-width:600px){
+  #winLogin:before{background-size:100% 100%!important;background-position:center center!important;filter:blur(1.5px)!important;transform:none!important}
+}
 </style>
 </head>
 <body class="login-locked">
