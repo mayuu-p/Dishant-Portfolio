@@ -95,6 +95,13 @@ h2{font-size:15px;margin:0 0 3px;color:#2d3c53;letter-spacing:-.02em}.quick-pane
  .panel{min-width:0}
 }
 @media(max-width:380px){.mobile-nav{left:7px;right:7px;min-height:72px}.mobile-nav button{font-size:10px}.mobile-nav button span{font-size:20px}}
+
+/* FINAL FIX: isolate the lock screen from every dashboard element */
+html:has(body.login-locked),html:has(body.login-locked) body{width:100%!important;height:100%!important;min-height:100%!important;overflow:hidden!important}
+body.login-locked{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important}
+body.login-locked>.wrap,body.login-locked>#mobileNav,body.login-locked>.mobile-nav{display:none!important;visibility:hidden!important;pointer-events:none!important}
+body.login-locked #winLogin{display:flex!important;visibility:visible!important;opacity:1!important;position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;z-index:2147483647!important}
+body.login-locked #winLogin .win-card{visibility:visible!important;opacity:1!important}
 /* Windows 11-style sign-in: full-screen wallpaper, centered user, no glass card */
 body.login-locked{overflow:hidden!important;height:100vh!important}
 #winLogin{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:100vh!important;z-index:2147483000!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;background:transparent!important;font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif!important;isolation:isolate!important}
