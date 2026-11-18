@@ -956,7 +956,7 @@ header.glass > div {
       if (Array.isArray(data.works)) WORKS = data.works;
       if (Array.isArray(data.services)) SERVICES = data.services;
       // Rebuild category tabs and service cards from the current published manifest.
-      var oldTabs = Array.prototype.slice.call(document.querySelectorAll(".tab")).filter(function(t){return t.dataset.filter.indexOf("category:")===0;});});
+      var oldTabs = Array.prototype.slice.call(document.querySelectorAll(".tab")).filter(function(t){return t.dataset.filter.indexOf("category:")===0;});});});
       oldTabs.forEach(function (tab) { tab.remove(); });
       SERVICES.forEach(function (service) {
         var categoryTab = document.createElement("button");
@@ -968,7 +968,7 @@ header.glass > div {
         categoryTab.textContent = service.label;
         track.appendChild(categoryTab);
       });
-      tabs = $(".tab");
+      tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
       tabs.filter(function (tab) { return tab.dataset.filter.indexOf("category:") === 0; }).forEach(function (tab) {
         tab.addEventListener("click", function () {
           tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t === tab)); });
@@ -982,7 +982,7 @@ header.glass > div {
           '<h3 class="serif mt-5 mb-2 text-2xl leading-none">' + s.label + '</h3>' +
           '<p class="m-0 text-sm leading-relaxed text-[color:var(--color-soft)]">' + s.blurb + '</p></li>';
       }).join("");
-      $("#services-grid [data-service]").forEach(function (item) {
+      Array.prototype.slice.call(document.querySelectorAll("#services-grid [data-service]")).forEach(function (item) {
         function openCategory() {
           var label = item.getAttribute("data-service");
           var tab = tabs.filter(function (t) { return t.dataset.filter === "category:" + label; })[0];
