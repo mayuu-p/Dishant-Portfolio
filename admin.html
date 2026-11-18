@@ -1664,7 +1664,14 @@ body.login-locked #winLogin{
 .win-recovery-panel button{width:100%;margin-top:9px;padding:12px;border:0;border-radius:9px;background:#4c83dc;color:#fff;font-weight:700}
 .win-recovery-panel p{min-height:18px;color:#ffd5d5;font-size:12px;margin:8px 0 0}
 .lock-settings input,.lock-settings select{min-height:44px}
-.recovery-setup{margin:14px 0;padding:16px;border:1px solid var(--line,#dce3ef);border-radius:14px}.recovery-setup h3{margin:0 0 6px}.recovery-setup .field{margin:12px 0}.recovery-setup input,.recovery-setup select{width:100%;box-sizing:border-box;min-height:44px}.win-recovery-panel .recovery-row{margin:10px 0;text-align:left}.win-recovery-panel label{display:block;color:#e8efff;font-size:12px;margin:0 0 5px}.win-recovery-panel input{margin-bottom:5px}.win-recovery-panel .recovery-intro{color:#e8efff;font-size:13px}</style>
+.recovery-setup{margin:14px 0;padding:16px;border:1px solid var(--line,#dce3ef);border-radius:14px}.recovery-setup h3{margin:0 0 6px}.recovery-setup .field{margin:12px 0}.recovery-setup input,.recovery-setup select{width:100%;box-sizing:border-box;min-height:44px}.win-recovery-panel .recovery-row{margin:10px 0;text-align:left}.win-recovery-panel label{display:block;color:#e8efff;font-size:12px;margin:0 0 5px}.win-recovery-panel input{margin-bottom:5px}.win-recovery-panel .recovery-intro{color:#e8efff;font-size:13px}/* Windows-inspired recovery challenge layout */
+.win-recovery-panel{animation:recoveryFade .22s ease-out}
+.win-recovery-panel .recovery-row{padding:4px 0}
+.win-recovery-panel .recovery-row label{font-size:13px;font-weight:600;line-height:1.45}
+.win-recovery-panel input{min-height:46px;font-size:16px}
+@keyframes recoveryFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.win-recovery-panel{animation:none}}
+</style>
 
 </head>
 <body class="login-locked">
@@ -1677,7 +1684,7 @@ body.login-locked #winLogin{
   <div id="winPattern" class="pattern-pad hidden" aria-label="Unlock pattern"></div>
   <button id="winSignIn" type="button">Sign in</button><div id="winError" role="status" aria-live="polite"></div>
   <button id="winRecoveryToggle" type="button" class="win-recovery-toggle">I forgot my sign-in</button>
-  <div id="winRecoveryPanel" class="win-recovery-panel hidden"><p class="recovery-intro">Answer all three security questions to recover access.</p><div id="winRecoveryQuestions"></div><button id="winRecoverySubmit" type="button">Verify answers & recover</button><p id="winRecoveryError" role="status"></p></div>
+  <div id="winRecoveryPanel" class="win-recovery-panel hidden"><p class="recovery-intro">Answer the security question shown to recover access.</p><div id="winRecoveryQuestions"></div><button id="winRecoverySubmit" type="button">Verify answer & recover</button><p id="winRecoveryError" role="status"></p></div>
   <div class="win-foot">DISHANT STUDIO · OWNER CONTROL CENTRE</div>
  </form>
 </div>
@@ -1831,15 +1838,23 @@ body.login-locked #winLogin{
   if(!setUnlockedFlag())return;
   renderLogin();openDashboard();
  }
+ let activeRecoveryQuestion=null;
+ function recoveryThrottle(){try{return JSON.parse(localStorage.getItem("dishantRecoveryThrottle")||'{"count":0,"until":0}')}catch(_){return {count:0,until:0}}}
  async function recoverWithQuestions(){
-  const c=readConfig(),msg=document.getElementById("winRecoveryError"),host=document.getElementById("winRecoveryQuestions");
-  if(!c||!Array.isArray(c.recoveryQuestions)||c.recoveryQuestions.length!==3){msg.textContent="Recovery questions are not configured. Use the device reset option if you own this browser.";return}
-  try{for(let i=0;i<3;i++){const answer=document.getElementById("winRecoveryAnswer"+i).value.trim().toLocaleLowerCase();if(answer.length<2){msg.textContent="Please answer all three questions.";return}const actual=await digest(answer,c.recoveryQuestions[i].salt);if(actual!==c.recoveryQuestions[i].hash){msg.textContent="One or more answers do not match. Please try again.";for(let j=0;j<3;j++)document.getElementById("winRecoveryAnswer"+j).value="";return}}msg.textContent="Answers verified. Recovering access…";resetLocalLock();}catch(e){msg.textContent="Recovery could not be completed: "+e.message}
+  const c=readConfig(),msg=document.getElementById("winRecoveryError"),field=document.getElementById("winRecoveryAnswer");
+  if(!c||!Array.isArray(c.recoveryQuestions)||c.recoveryQuestions.length!==3||!activeRecoveryQuestion){msg.textContent="Recovery questions are not configured. Set them in Lock & Sign-in settings.";return}
+  const gate=recoveryThrottle();if(Date.now()<gate.until){msg.textContent="Too many attempts. Try again in "+Math.ceil((gate.until-Date.now())/1000)+" seconds.";return}
+  const answer=field.value.trim().toLocaleLowerCase();if(answer.length<2){msg.textContent="Enter your answer to continue.";return}
+  try{const item=c.recoveryQuestions[activeRecoveryQuestion],actual=await digest(answer,item.salt);if(actual!==item.hash){gate.count++;if(gate.count>=5){gate.count=0;gate.until=Date.now()+60000}localStorage.setItem("dishantRecoveryThrottle",JSON.stringify(gate));msg.textContent=gate.until>Date.now()?"Too many incorrect answers. Recovery is paused for 60 seconds.":"That answer does not match. Try again.";field.value="";field.focus();return}
+   localStorage.removeItem("dishantRecoveryThrottle");msg.textContent="Answer verified. Recovering access…";resetLocalLock();
+  }catch(e){msg.textContent="Recovery could not be completed: "+e.message}
  }
  function renderRecoveryQuestions(){
-  const c=readConfig(),host=document.getElementById("winRecoveryQuestions"),msg=document.getElementById("winRecoveryError");host.innerHTML="";
+  const c=readConfig(),host=document.getElementById("winRecoveryQuestions"),msg=document.getElementById("winRecoveryError");host.innerHTML="";activeRecoveryQuestion=null;
   if(!c||!Array.isArray(c.recoveryQuestions)||c.recoveryQuestions.length!==3){msg.textContent="Recovery questions are not set up on this device.";return}
-  c.recoveryQuestions.forEach((item,i)=>{const row=document.createElement("div");row.className="recovery-row";const label=document.createElement("label");label.textContent=item.question;label.htmlFor="winRecoveryAnswer"+i;const field=document.createElement("input");field.id="winRecoveryAnswer"+i;field.type="password";field.autocomplete="off";field.placeholder="Your answer";row.append(label,field);host.appendChild(row)});
+  activeRecoveryQuestion=Math.floor(Math.random()*c.recoveryQuestions.length);
+  const item=c.recoveryQuestions[activeRecoveryQuestion],row=document.createElement("div");row.className="recovery-row";const label=document.createElement("label");label.textContent=item.question;label.htmlFor="winRecoveryAnswer";const field=document.createElement("input");field.id="winRecoveryAnswer";field.type="password";field.autocomplete="off";field.placeholder="Your answer";field.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();recoverWithQuestions()}});row.append(label,field);host.appendChild(row);
+  msg.textContent=""; 
  }
  reveal.addEventListener("click",()=>{const show=input.type==="password";input.type=show?"text":"password";reveal.textContent=show?"⊘":"◉"});
  document.getElementById("winRecoveryToggle").addEventListener("click",()=>{const panel=document.getElementById("winRecoveryPanel");panel.classList.toggle("hidden");if(!panel.classList.contains("hidden")){renderRecoveryQuestions();const first=panel.querySelector("input");if(first)first.focus()}});
