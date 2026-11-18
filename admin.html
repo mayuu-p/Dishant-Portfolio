@@ -1596,6 +1596,16 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
 #dashboardWrap #page-overview:not(.hidden){display:flex!important}
 #dashboardWrap .dashboard-heading.home-only.hidden{display:none!important}
 
+
+/* ACTIVE WORKSPACE POSITION FIX: prevent sections from inheriting stale layout/scroll offsets */
+#dashboardWrap #app{display:block!important;position:relative!important;width:100%!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;transform:none!important}
+#dashboardWrap #app>.page{position:static!important;inset:auto!important;float:none!important;clear:both!important;width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;transform:none!important;translate:none!important}
+#dashboardWrap #app>.page:not(.hidden){display:block!important;visibility:visible!important;opacity:1!important}
+#dashboardWrap #app>.page.hidden{display:none!important;visibility:hidden!important;opacity:0!important}
+#dashboardWrap #page-overview:not(.hidden){display:block!important}
+#dashboardWrap .main-content{scroll-margin-top:0!important;overflow-anchor:none!important}
+#dashboardWrap .page>.panel:first-child{margin-top:0!important}
+
 </style>
 </head>
 <body class="login-locked">
@@ -1744,11 +1754,21 @@ $("file").accept="image/jpeg,image/png,image/webp";
 $("connectBtn").addEventListener("click",connect);
 $("refreshBtn").addEventListener("click",async()=>{try{if(token){await loadManifest();}else{await loadPublicManifest();}render();}catch(e){alert("Refresh failed: "+e.message);}});
 function showPage(name){
- if(!document.getElementById("page-"+name)) return;
+ const target=document.getElementById("page-"+name);
+ if(!target) return;
  document.querySelectorAll(".tab,[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
- document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));
+ document.querySelectorAll("#app>.page").forEach(p=>{
+  const active=p===target;
+  p.classList.toggle("hidden",!active);
+  p.setAttribute("aria-hidden",active?"false":"true");
+ });
  document.querySelectorAll(".home-only").forEach(el=>el.classList.toggle("hidden",name!=="overview"));
- window.scrollTo({top:0,behavior:"smooth"});
+ const main=document.querySelector("#dashboardWrap .main-content");
+ if(main) main.scrollTop=0;
+ document.getElementById("dashboardWrap").scrollTop=0;
+ document.documentElement.scrollTop=0;
+ document.body.scrollTop=0;
+ requestAnimationFrame(()=>{if(main)main.scrollTop=0;window.scrollTo({top:0,left:0,behavior:"instant"});});
 }
 document.querySelectorAll(".tab,#mobileNav [data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.go)));
