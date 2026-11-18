@@ -611,25 +611,17 @@ header.glass > div {
   "use strict";
 
   var WORKS = [
-    { id:"dishant-original-1", type:"stills", title:"Photo 01", location:"Dishant Mote Portfolio", year:"Original",
-      img:"1.jpg", alt:"Dishant Mote portfolio photograph 1", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-2", type:"stills", title:"Photo 02", location:"Dishant Mote Portfolio", year:"Original",
-      img:"2.jpg", alt:"Dishant Mote portfolio photograph 2", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-3", type:"stills", title:"Photo 03", location:"Dishant Mote Portfolio", year:"Original",
-      img:"3.jpg", alt:"Dishant Mote portfolio photograph 3", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-4", type:"stills", title:"Photo 04", location:"Dishant Mote Portfolio", year:"Original",
-      img:"4.jpg", alt:"Dishant Mote portfolio photograph 4", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-5", type:"stills", title:"Photo 05", location:"Dishant Mote Portfolio", year:"Original",
-      img:"5.jpg", alt:"Dishant Mote portfolio photograph 5", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
-    { id:"dishant-original-6", type:"stills", title:"Photo 06", location:"Dishant Mote Portfolio", year:"Original",
-      img:"6.jpg", alt:"Dishant Mote portfolio photograph 6", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" }
-  ];
-
-  var SERVICES = [
+    { id:"dishant-original-1", type:"stills", category:"Photography", title:"Photo 01", location:"Dishant Mote Portfolio", year:"Original", img:"1.jpg", alt:"Dishant Mote portfolio photograph 1", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-2", type:"stills", category:"Photography", title:"Photo 02", location:"Dishant Mote Portfolio", year:"Original", img:"2.jpg", alt:"Dishant Mote portfolio photograph 2", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-3", type:"stills", category:"Photography", title:"Photo 03", location:"Dishant Mote Portfolio", year:"Original", img:"3.jpg", alt:"Dishant Mote portfolio photograph 3", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-4", type:"stills", category:"Photography", title:"Photo 04", location:"Dishant Mote Portfolio", year:"Original", img:"4.jpg", alt:"Dishant Mote portfolio photograph 4", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-5", type:"stills", category:"Photography", title:"Photo 05", location:"Dishant Mote Portfolio", year:"Original", img:"5.jpg", alt:"Dishant Mote portfolio photograph 5", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" },
+    { id:"dishant-original-6", type:"stills", category:"Photography", title:"Photo 06", location:"Dishant Mote Portfolio", year:"Original", img:"6.jpg", alt:"Dishant Mote portfolio photograph 6", camera:"—", lens:"—", iso:"—", aperture:"—", shutter:"—" }
+  ];  var SERVICES = [
     { icon:"camera", label:"Photography", blurb:"Portraits, editorial and commercial stills shot with a cinematic eye." },
     { icon:"video", label:"Videography", blurb:"Full-service film coverage for brands, events and personal stories." },
     { icon:"clapperboard", label:"Cinematic Reels", blurb:"Short-form vertical films crafted for social reach and impact." },
-    { icon:"sparkles", label:"Candid Shoot", blurb:"Unposed, in-the-moment frames that keep the day feeling real." },
+    { icon:"sparkles", label:"Candid Pics", blurb:"Unposed, in-the-moment frames that keep the day feeling real." },
     { icon:"baby", label:"Baby Shoot", blurb:"Gentle, safe newborn and toddler sessions in soft natural light." },
     { icon:"heart-pulse", label:"Maternity Shoot", blurb:"Elegant maternity portraits, in studio or on location outdoors." },
     { icon:"gem", label:"Pre-Wedding", blurb:"Story-led pre-wedding shoots across scenic Indian locations." },
@@ -668,7 +660,7 @@ header.glass > div {
     current = filter;
     var html = "";
     WORKS.forEach(function (w, i) {
-      if (filter === "all" || w.type === filter) html += tileHTML(w, i);
+      if (filter === "all" || w.type === filter || (filter.indexOf("category:") === 0 && (w.category || "") === filter.slice(9))) html += tileHTML(w, i);
     });
     grid.innerHTML = html;
     if (window.lucide) window.lucide.createIcons();
@@ -701,7 +693,18 @@ header.glass > div {
     });
   }
 
-  var tabs = $$(".tab");
+  var track = $(".tab-track");
+  SERVICES.forEach(function (service) {
+    var categoryTab = document.createElement("button");
+    categoryTab.className = "tab";
+    categoryTab.type = "button";
+    categoryTab.setAttribute("role", "tab");
+    categoryTab.setAttribute("aria-selected", "false");
+    categoryTab.dataset.filter = "category:" + service.label;
+    categoryTab.textContent = service.label;
+    track.appendChild(categoryTab);
+  });
+  var tabs = $(".tab");
   var pill = $(".tab-pill");
 
   function movePill(tab) {
@@ -722,12 +725,24 @@ header.glass > div {
   });
 
   $("#services-grid").innerHTML = SERVICES.map(function (s) {
-    return '<li class="bg-[color:var(--color-page)] p-7 transition-colors hover:bg-[color:var(--color-veil)]">' +
+    return '<li data-service="' + s.label.replace(/"/g, "&quot;") + '" role="button" tabindex="0" class="bg-[color:var(--color-page)] p-7 transition-colors hover:bg-[color:var(--color-veil)] cursor-pointer">' +
       '<i data-lucide="' + s.icon + '" class="h-6 w-6 text-[color:var(--color-ink)]"></i>' +
       '<h3 class="serif mt-5 mb-2 text-2xl leading-none">' + s.label + '</h3>' +
       '<p class="m-0 text-sm leading-relaxed text-[color:var(--color-soft)]">' + s.blurb + '</p>' +
     '</li>';
   }).join("");
+  $("#services-grid [data-service]").forEach(function (item) {
+    function openCategory() {
+      var label = item.getAttribute("data-service");
+      var tab = tabs.filter(function (t) { return t.dataset.filter === "category:" + label; })[0];
+      if (tab) tab.click();
+      $("#work").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    item.addEventListener("click", openCategory);
+    item.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openCategory(); }
+    });
+  });
 
   /* ---------------------------------------------------------------
      LIGHTBOX — with browser back button support
@@ -933,7 +948,57 @@ header.glass > div {
     }, 1600);
   });
 
-  function boot() {
+  async function loadCmsContent() {
+    try {
+      var response = await fetch("./cms-content.json?v=" + Date.now(), { cache: "no-store" });
+      if (!response.ok) return;
+      var data = await response.json();
+      if (Array.isArray(data.works)) WORKS = data.works;
+      if (Array.isArray(data.services)) SERVICES = data.services;
+      // Rebuild category tabs and service cards from the current published manifest.
+      var oldTabs = $(".tab[data-filter^='category:']");
+      oldTabs.forEach(function (tab) { tab.remove(); });
+      SERVICES.forEach(function (service) {
+        var categoryTab = document.createElement("button");
+        categoryTab.className = "tab";
+        categoryTab.type = "button";
+        categoryTab.setAttribute("role", "tab");
+        categoryTab.setAttribute("aria-selected", "false");
+        categoryTab.dataset.filter = "category:" + service.label;
+        categoryTab.textContent = service.label;
+        track.appendChild(categoryTab);
+      });
+      tabs = $(".tab");
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t === tab)); });
+          movePill(tab);
+          renderGrid(tab.dataset.filter);
+        });
+      });
+      $("#services-grid").innerHTML = SERVICES.map(function (s) {
+        return '<li data-service="' + String(s.label).replace(/"/g, "&quot;") + '" role="button" tabindex="0" class="bg-[color:var(--color-page)] p-7 transition-colors hover:bg-[color:var(--color-veil)] cursor-pointer">' +
+          '<i data-lucide="' + s.icon + '" class="h-6 w-6 text-[color:var(--color-ink)]"></i>' +
+          '<h3 class="serif mt-5 mb-2 text-2xl leading-none">' + s.label + '</h3>' +
+          '<p class="m-0 text-sm leading-relaxed text-[color:var(--color-soft)]">' + s.blurb + '</p></li>';
+      }).join("");
+      $("#services-grid [data-service]").forEach(function (item) {
+        function openCategory() {
+          var label = item.getAttribute("data-service");
+          var tab = tabs.filter(function (t) { return t.dataset.filter === "category:" + label; })[0];
+          if (tab) tab.click();
+          $("#work").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        item.addEventListener("click", openCategory);
+        item.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openCategory(); }
+        });
+      });
+    } catch (error) { console.warn("CMS content could not be loaded; showing built-in portfolio.", error); }
+  }
+
+  async function boot() {
+    await loadCmsContent();
     try {
       var saved = localStorage.getItem("dm-theme");
       if (saved === "light") root.classList.add("light"), root.classList.remove("dark");
