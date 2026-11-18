@@ -1,6 +1,21 @@
 {
   "works": [
     {
+      "id": "dm-mwlsxowt-bq3za",
+      "type": "stills",
+      "category": "Photography ✨",
+      "title": "Photography",
+      "location": "Pune",
+      "year": "2026",
+      "img": "./media/1794987028546-0d7986d8-b299-4020-9e41-f3cf0346585f-1_all_5801.jpg",
+      "alt": "Lens 32mm",
+      "camera": "Sony",
+      "lens": "—",
+      "iso": "—",
+      "aperture": "—",
+      "shutter": "—"
+    },
+    {
       "id": "dishant-original-1",
       "type": "stills",
       "category": "Photography ✨",
