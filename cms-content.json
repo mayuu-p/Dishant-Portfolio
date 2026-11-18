@@ -3,7 +3,7 @@
     {
       "id": "dm-mwlsxowt-bq3za",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photography",
       "location": "Pune",
       "year": "2026",
@@ -18,7 +18,7 @@
     {
       "id": "dishant-original-1",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photo 01",
       "location": "Dishant Mote Portfolio",
       "year": "Original",
@@ -33,7 +33,7 @@
     {
       "id": "dishant-original-2",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photo 02",
       "location": "Dishant Mote Portfolio",
       "year": "Original",
@@ -48,7 +48,7 @@
     {
       "id": "dishant-original-3",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photo 03",
       "location": "Dishant Mote Portfolio",
       "year": "Original",
@@ -63,7 +63,7 @@
     {
       "id": "dishant-original-4",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photo 04",
       "location": "Dishant Mote Portfolio",
       "year": "Original",
@@ -78,7 +78,7 @@
     {
       "id": "dishant-original-5",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photo 05",
       "location": "Dishant Mote Portfolio",
       "year": "Original",
@@ -93,7 +93,7 @@
     {
       "id": "dishant-original-6",
       "type": "stills",
-      "category": "Photography ✨",
+      "category": "Photography",
       "title": "Photo 06",
       "location": "Dishant Mote Portfolio",
       "year": "Original",
@@ -109,7 +109,7 @@
   "services": [
     {
       "icon": "camera",
-      "label": "Photography ✨",
+      "label": "Photography",
       "blurb": "Portraits, editorial and commercial stills shot with a cinematic eye."
     },
     {
