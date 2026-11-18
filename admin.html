@@ -1589,6 +1589,13 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
  #dashboardWrap *,#dashboardWrap *:before,#dashboardWrap *:after{animation:none!important;transition:none!important}
 }
 
+
+/* PAGE ISOLATION: show only the selected workspace section */
+#dashboardWrap .page.hidden{display:none!important;visibility:hidden!important;pointer-events:none!important}
+#dashboardWrap .page:not(.hidden){display:block!important;visibility:visible!important;pointer-events:auto!important}
+#dashboardWrap #page-overview:not(.hidden){display:flex!important}
+#dashboardWrap .dashboard-heading.home-only.hidden{display:none!important}
+
 </style>
 </head>
 <body class="login-locked">
@@ -1620,7 +1627,7 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
 <main class="main-content">
 
 <div id="app" class="hidden">
-<div class="dashboard-heading"><div><div class="eyebrow">LIVE CONTROL ROOM</div><h1>Good day, owner.</h1><p>Manage your photography portfolio, media and services from one place.</p></div><button class="btn primary" type="button" data-go="media">＋ Add new media</button></div>
+<div class="dashboard-heading home-only"><div><div class="eyebrow">LIVE CONTROL ROOM</div><h1>Good day, owner.</h1><p>Manage your photography portfolio, media and services from one place.</p></div><button class="btn primary" type="button" data-go="media">＋ Add new media</button></div>
 <section class="page" id="page-overview">
 <div class="grid stats-grid">
 <div class="panel stat-card"><div class="stat-accent"></div><div class="stat-label">PUBLISHED PHOTOS</div><div class="stats" id="photoCount">0</div><div class="muted">Images in your portfolio</div></div>
@@ -1740,6 +1747,7 @@ function showPage(name){
  if(!document.getElementById("page-"+name)) return;
  document.querySelectorAll(".tab,[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===name));
  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!=="page-"+name));
+ document.querySelectorAll(".home-only").forEach(el=>el.classList.toggle("hidden",name!=="overview"));
  window.scrollTo({top:0,behavior:"smooth"});
 }
 document.querySelectorAll(".tab,#mobileNav [data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
