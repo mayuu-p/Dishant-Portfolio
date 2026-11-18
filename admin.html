@@ -216,6 +216,47 @@ body.login-locked #winLogin::before,body.login-locked #winLogin::after{
 }
 body.login-locked #winLogin .win-card{z-index:3!important;position:relative!important}
 
+
+/* FINAL EDGE-TO-EDGE WALLPAPER: use the original Windows.jpg once, with no blurred side fill */
+html:has(body.login-locked),html:has(body.login-locked) body{
+  width:100%!important;height:100%!important;min-height:100%!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+}
+body.login-locked{
+  position:fixed!important;inset:0!important;width:100vw!important;
+  height:100vh!important;height:100dvh!important;min-height:100%!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+  background:#101b2d!important;isolation:isolate!important;
+}
+body.login-locked::before,body.login-locked::after{
+  content:none!important;display:none!important;filter:none!important;
+  background:none!important;animation:none!important;
+}
+body.login-locked #winLogin{
+  position:fixed!important;inset:0!important;
+  width:100vw!important;height:100vh!important;height:100dvh!important;
+  min-width:100vw!important;min-height:100vh!important;
+  margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  overflow:hidden!important;isolation:isolate!important;
+  background-image:linear-gradient(rgba(5,10,20,.12),rgba(5,10,20,.12)),url("./Windows.jpg")!important;
+  background-color:#101b2d!important;background-repeat:no-repeat!important;
+  background-position:center center!important;background-size:cover!important;
+}
+body.login-locked #winLogin::before,body.login-locked #winLogin::after{
+  content:none!important;display:none!important;visibility:hidden!important;
+  width:0!important;height:0!important;filter:none!important;animation:none!important;
+}
+body.login-locked #winLogin .win-card{
+  position:relative!important;z-index:2!important;flex:0 1 420px!important;
+  width:min(420px,calc(100vw - 32px))!important;
+  margin:auto!important;transform:none!important;
+}
+@media(max-width:600px){
+  body.login-locked #winLogin{background-position:center center!important;background-size:cover!important}
+  body.login-locked #winLogin .win-card{width:calc(100vw - 32px)!important}
+}
+
 </style>
 </head>
 <body class="login-locked">
