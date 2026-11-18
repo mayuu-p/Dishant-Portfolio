@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Dishant Studio — Admin</title>
 <meta name="robots" content="noindex,nofollow"><link rel="canonical" href="https://mayuu-p.github.io/Dishant-Portfolio/admin.html">
-<script>/* Keep the admin page on its one canonical URL; ignore accidental query/hash text. */(function(){if(window.location.search||window.location.hash){window.history.replaceState(null,"",window.location.pathname);}})();</script>
+<script>/* Keep the admin URL clean without breaking the supported reset-lock recovery query. */(function(){try{if(location.hash){history.replaceState(null,"",location.pathname+location.search);} }catch(e){}})();</script>
 <style>
 :root{color-scheme:dark;--bg:#090909;--panel:#141414;--line:#292929;--muted:#aaa49a;--gold:#d6ad69;--text:#f5f1e9;--bad:#ff7777;--good:#79d6a2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#282015 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:24px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:20px}.brand{font:30px Georgia,serif}.brand small{display:block;font:10px/1.4 monospace;letter-spacing:.2em;color:var(--muted)}.status{font:11px monospace;color:var(--muted)}.panel{background:rgba(20,20,20,.94);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.stats{font:32px Georgia,serif}.muted{color:var(--muted);font-size:13px}.tabs{display:flex;gap:8px;overflow:auto;padding:18px 0 4px}.tab,.btn{border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:#1b1b1b;color:var(--text);white-space:nowrap}.tab.active,.btn.primary{background:var(--gold);border-color:var(--gold);color:#17120b}.btn.danger{color:#ff9a9a}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0d0d0d;border:1px solid #343434;border-radius:10px;padding:12px;color:var(--text);outline:none}input:focus,select:focus,textarea:focus{border-color:var(--gold)}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.uploadbox{border:1px dashed #6b5a40;border-radius:14px;padding:22px;text-align:center;background:#17130e}.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}.item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#101010}.item img,.item video{width:100%;height:155px;object-fit:cover;display:block;background:#222}.item .info{padding:11px}.item strong{display:block;font-size:14px}.item small{color:var(--muted)}.item .actions{display:flex;gap:6px;margin-top:9px}.item .actions button{flex:1;padding:7px 8px;font-size:12px}.notice{padding:12px 14px;border-radius:10px;background:#211b12;color:#e7c991;font-size:13px;margin:12px 0}.msg{margin-top:12px;font-size:13px;white-space:pre-wrap}.msg.good{color:var(--good)}.msg.bad{color:var(--bad)}.category{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}.small{font-size:11px}.right{margin-left:auto}@media(max-width:680px){.wrap{padding:14px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{padding:15px}.top{align-items:flex-start}.brand{font-size:25px}.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.item img,.item video{height:125px}}
 
@@ -1617,29 +1617,7 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
 /* Windows-inspired lock settings and 3x3 pattern UI */
 .lock-settings{border:1px solid #dce5f5}.lock-badge{font-size:9px;font-weight:800;letter-spacing:.14em;color:#5878cf;background:#eaf0ff;border-radius:20px;padding:7px 10px}.pattern-pad{width:min(260px,100%);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px auto 14px;padding:15px;border-radius:18px;background:rgba(31,55,91,.18);touch-action:manipulation}.pattern-dot{border:2px solid #9eb5e5;border-radius:50%;background:rgba(255,255,255,.12);width:100%;aspect-ratio:1;max-width:54px;justify-self:center;align-self:center;color:transparent;position:relative}.pattern-dot.selected{background:#6e91ed;border-color:#d9e5ff;box-shadow:0 0 0 5px #7796ed35}.pattern-dot.selected:after{content:"";position:absolute;inset:35%;border-radius:50%;background:#fff}.setup-pattern{background:#eef3ff}.setup-pattern .pattern-dot{background:#fff;border-color:#a8b9d8}.setup-pattern .pattern-dot.selected{background:#6e91ed}.win-card .pattern-pad{background:rgba(255,255,255,.08)}.win-card .pattern-dot{border-color:#b7d2f6;background:#ffffff12}.win-card .pattern-dot.selected{background:#8db6fa}
 #studioDialog{position:fixed;inset:0;z-index:99999;display:none;place-items:center;padding:18px;background:#1c294966;backdrop-filter:blur(13px);overflow:hidden}#studioDialog.open{display:grid;animation:sdFade .2s ease}#studioDialog:before,#studioDialog:after{content:"";position:absolute;width:40vmax;height:40vmax;border-radius:50%;filter:blur(55px);opacity:.28;animation:sdLiquid 9s ease-in-out infinite alternate;pointer-events:none}#studioDialog:before{background:#86a8ff;top:-20vmax;left:-12vmax}#studioDialog:after{background:#c3a1ff;right:-18vmax;bottom:-20vmax;animation-delay:-4s}@keyframes sdFade{from{opacity:0}to{opacity:1}}@keyframes sdLiquid{to{transform:translate(8vw,6vh) scale(1.2)}}.sd-card{position:relative;z-index:1;width:min(480px,100%);padding:26px;border:1px solid #ffffffc9;border-radius:25px;background:linear-gradient(145deg,#fffffff2,#edf3ffe8);color:#293951;box-shadow:0 28px 90px #24385a44;animation:sdPop .4s cubic-bezier(.16,1,.3,1)}@keyframes sdPop{from{opacity:0;transform:translateY(20px) scale(.94)}to{opacity:1;transform:none}}.sd-card h3{margin:0 0 8px;font-size:21px}.sd-card p{margin:0 0 18px;color:#68778e;font-size:14px}.sd-fields{display:grid;gap:10px}.sd-fields label{font-size:12px;font-weight:700;color:#53627a}.sd-fields input,.sd-fields select,.sd-fields textarea{width:100%;background:#fff;color:#293951;border:1px solid #dce4f1;border-radius:12px;padding:12px}.sd-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}.sd-actions button{border:1px solid #d8e0ed;border-radius:999px;padding:10px 18px;background:#fff;color:#34445d;font-weight:650}.sd-actions .sd-primary{background:linear-gradient(110deg,#6d91ed,#8170df);border:0;color:#fff;box-shadow:0 7px 18px #718ce955}.sd-actions .sd-danger{background:#d84f65;color:#fff;border-color:#d84f65}@media(max-width:480px){.sd-card{padding:21px}.sd-actions button{flex:1}}</style>
-<script>
-/* Emergency local unlock runs independently of the dashboard application script. */
-(function(){
- try{
-  var q=new URLSearchParams(location.search);
-  if(q.get("emergency-unlock")!=="1") return;
-  localStorage.removeItem("dishantStudioLockV2");
-  sessionStorage.setItem("dishantStudioUnlocked","1");
-  function openDashboard(){
-   document.body.classList.remove("login-locked");
-   var login=document.getElementById("winLogin"); if(login) login.style.display="none";
-   var dash=document.getElementById("dashboardWrap"); if(dash) dash.style.display="block";
-   ["sideNav","app"].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove("hidden")});
-   var page=document.getElementById("page-overview");if(page)page.classList.remove("hidden");
-   var params=new URLSearchParams(location.search);params.delete("emergency-unlock");
-   history.replaceState(null,"",location.pathname+(params.toString()?"?"+params.toString():""));
-   window.dispatchEvent(new Event("studio-unlocked"));
-  }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",openDashboard,{once:true});
-  else openDashboard();
- }catch(e){console.error("Emergency unlock failed",e)}
-})();
-</script>
+
 </head>
 <body class="login-locked">
 
@@ -1744,25 +1722,96 @@ input:focus,select:focus,textarea:focus{border-color:#7898f2!important;box-shado
 </div>
 <script>
 
-/* Windows-inspired local sign-in. Credentials are salted PBKDF2 hashes in this browser only. */
+/* Windows-inspired local sign-in. Keep the unlock transition atomic so the lock overlay cannot re-cover the dashboard. */
 (function(){
- const overlay=document.getElementById("winLogin"),form=document.getElementById("winForm"),input=document.getElementById("winPassword"),reveal=document.getElementById("winReveal"),error=document.getElementById("winError"),patternBox=document.getElementById("winPattern"),credentialWrap=document.getElementById("winCredentialWrap");
- const KEY="dishantStudioLockV2",LEGACY="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982";
+ "use strict";
+ const overlay=document.getElementById("winLogin");
+ const form=document.getElementById("winForm");
+ const input=document.getElementById("winPassword");
+ const reveal=document.getElementById("winReveal");
+ const error=document.getElementById("winError");
+ const patternBox=document.getElementById("winPattern");
+ const credentialWrap=document.getElementById("winCredentialWrap");
+ const KEY="dishantStudioLockV2";
  let loginPattern=[];
+ let busy=false;
  function readConfig(){try{return JSON.parse(localStorage.getItem(KEY)||"null")}catch(_){return null}}
- function makeGrid(el,arr){el.innerHTML="";for(let i=1;i<=9;i++){const b=document.createElement("button");b.type="button";b.className="pattern-dot"+(arr.includes(i)? " selected":"");b.setAttribute("aria-label","Dot "+i);b.addEventListener("click",()=>{if(!arr.includes(i)){arr.push(i);makeGrid(el,arr)}});el.appendChild(b)}}
- function renderLogin(){const c=readConfig();const mode=c?.mode||"password";input.value="";loginPattern=[];if(mode==="pattern"){credentialWrap.classList.add("hidden");input.required=false;patternBox.classList.remove("hidden");makeGrid(patternBox,loginPattern)}else{credentialWrap.classList.remove("hidden");patternBox.classList.add("hidden");input.required=true;input.type=mode==="pin"?"password":"password";input.inputMode=mode==="pin"?"numeric":"text";input.placeholder=mode==="pin"?"Enter your PIN":"Enter your password";}}
- async function digest(value,salt){const enc=new TextEncoder(),key=await crypto.subtle.importKey("raw",enc.encode(value),"PBKDF2",false,["deriveBits"]);const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:enc.encode(salt),iterations:180000,hash:"SHA-256"},key,256);return Array.from(new Uint8Array(bits)).map(x=>x.toString(16).padStart(2,"0")).join("")}
- async function verify(value){const c=readConfig();if(!c)return (await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value))).byteLength===32 && Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value)))).map(x=>x.toString(16).padStart(2,"0")).join("")===LEGACY;if(!c.salt||!c.hash)return false;return await digest(value,c.salt)===c.hash}
+ function makeGrid(el,arr){
+  el.innerHTML="";
+  for(let i=1;i<=9;i++){
+   const b=document.createElement("button");b.type="button";b.className="pattern-dot"+(arr.includes(i)?" selected":"");
+   b.setAttribute("aria-label","Dot "+i);
+   b.addEventListener("click",()=>{if(!arr.includes(i)){arr.push(i);makeGrid(el,arr)}});
+   el.appendChild(b);
+  }
+ }
+ function renderLogin(){
+  const c=readConfig(),mode=c&&c.mode?c.mode:"password";
+  input.value="";loginPattern=[];
+  if(mode==="pattern"){credentialWrap.classList.add("hidden");input.required=false;patternBox.classList.remove("hidden");makeGrid(patternBox,loginPattern)}
+  else{credentialWrap.classList.remove("hidden");patternBox.classList.add("hidden");input.required=true;input.type="password";input.inputMode=mode==="pin"?"numeric":"text";input.placeholder=mode==="pin"?"Enter your PIN":"Enter your password"}
+ }
+ async function digest(value,salt){
+  const enc=new TextEncoder(),key=await crypto.subtle.importKey("raw",enc.encode(value),"PBKDF2",false,["deriveBits"]);
+  const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:enc.encode(salt),iterations:180000,hash:"SHA-256"},key,256);
+  return Array.from(new Uint8Array(bits)).map(x=>x.toString(16).padStart(2,"0")).join("");
+ }
+ async function verify(value){
+  const c=readConfig();
+  if(!c){
+   const bytes=new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value)));
+   return Array.from(bytes).map(x=>x.toString(16).padStart(2,"0")).join("")==="fcf5bf186e4a6cdc06e046986998f35a78eee4daab69414c6ad4fc1e361b3982";
+  }
+  if(!c.salt||!c.hash)return false;
+  return (await digest(value,c.salt))===c.hash;
+ }
+ function setUnlockedFlag(){
+  try{sessionStorage.setItem("dishantStudioUnlocked","1");return true}
+  catch(e){error.textContent="Chrome site storage is blocked. Allow site data for this website and try again.";return false}
+ }
+ function openDashboard(){
+  const dashboard=document.getElementById("dashboardWrap");
+  document.body.classList.remove("login-locked");
+  if(dashboard){dashboard.style.display="block";dashboard.classList.remove("hidden","dashboard-enter")}
+  ["sideNav","app"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("hidden")});
+  if(overlay){overlay.classList.remove("unlocking");overlay.style.display="none";overlay.setAttribute("aria-hidden","true")}
+  error.textContent="";
+  window.dispatchEvent(new Event("studio-unlocked"));
+ }
+ function resetLocalLock(){
+  try{localStorage.removeItem(KEY)}catch(e){error.textContent="Could not reset browser storage: "+e.message;return}
+  if(!setUnlockedFlag())return;
+  renderLogin();openDashboard();
+ }
  reveal.addEventListener("click",()=>{const show=input.type==="password";input.type=show?"text":"password";reveal.textContent=show?"⊘":"◉"});
- function resetLocalLock(){try{localStorage.removeItem(KEY);sessionStorage.setItem("dishantStudioUnlocked","1");}catch(e){error.textContent="Browser storage is blocked. Open this site in Chrome and allow site data.";return false;}renderLogin();revealDashboard();error.textContent="";return true;}
- document.getElementById("winResetLock").addEventListener("click",()=>{if(!window.confirm("Reset the local sign-in lock on THIS browser? This will not change or delete portfolio files."))return;resetLocalLock();});
- try{const params=new URLSearchParams(window.location.search);if(params.get("reset-lock")==="1"){resetLocalLock();history.replaceState(null,"",window.location.pathname);}}catch(e){}
- form.addEventListener("submit",async e=>{e.preventDefault();error.textContent="";const c=readConfig(),mode=c?.mode||"password",value=mode==="pattern"?loginPattern.join("-"):input.value;if(mode==="pattern"&&loginPattern.length<4){error.textContent="Connect at least 4 dots.";return}try{if(!await verify(value)){error.textContent="Incorrect sign-in. Try again.";input.value="";loginPattern=[];if(mode==="pattern")makeGrid(patternBox,loginPattern);return}sessionStorage.setItem("dishantStudioUnlocked","1");const dashboard=document.getElementById("dashboardWrap");if(dashboard){dashboard.style.display="";dashboard.classList.add("dashboard-enter")}document.getElementById("sideNav")?.classList.remove("hidden");document.getElementById("app")?.classList.remove("hidden");window.dispatchEvent(new Event("studio-unlocked"));overlay.classList.add("unlocking");setTimeout(()=>{overlay.style.display="none";overlay.classList.remove("unlocking");document.body.classList.remove("login-locked");if(dashboard)dashboard.classList.remove("dashboard-enter")},600)}catch(err){error.textContent="Sign-in unavailable: "+(err&&err.message?err.message:"browser security check failed")}});
- function revealDashboard(){const dashboard=document.getElementById("dashboardWrap");if(dashboard)dashboard.style.display="";document.getElementById("sideNav")?.classList.remove("hidden");document.getElementById("app")?.classList.remove("hidden");overlay.style.display="none";document.body.classList.remove("login-locked");setTimeout(()=>window.dispatchEvent(new Event("studio-unlocked")),0)}
+ document.getElementById("winResetLock").addEventListener("click",()=>{
+  if(!window.confirm("Reset the local sign-in lock on THIS browser? Portfolio files will not be changed."))return;
+  resetLocalLock();
+ });
+ try{
+  const params=new URLSearchParams(location.search);
+  if(params.get("reset-lock")==="1"){history.replaceState(null,"",location.pathname);resetLocalLock();return}
+ }catch(_){}
+ form.addEventListener("submit",async e=>{
+  e.preventDefault();if(busy)return;busy=true;error.textContent="";
+  const c=readConfig(),mode=c&&c.mode?c.mode:"password";
+  const value=mode==="pattern"?loginPattern.join("-"):input.value;
+  if(mode==="pattern"&&loginPattern.length<4){error.textContent="Connect at least 4 dots.";busy=false;return}
+  try{
+   const valid=await verify(value);
+   if(!valid){error.textContent="Incorrect sign-in. Try again.";input.value="";loginPattern=[];if(mode==="pattern")makeGrid(patternBox,loginPattern);busy=false;return}
+   if(!setUnlockedFlag()){busy=false;return}
+   openDashboard();
+  }catch(err){error.textContent="Sign-in unavailable: "+(err&&err.message?err.message:"browser security check failed")}
+  finally{busy=false}
+ });
  renderLogin();
- try{if(sessionStorage.getItem("dishantStudioUnlocked")==="1")revealDashboard();else input.focus()}catch(_){input.focus()}
- window.dishantLockNow=()=>{try{sessionStorage.removeItem("dishantStudioUnlocked")}catch(_){}document.body.classList.add("login-locked");overlay.classList.remove("unlocking");overlay.style.display="grid";renderLogin();input.focus()};
+ try{if(sessionStorage.getItem("dishantStudioUnlocked")==="1")openDashboard();else{document.body.classList.add("login-locked");overlay.style.display="flex";input.focus()}}
+ catch(_){document.body.classList.add("login-locked");overlay.style.display="flex";input.focus()}
+ window.dishantLockNow=()=>{
+  try{sessionStorage.removeItem("dishantStudioUnlocked")}catch(_){}
+  document.body.classList.add("login-locked");overlay.classList.remove("unlocking");overlay.style.display="flex";overlay.setAttribute("aria-hidden","false");renderLogin();input.focus();
+ };
  window.dishantRefreshLock=renderLogin;
 })();
 
