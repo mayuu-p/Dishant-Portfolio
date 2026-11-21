@@ -1,0 +1,36 @@
+name: Deploy Dishant Portfolio to InfinityFree
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: infinityfree-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Upload static portfolio
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy website files by FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.github/**
+            **/.vscode/**
+            **/node_modules/**
+            **/.env*
+            **/README*
+          dangerous-clean-slate: false
