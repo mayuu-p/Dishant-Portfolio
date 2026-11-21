@@ -5,7 +5,15 @@ on:
   push:
     branches:
       - main
+
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dishant-portfolio-deployment
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -16,16 +24,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy website
+      - name: Verify website files
+        run: |
+          test -f index.html || {
+            echo "ERROR: index.html not found!"
+            exit 1
+          }
+          echo "Website files verified."
+
+      - name: Deploy website to InfinityFree
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /htdocs/dishant-portfolio/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
           protocol: ftp
           port: 21
           local-dir: ./
           exclude: |
             **/.git*
             **/.github/**
+            **/.git*/**
+            .ftp-deploy-sync-state.json
